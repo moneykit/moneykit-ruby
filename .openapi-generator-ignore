@@ -1,0 +1,10 @@
+spec/**
+.gitignore
+.rspec
+.rubocop.yml
+.travis.yml
+.gitlab-ci.yml
+Gemfile
+Rakefile
+git_push.sh
+docs/

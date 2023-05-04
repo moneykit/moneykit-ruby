@@ -1,0 +1,56 @@
+name: Release
+
+# on:
+#   release:
+#     types: [released]
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  publish_to_rubygems:
+    name: Publish to Ruby Gems
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Get tags for automatic versioning
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2.2"
+          bundler-cache: true
+
+      - name: Update version.rb to git tag
+        run: |
+          VERSION_FILE_PATH=lib/moneykit/version.rb
+          TAG=${{ github.ref_name }}
+          VERSION_NUMBER=${TAG#v}
+          sed -i "s/VERSION = '0.0.0'/VERSION = '$VERSION_NUMBER'/" $VERSION_FILE_PATH
+          cat $VERSION_FILE_PATH
+
+      # - name: Check GITHUB_REF matches package version
+      #   id: check-tag
+      #   uses: samuelcolvin/check-python-version@v3.1
+      #   with:
+      #     version_file_path: python/moneykit-sdk/moneykit/__init__.py
+
+      # - name: Run tests
+      #   run: bundle exec rspec
+
+      - name: Build gem
+        run: |
+          gem build moneykit.gemspec
+
+      - name: Setup Ruby Gems access
+        run: |
+          mkdir -p ~/.gem
+          echo ":rubygems_api_key: ${{ secrets.RUBYGEMS_API_KEY }}" > ~/.gem/credentials
+          chmod 0600 ~/.gem/credentials
+
+      - name: Publish gem
+        run: |
+          gem push moneykit-*.gem
