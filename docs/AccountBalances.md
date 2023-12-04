@@ -1,0 +1,24 @@
+# MoneyKit::AccountBalances
+
+## Properties
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **currency** | [**Currency**](Currency.md) |  |  |
+| **available** | **Float** | The amount of funds available for use.  Not all institutions report the available balance.             &lt;p&gt;Note that the available balance typically does not include overdraft limits. | [optional] |
+| **current** | **Float** | The total amount of funds in the account.             &lt;p&gt;For credit or loan accounts, a positive number indicates the amount owed by the account holder.             If the balance is negative (this is rare), this indicates an amount owed **to** the account holder.             &lt;p&gt;For depository or investment accounts, a positive number is the asset value of the account.             If the balance is negative (this is rare), this indicates an overdraft or margin condition. | [optional] |
+| **limit** | **Float** | The credit limit on the account.  Typically this exists only for credit-type accounts.             &lt;p&gt;In some cases, this may represent the overdraft limit for depository accounts. | [optional] |
+
+## Example
+
+```ruby
+require 'moneykit'
+
+instance = MoneyKit::AccountBalances.new(
+  currency: null,
+  available: 340.12,
+  current: 445.89,
+  limit: 500
+)
+```
+
