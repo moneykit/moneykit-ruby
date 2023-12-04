@@ -29,7 +29,7 @@ jobs:
           VERSION_FILE_PATH=lib/moneykit/version.rb
           TAG=${{ github.ref_name }}
           VERSION_NUMBER=${TAG#v}
-          sed -i "s/VERSION = '0.0.0'/VERSION = '$VERSION_NUMBER'/" $VERSION_FILE_PATH
+          sed -i "s/VERSION = '0.0.1'/VERSION = '$VERSION_NUMBER'/" $VERSION_FILE_PATH
           cat $VERSION_FILE_PATH
 
       # - name: Check GITHUB_REF matches package version
