@@ -11,5 +11,5 @@ OpenAPI Generator version: 7.1.0
 =end
 
 module MoneyKit
-  VERSION = '0.0.4'
+  VERSION = '0.1.0.alpha.1'
 end
