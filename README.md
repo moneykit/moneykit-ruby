@@ -29,6 +29,7 @@ require 'moneykit'
 
 # Setup authorization
 MoneyKit.configure do |config|
+  # Defaults to MoneyKit-Version: 2023-02-18
   # Configure Bearer authorization
   config.host = ENV['MONEYKIT_URL'] || 'https://api.moneykit.com'
 end

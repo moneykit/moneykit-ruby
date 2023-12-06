@@ -187,8 +187,8 @@ opts = {
   institution_id: ['inner_example'], # Array<String> | If present, filters results to transactions at institutions matching the given IDs.
   page: 56, # Integer | The page number to return.
   size: 56, # Integer | The number of items to return per page.
-  start_date: 'start_date_example', # String | The earliest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to 90 days before the `end_date`.             <p>If you want to retrieve **all** transactions, use `1900-01-01`.
-  end_date: 'end_date_example', # String | The latest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to today.
+  start_date: Date.parse('2013-10-20'), # Date | The earliest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to 90 days before the `end_date`.             <p>If you want to retrieve **all** transactions, use `1900-01-01`.
+  end_date: Date.parse('2013-10-20'), # Date | The latest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to today.
   moneykit_version: 'moneykit_version_example' # String | 
 }
 
@@ -230,8 +230,8 @@ end
 | **institution_id** | [**Array&lt;String&gt;**](String.md) | If present, filters results to transactions at institutions matching the given IDs. | [optional] |
 | **page** | **Integer** | The page number to return. | [optional][default to 1] |
 | **size** | **Integer** | The number of items to return per page. | [optional][default to 50] |
-| **start_date** | **String** | The earliest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to 90 days before the &#x60;end_date&#x60;.             &lt;p&gt;If you want to retrieve **all** transactions, use &#x60;1900-01-01&#x60;. | [optional] |
-| **end_date** | **String** | The latest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to today. | [optional] |
+| **start_date** | **Date** | The earliest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to 90 days before the &#x60;end_date&#x60;.             &lt;p&gt;If you want to retrieve **all** transactions, use &#x60;1900-01-01&#x60;. | [optional] |
+| **end_date** | **Date** | The latest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to today. | [optional] |
 | **moneykit_version** | **String** |  | [optional][default to &#39;2023-02-18&#39;] |
 
 ### Return type

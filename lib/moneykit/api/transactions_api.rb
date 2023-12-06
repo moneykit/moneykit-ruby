@@ -26,8 +26,8 @@ module MoneyKit
     # @option opts [Array<String>] :account_ids An optional list of account IDs to filter the results.
     # @option opts [Integer] :page The page number to return. (default to 1)
     # @option opts [Integer] :size The number of items to return per page. (default to 50)
-    # @option opts [String] :start_date The earliest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to 90 days before the &#x60;end_date&#x60;.             &lt;p&gt;If you want to retrieve **all** transactions, use &#x60;1900-01-01&#x60;.
-    # @option opts [String] :end_date The latest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to today.
+    # @option opts [Date] :start_date The earliest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to 90 days before the &#x60;end_date&#x60;.             &lt;p&gt;If you want to retrieve **all** transactions, use &#x60;1900-01-01&#x60;.
+    # @option opts [Date] :end_date The latest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to today.
     # @option opts [String] :moneykit_version  (default to '2023-02-18')
     # @return [GetTransactionsResponse]
     def get_transactions(id, opts = {})
@@ -42,8 +42,8 @@ module MoneyKit
     # @option opts [Array<String>] :account_ids An optional list of account IDs to filter the results.
     # @option opts [Integer] :page The page number to return. (default to 1)
     # @option opts [Integer] :size The number of items to return per page. (default to 50)
-    # @option opts [String] :start_date The earliest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to 90 days before the &#x60;end_date&#x60;.             &lt;p&gt;If you want to retrieve **all** transactions, use &#x60;1900-01-01&#x60;.
-    # @option opts [String] :end_date The latest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to today.
+    # @option opts [Date] :start_date The earliest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to 90 days before the &#x60;end_date&#x60;.             &lt;p&gt;If you want to retrieve **all** transactions, use &#x60;1900-01-01&#x60;.
+    # @option opts [Date] :end_date The latest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to today.
     # @option opts [String] :moneykit_version  (default to '2023-02-18')
     # @return [Array<(GetTransactionsResponse, Integer, Hash)>] GetTransactionsResponse data, response status code and response headers
     def get_transactions_with_http_info(id, opts = {})
@@ -202,8 +202,8 @@ module MoneyKit
     # @option opts [Array<String>] :institution_id If present, filters results to transactions at institutions matching the given IDs.
     # @option opts [Integer] :page The page number to return. (default to 1)
     # @option opts [Integer] :size The number of items to return per page. (default to 50)
-    # @option opts [String] :start_date The earliest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to 90 days before the &#x60;end_date&#x60;.             &lt;p&gt;If you want to retrieve **all** transactions, use &#x60;1900-01-01&#x60;.
-    # @option opts [String] :end_date The latest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to today.
+    # @option opts [Date] :start_date The earliest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to 90 days before the &#x60;end_date&#x60;.             &lt;p&gt;If you want to retrieve **all** transactions, use &#x60;1900-01-01&#x60;.
+    # @option opts [Date] :end_date The latest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to today.
     # @option opts [String] :moneykit_version  (default to '2023-02-18')
     # @return [GetUserTransactionsResponse]
     def get_user_transactions(id, opts = {})
@@ -221,8 +221,8 @@ module MoneyKit
     # @option opts [Array<String>] :institution_id If present, filters results to transactions at institutions matching the given IDs.
     # @option opts [Integer] :page The page number to return. (default to 1)
     # @option opts [Integer] :size The number of items to return per page. (default to 50)
-    # @option opts [String] :start_date The earliest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to 90 days before the &#x60;end_date&#x60;.             &lt;p&gt;If you want to retrieve **all** transactions, use &#x60;1900-01-01&#x60;.
-    # @option opts [String] :end_date The latest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to today.
+    # @option opts [Date] :start_date The earliest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to 90 days before the &#x60;end_date&#x60;.             &lt;p&gt;If you want to retrieve **all** transactions, use &#x60;1900-01-01&#x60;.
+    # @option opts [Date] :end_date The latest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to today.
     # @option opts [String] :moneykit_version  (default to '2023-02-18')
     # @return [Array<(GetUserTransactionsResponse, Integer, Hash)>] GetUserTransactionsResponse data, response status code and response headers
     def get_user_transactions_with_http_info(id, opts = {})

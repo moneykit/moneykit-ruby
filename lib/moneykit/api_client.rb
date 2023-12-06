@@ -36,7 +36,8 @@ module MoneyKit
       @user_agent = "OpenAPI-Generator/#{VERSION}/ruby"
       @default_headers = {
         'Content-Type' => 'application/json',
-        'User-Agent' => @user_agent
+        'User-Agent' => @user_agent,
+        'MoneyKit-Version' => '2023-02-18',
       }
     end
 
