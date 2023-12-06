@@ -98,7 +98,7 @@ module MoneyKit
         invalid_properties.push('invalid value for "id", the character length must be great than or equal to 4.')
       end
 
-      pattern = Regexp.new(/^[a-zA-Z0-9-_]+$/)
+      pattern = Regexp.new(/^[a-zA-Z0-9_-]+$/)
       if @id !~ pattern
         invalid_properties.push("invalid value for \"id\", must conform to the pattern #{pattern}.")
       end
@@ -113,7 +113,7 @@ module MoneyKit
       return false if @id.nil?
       return false if @id.to_s.length > 150
       return false if @id.to_s.length < 4
-      return false if @id !~ Regexp.new(/^[a-zA-Z0-9-_]+$/)
+      return false if @id !~ Regexp.new(/^[a-zA-Z0-9_-]+$/)
       true
     end
 
@@ -132,7 +132,7 @@ module MoneyKit
         fail ArgumentError, 'invalid value for "id", the character length must be great than or equal to 4.'
       end
 
-      pattern = Regexp.new(/^[a-zA-Z0-9-_]+$/)
+      pattern = Regexp.new(/^[a-zA-Z0-9_-]+$/)
       if id !~ pattern
         fail ArgumentError, "invalid value for \"id\", must conform to the pattern #{pattern}."
       end
