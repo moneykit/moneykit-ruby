@@ -258,9 +258,4 @@ lib/moneykit/version.rb
 moneykit.gemspec
 spec/api_client_spec.rb
 spec/configuration_spec.rb
-spec/models/body_spec.rb
-spec/models/link_product_refresh_webhook_spec.rb
-spec/models/link_product_state_spec.rb
-spec/models/response_handle_link_webhook_event_request_body_webhook_post_spec.rb
-spec/models/transaction_updates_available_webhook_spec.rb
 spec/spec_helper.rb
