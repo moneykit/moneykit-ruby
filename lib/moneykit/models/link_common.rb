@@ -24,6 +24,9 @@ module MoneyKit
     # The institution name this link is connected to.
     attr_accessor :institution_name
 
+    # An avatar image for the link's institution.
+    attr_accessor :institution_avatar
+
     attr_accessor :state
 
     attr_accessor :error_code
@@ -63,6 +66,7 @@ module MoneyKit
         :'link_id' => :'link_id',
         :'institution_id' => :'institution_id',
         :'institution_name' => :'institution_name',
+        :'institution_avatar' => :'institution_avatar',
         :'state' => :'state',
         :'error_code' => :'error_code',
         :'last_synced_at' => :'last_synced_at',
@@ -82,6 +86,7 @@ module MoneyKit
         :'link_id' => :'String',
         :'institution_id' => :'String',
         :'institution_name' => :'String',
+        :'institution_avatar' => :'String',
         :'state' => :'LinkState',
         :'error_code' => :'PublicLinkError',
         :'last_synced_at' => :'Time',
@@ -129,6 +134,12 @@ module MoneyKit
         self.institution_name = nil
       end
 
+      if attributes.key?(:'institution_avatar')
+        self.institution_avatar = attributes[:'institution_avatar']
+      else
+        self.institution_avatar = nil
+      end
+
       if attributes.key?(:'state')
         self.state = attributes[:'state']
       else
@@ -173,6 +184,10 @@ module MoneyKit
         invalid_properties.push('invalid value for "institution_name", institution_name cannot be nil.')
       end
 
+      if @institution_avatar.nil?
+        invalid_properties.push('invalid value for "institution_avatar", institution_avatar cannot be nil.')
+      end
+
       if @state.nil?
         invalid_properties.push('invalid value for "state", state cannot be nil.')
       end
@@ -191,6 +206,7 @@ module MoneyKit
       return false if @link_id.nil?
       return false if @institution_id.nil?
       return false if @institution_name.nil?
+      return false if @institution_avatar.nil?
       return false if @state.nil?
       return false if @products.nil?
       true
@@ -204,6 +220,7 @@ module MoneyKit
           link_id == o.link_id &&
           institution_id == o.institution_id &&
           institution_name == o.institution_name &&
+          institution_avatar == o.institution_avatar &&
           state == o.state &&
           error_code == o.error_code &&
           last_synced_at == o.last_synced_at &&
@@ -220,7 +237,7 @@ module MoneyKit
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [link_id, institution_id, institution_name, state, error_code, last_synced_at, tags, products].hash
+      [link_id, institution_id, institution_name, institution_avatar, state, error_code, last_synced_at, tags, products].hash
     end
 
     # Builds the object from hash
