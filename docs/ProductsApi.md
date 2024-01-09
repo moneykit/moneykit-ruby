@@ -9,7 +9,7 @@ All URIs are relative to *https://api.moneykit.com*
 
 ## refresh_products
 
-> refresh_products(id, refresh_products_request, opts)
+> refresh_products(id, refresh_products_request)
 
 /links/{id}/products
 
@@ -29,13 +29,10 @@ end
 api_instance = MoneyKit::ProductsApi.new
 id = 'mk_eqkWN34UEoa2NxyALG8pcV' # String | The unique ID for this link.
 refresh_products_request = MoneyKit::RefreshProductsRequest.new({products: [MoneyKit::Product::ACCOUNTS]}) # RefreshProductsRequest | 
-opts = {
-  moneykit_version: 'moneykit_version_example' # String | 
-}
 
 begin
   # /links/{id}/products
-  api_instance.refresh_products(id, refresh_products_request, opts)
+  api_instance.refresh_products(id, refresh_products_request)
 rescue MoneyKit::ApiError => e
   puts "Error when calling ProductsApi->refresh_products: #{e}"
 end
@@ -45,12 +42,12 @@ end
 
 This returns an Array which contains the response data (`nil` in this case), status code and headers.
 
-> <Array(nil, Integer, Hash)> refresh_products_with_http_info(id, refresh_products_request, opts)
+> <Array(nil, Integer, Hash)> refresh_products_with_http_info(id, refresh_products_request)
 
 ```ruby
 begin
   # /links/{id}/products
-  data, status_code, headers = api_instance.refresh_products_with_http_info(id, refresh_products_request, opts)
+  data, status_code, headers = api_instance.refresh_products_with_http_info(id, refresh_products_request)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => nil
@@ -65,7 +62,6 @@ end
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | The unique ID for this link. |  |
 | **refresh_products_request** | [**RefreshProductsRequest**](RefreshProductsRequest.md) |  |  |
-| **moneykit_version** | **String** |  | [optional][default to &#39;2023-02-18&#39;] |
 
 ### Return type
 

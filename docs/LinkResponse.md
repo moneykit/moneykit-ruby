@@ -9,7 +9,7 @@
 | **institution_name** | **String** | The institution name this link is connected to. |  |
 | **institution_avatar** | **String** | An avatar image for the link&#39;s institution. |  |
 | **state** | [**LinkState**](LinkState.md) |  |  |
-| **error_code** | [**PublicLinkError**](PublicLinkError.md) |  | [optional] |
+| **error_code** | [**LinkError**](LinkError.md) |  | [optional] |
 | **last_synced_at** | **Time** | An ISO-8601 timestamp indicating the last time that the account was updated. | [optional] |
 | **tags** | **Array&lt;String&gt;** |  | [optional] |
 | **products** | [**LinkProducts**](LinkProducts.md) |  |  |

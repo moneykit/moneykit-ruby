@@ -12,7 +12,7 @@ All URIs are relative to *https://api.moneykit.com*
 
 ## get_account
 
-> <GetAccountResponse> get_account(id, account_id, opts)
+> <GetAccountResponse> get_account(id, account_id)
 
 /links/{id}/accounts/{account_id}
 
@@ -32,13 +32,10 @@ end
 api_instance = MoneyKit::AccountsApi.new
 id = 'mk_eqkWN34UEoa2NxyALG8pcV' # String | The unique ID for this link.
 account_id = 'acc_6Tef269B6ZArSVpYrxtjBV' # String | The account ID to fetch.
-opts = {
-  moneykit_version: 'moneykit_version_example' # String | 
-}
 
 begin
   # /links/{id}/accounts/{account_id}
-  result = api_instance.get_account(id, account_id, opts)
+  result = api_instance.get_account(id, account_id)
   p result
 rescue MoneyKit::ApiError => e
   puts "Error when calling AccountsApi->get_account: #{e}"
@@ -49,12 +46,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<GetAccountResponse>, Integer, Hash)> get_account_with_http_info(id, account_id, opts)
+> <Array(<GetAccountResponse>, Integer, Hash)> get_account_with_http_info(id, account_id)
 
 ```ruby
 begin
   # /links/{id}/accounts/{account_id}
-  data, status_code, headers = api_instance.get_account_with_http_info(id, account_id, opts)
+  data, status_code, headers = api_instance.get_account_with_http_info(id, account_id)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <GetAccountResponse>
@@ -69,7 +66,6 @@ end
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | The unique ID for this link. |  |
 | **account_id** | **String** | The account ID to fetch. |  |
-| **moneykit_version** | **String** |  | [optional][default to &#39;2023-02-18&#39;] |
 
 ### Return type
 
@@ -87,7 +83,7 @@ end
 
 ## get_account_numbers
 
-> <GetAccountNumbersResponse> get_account_numbers(id, opts)
+> <GetAccountNumbersResponse> get_account_numbers(id)
 
 /links/{id}/accounts/numbers
 
@@ -106,13 +102,10 @@ end
 
 api_instance = MoneyKit::AccountsApi.new
 id = 'mk_eqkWN34UEoa2NxyALG8pcV' # String | The unique ID for this link.
-opts = {
-  moneykit_version: 'moneykit_version_example' # String | 
-}
 
 begin
   # /links/{id}/accounts/numbers
-  result = api_instance.get_account_numbers(id, opts)
+  result = api_instance.get_account_numbers(id)
   p result
 rescue MoneyKit::ApiError => e
   puts "Error when calling AccountsApi->get_account_numbers: #{e}"
@@ -123,12 +116,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<GetAccountNumbersResponse>, Integer, Hash)> get_account_numbers_with_http_info(id, opts)
+> <Array(<GetAccountNumbersResponse>, Integer, Hash)> get_account_numbers_with_http_info(id)
 
 ```ruby
 begin
   # /links/{id}/accounts/numbers
-  data, status_code, headers = api_instance.get_account_numbers_with_http_info(id, opts)
+  data, status_code, headers = api_instance.get_account_numbers_with_http_info(id)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <GetAccountNumbersResponse>
@@ -142,7 +135,6 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | The unique ID for this link. |  |
-| **moneykit_version** | **String** |  | [optional][default to &#39;2023-02-18&#39;] |
 
 ### Return type
 
@@ -180,8 +172,7 @@ end
 api_instance = MoneyKit::AccountsApi.new
 id = 'mk_eqkWN34UEoa2NxyALG8pcV' # String | The unique ID for this link.
 opts = {
-  account_ids: ['inner_example'], # Array<String> | An optional list of account IDs to filter the results.
-  moneykit_version: 'moneykit_version_example' # String | 
+  account_ids: ['inner_example'] # Array<String> | An optional list of account IDs to filter the results.
 }
 
 begin
@@ -217,7 +208,6 @@ end
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | The unique ID for this link. |  |
 | **account_ids** | [**Array&lt;String&gt;**](String.md) | An optional list of account IDs to filter the results. | [optional] |
-| **moneykit_version** | **String** |  | [optional][default to &#39;2023-02-18&#39;] |
 
 ### Return type
 
@@ -256,8 +246,7 @@ api_instance = MoneyKit::AccountsApi.new
 id = 'MyUser1234' # String | The unique ID for this user.  This is the same ID provided         in the call to <a href=#operation/create_link_session>/link-session</a> to create any link for this user.
 opts = {
   account_id: ['inner_example'], # Array<String> | If present, filters results to accounts matching the given IDs.
-  institution_id: ['inner_example'], # Array<String> | If present, filters results to accounts at institutions matching the given IDs.
-  moneykit_version: 'moneykit_version_example' # String | 
+  institution_id: ['inner_example'] # Array<String> | If present, filters results to accounts at institutions matching the given IDs.
 }
 
 begin
@@ -294,7 +283,6 @@ end
 | **id** | **String** | The unique ID for this user.  This is the same ID provided         in the call to &lt;a href&#x3D;#operation/create_link_session&gt;/link-session&lt;/a&gt; to create any link for this user. |  |
 | **account_id** | [**Array&lt;String&gt;**](String.md) | If present, filters results to accounts matching the given IDs. | [optional] |
 | **institution_id** | [**Array&lt;String&gt;**](String.md) | If present, filters results to accounts at institutions matching the given IDs. | [optional] |
-| **moneykit_version** | **String** |  | [optional][default to &#39;2023-02-18&#39;] |
 
 ### Return type
 

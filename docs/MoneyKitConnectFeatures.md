@@ -4,7 +4,7 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **issue_reporter** | **Boolean** | If enabled, the user can report linking issues directly to MoneyKit. | [optional][default to false] |
+| **issue_reporter** | **Boolean** | If enabled, the user can report linking issues directly to MoneyKit via &#39;Report Issue&#39; button. | [optional][default to false] |
 | **enable_money_id** | **Boolean** | If enabled, the user can register for, or login into, Money ID. | [optional][default to false] |
 
 ## Example

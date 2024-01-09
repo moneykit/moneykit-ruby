@@ -31,7 +31,6 @@ end
 
 api_instance = MoneyKit::AccessTokenApi.new
 opts = {
-  moneykit_version: 'moneykit_version_example', # String | 
   grant_type: 'grant_type_example', # String | Token grant type. Only `client_credentials` supported.
   scope: 'scope_example', # String | Actions to be allowed for this token, given as one or more strings separated by spaces.             If omitted, all actions allowed for your application will be granted to this token.
   client_id: 'client_id_example', # String | Your application's MoneyKit client ID.
@@ -69,7 +68,6 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **moneykit_version** | **String** |  | [optional][default to &#39;2023-02-18&#39;] |
 | **grant_type** | **String** | Token grant type. Only &#x60;client_credentials&#x60; supported. | [optional] |
 | **scope** | **String** | Actions to be allowed for this token, given as one or more strings separated by spaces.             If omitted, all actions allowed for your application will be granted to this token. | [optional][default to &#39;&#39;] |
 | **client_id** | **String** | Your application&#39;s MoneyKit client ID. | [optional] |
@@ -91,7 +89,7 @@ end
 
 ## get_well_known_jwks
 
-> <JWKSet> get_well_known_jwks(opts)
+> <JWKSet> get_well_known_jwks
 
 JSON Web Key Set
 
@@ -109,13 +107,10 @@ MoneyKit.configure do |config|
 end
 
 api_instance = MoneyKit::AccessTokenApi.new
-opts = {
-  moneykit_version: 'moneykit_version_example' # String | 
-}
 
 begin
   # JSON Web Key Set
-  result = api_instance.get_well_known_jwks(opts)
+  result = api_instance.get_well_known_jwks
   p result
 rescue MoneyKit::ApiError => e
   puts "Error when calling AccessTokenApi->get_well_known_jwks: #{e}"
@@ -126,12 +121,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<JWKSet>, Integer, Hash)> get_well_known_jwks_with_http_info(opts)
+> <Array(<JWKSet>, Integer, Hash)> get_well_known_jwks_with_http_info
 
 ```ruby
 begin
   # JSON Web Key Set
-  data, status_code, headers = api_instance.get_well_known_jwks_with_http_info(opts)
+  data, status_code, headers = api_instance.get_well_known_jwks_with_http_info
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <JWKSet>
@@ -142,9 +137,7 @@ end
 
 ### Parameters
 
-| Name | Type | Description | Notes |
-| ---- | ---- | ----------- | ----- |
-| **moneykit_version** | **String** |  | [optional][default to &#39;2023-02-18&#39;] |
+This endpoint does not need any parameter.
 
 ### Return type
 
@@ -162,7 +155,7 @@ end
 
 ## instrospect_client
 
-> <IntrospectClientResponse> instrospect_client(opts)
+> <IntrospectClientResponse> instrospect_client
 
 /auth/introspect
 
@@ -180,13 +173,10 @@ MoneyKit.configure do |config|
 end
 
 api_instance = MoneyKit::AccessTokenApi.new
-opts = {
-  moneykit_version: 'moneykit_version_example' # String | 
-}
 
 begin
   # /auth/introspect
-  result = api_instance.instrospect_client(opts)
+  result = api_instance.instrospect_client
   p result
 rescue MoneyKit::ApiError => e
   puts "Error when calling AccessTokenApi->instrospect_client: #{e}"
@@ -197,12 +187,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<IntrospectClientResponse>, Integer, Hash)> instrospect_client_with_http_info(opts)
+> <Array(<IntrospectClientResponse>, Integer, Hash)> instrospect_client_with_http_info
 
 ```ruby
 begin
   # /auth/introspect
-  data, status_code, headers = api_instance.instrospect_client_with_http_info(opts)
+  data, status_code, headers = api_instance.instrospect_client_with_http_info
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <IntrospectClientResponse>
@@ -213,9 +203,7 @@ end
 
 ### Parameters
 
-| Name | Type | Description | Notes |
-| ---- | ---- | ----------- | ----- |
-| **moneykit_version** | **String** |  | [optional][default to &#39;2023-02-18&#39;] |
+This endpoint does not need any parameter.
 
 ### Return type
 

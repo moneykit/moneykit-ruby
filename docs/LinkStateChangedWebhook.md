@@ -12,7 +12,7 @@
 | **link_id** | **String** |  |  |
 | **link_tags** | **Array&lt;String&gt;** |  |  |
 | **state** | [**LinkState**](LinkState.md) |  |  |
-| **error** | [**PublicLinkError**](PublicLinkError.md) |  | [optional] |
+| **error** | [**LinkError**](LinkError.md) |  | [optional] |
 | **error_message** | **String** |  | [optional] |
 
 ## Example

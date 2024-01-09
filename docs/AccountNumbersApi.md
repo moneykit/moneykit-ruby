@@ -9,7 +9,7 @@ All URIs are relative to *https://api.moneykit.com*
 
 ## get_account_numbers
 
-> <GetAccountNumbersResponse> get_account_numbers(id, opts)
+> <GetAccountNumbersResponse> get_account_numbers(id)
 
 /links/{id}/accounts/numbers
 
@@ -28,13 +28,10 @@ end
 
 api_instance = MoneyKit::AccountNumbersApi.new
 id = 'mk_eqkWN34UEoa2NxyALG8pcV' # String | The unique ID for this link.
-opts = {
-  moneykit_version: 'moneykit_version_example' # String | 
-}
 
 begin
   # /links/{id}/accounts/numbers
-  result = api_instance.get_account_numbers(id, opts)
+  result = api_instance.get_account_numbers(id)
   p result
 rescue MoneyKit::ApiError => e
   puts "Error when calling AccountNumbersApi->get_account_numbers: #{e}"
@@ -45,12 +42,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<GetAccountNumbersResponse>, Integer, Hash)> get_account_numbers_with_http_info(id, opts)
+> <Array(<GetAccountNumbersResponse>, Integer, Hash)> get_account_numbers_with_http_info(id)
 
 ```ruby
 begin
   # /links/{id}/accounts/numbers
-  data, status_code, headers = api_instance.get_account_numbers_with_http_info(id, opts)
+  data, status_code, headers = api_instance.get_account_numbers_with_http_info(id)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <GetAccountNumbersResponse>
@@ -64,7 +61,6 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | The unique ID for this link. |  |
-| **moneykit_version** | **String** |  | [optional][default to &#39;2023-02-18&#39;] |
 
 ### Return type
 

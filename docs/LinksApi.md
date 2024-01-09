@@ -13,7 +13,7 @@ All URIs are relative to *https://api.moneykit.com*
 
 ## disconnect
 
-> disconnect(id, opts)
+> disconnect(id)
 
 /links/{id}
 
@@ -32,13 +32,10 @@ end
 
 api_instance = MoneyKit::LinksApi.new
 id = 'mk_eqkWN34UEoa2NxyALG8pcV' # String | The unique ID for this link.
-opts = {
-  moneykit_version: 'moneykit_version_example' # String | 
-}
 
 begin
   # /links/{id}
-  api_instance.disconnect(id, opts)
+  api_instance.disconnect(id)
 rescue MoneyKit::ApiError => e
   puts "Error when calling LinksApi->disconnect: #{e}"
 end
@@ -48,12 +45,12 @@ end
 
 This returns an Array which contains the response data (`nil` in this case), status code and headers.
 
-> <Array(nil, Integer, Hash)> disconnect_with_http_info(id, opts)
+> <Array(nil, Integer, Hash)> disconnect_with_http_info(id)
 
 ```ruby
 begin
   # /links/{id}
-  data, status_code, headers = api_instance.disconnect_with_http_info(id, opts)
+  data, status_code, headers = api_instance.disconnect_with_http_info(id)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => nil
@@ -67,7 +64,6 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | The unique ID for this link. |  |
-| **moneykit_version** | **String** |  | [optional][default to &#39;2023-02-18&#39;] |
 
 ### Return type
 
@@ -85,7 +81,7 @@ nil (empty response body)
 
 ## get_link
 
-> <LinkResponse> get_link(id, opts)
+> <LinkResponse> get_link(id)
 
 /links/{id}
 
@@ -104,13 +100,10 @@ end
 
 api_instance = MoneyKit::LinksApi.new
 id = 'mk_eqkWN34UEoa2NxyALG8pcV' # String | The unique ID for this link.
-opts = {
-  moneykit_version: 'moneykit_version_example' # String | 
-}
 
 begin
   # /links/{id}
-  result = api_instance.get_link(id, opts)
+  result = api_instance.get_link(id)
   p result
 rescue MoneyKit::ApiError => e
   puts "Error when calling LinksApi->get_link: #{e}"
@@ -121,12 +114,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<LinkResponse>, Integer, Hash)> get_link_with_http_info(id, opts)
+> <Array(<LinkResponse>, Integer, Hash)> get_link_with_http_info(id)
 
 ```ruby
 begin
   # /links/{id}
-  data, status_code, headers = api_instance.get_link_with_http_info(id, opts)
+  data, status_code, headers = api_instance.get_link_with_http_info(id)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <LinkResponse>
@@ -140,7 +133,6 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | The unique ID for this link. |  |
-| **moneykit_version** | **String** |  | [optional][default to &#39;2023-02-18&#39;] |
 
 ### Return type
 
@@ -158,7 +150,7 @@ end
 
 ## get_user_links
 
-> <GetUserLinksResponse> get_user_links(id, opts)
+> <GetUserLinksResponse> get_user_links(id)
 
 /users/{id}/links
 
@@ -177,13 +169,10 @@ end
 
 api_instance = MoneyKit::LinksApi.new
 id = 'MyUser1234' # String | The unique ID for this user.  This is the same ID provided         in the call to <a href=#operation/create_link_session>/link-session</a> to create any link for this user.
-opts = {
-  moneykit_version: 'moneykit_version_example' # String | 
-}
 
 begin
   # /users/{id}/links
-  result = api_instance.get_user_links(id, opts)
+  result = api_instance.get_user_links(id)
   p result
 rescue MoneyKit::ApiError => e
   puts "Error when calling LinksApi->get_user_links: #{e}"
@@ -194,12 +183,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<GetUserLinksResponse>, Integer, Hash)> get_user_links_with_http_info(id, opts)
+> <Array(<GetUserLinksResponse>, Integer, Hash)> get_user_links_with_http_info(id)
 
 ```ruby
 begin
   # /users/{id}/links
-  data, status_code, headers = api_instance.get_user_links_with_http_info(id, opts)
+  data, status_code, headers = api_instance.get_user_links_with_http_info(id)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <GetUserLinksResponse>
@@ -213,7 +202,6 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | The unique ID for this user.  This is the same ID provided         in the call to &lt;a href&#x3D;#operation/create_link_session&gt;/link-session&lt;/a&gt; to create any link for this user. |  |
-| **moneykit_version** | **String** |  | [optional][default to &#39;2023-02-18&#39;] |
 
 ### Return type
 
@@ -231,7 +219,7 @@ end
 
 ## reset_login
 
-> <LinkResponse> reset_login(id, opts)
+> <LinkResponse> reset_login(id)
 
 Force a \"relink required\" state on a link (Test only).
 
@@ -248,13 +236,10 @@ end
 
 api_instance = MoneyKit::LinksApi.new
 id = 'mk_eqkWN34UEoa2NxyALG8pcV' # String | The unique ID for this link.
-opts = {
-  moneykit_version: 'moneykit_version_example' # String | 
-}
 
 begin
   # Force a \"relink required\" state on a link (Test only).
-  result = api_instance.reset_login(id, opts)
+  result = api_instance.reset_login(id)
   p result
 rescue MoneyKit::ApiError => e
   puts "Error when calling LinksApi->reset_login: #{e}"
@@ -265,12 +250,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<LinkResponse>, Integer, Hash)> reset_login_with_http_info(id, opts)
+> <Array(<LinkResponse>, Integer, Hash)> reset_login_with_http_info(id)
 
 ```ruby
 begin
   # Force a \"relink required\" state on a link (Test only).
-  data, status_code, headers = api_instance.reset_login_with_http_info(id, opts)
+  data, status_code, headers = api_instance.reset_login_with_http_info(id)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <LinkResponse>
@@ -284,7 +269,6 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | The unique ID for this link. |  |
-| **moneykit_version** | **String** |  | [optional][default to &#39;2023-02-18&#39;] |
 
 ### Return type
 
@@ -302,7 +286,7 @@ end
 
 ## update_link
 
-> <LinkResponse> update_link(id, update_link_request, opts)
+> <LinkResponse> update_link(id, update_link_request)
 
 /links/{id}
 
@@ -322,13 +306,10 @@ end
 api_instance = MoneyKit::LinksApi.new
 id = 'mk_eqkWN34UEoa2NxyALG8pcV' # String | The unique ID for this link.
 update_link_request = MoneyKit::UpdateLinkRequest.new # UpdateLinkRequest | 
-opts = {
-  moneykit_version: 'moneykit_version_example' # String | 
-}
 
 begin
   # /links/{id}
-  result = api_instance.update_link(id, update_link_request, opts)
+  result = api_instance.update_link(id, update_link_request)
   p result
 rescue MoneyKit::ApiError => e
   puts "Error when calling LinksApi->update_link: #{e}"
@@ -339,12 +320,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<LinkResponse>, Integer, Hash)> update_link_with_http_info(id, update_link_request, opts)
+> <Array(<LinkResponse>, Integer, Hash)> update_link_with_http_info(id, update_link_request)
 
 ```ruby
 begin
   # /links/{id}
-  data, status_code, headers = api_instance.update_link_with_http_info(id, update_link_request, opts)
+  data, status_code, headers = api_instance.update_link_with_http_info(id, update_link_request)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <LinkResponse>
@@ -359,7 +340,6 @@ end
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | The unique ID for this link. |  |
 | **update_link_request** | [**UpdateLinkRequest**](UpdateLinkRequest.md) |  |  |
-| **moneykit_version** | **String** |  | [optional][default to &#39;2023-02-18&#39;] |
 
 ### Return type
 

@@ -29,8 +29,7 @@ end
 api_instance = MoneyKit::IdentityApi.new
 id = 'mk_eqkWN34UEoa2NxyALG8pcV' # String | The unique ID for this link.
 opts = {
-  account_ids: ['inner_example'], # Array<String> | An optional list of account IDs to filter the results.
-  moneykit_version: 'moneykit_version_example' # String | 
+  account_ids: ['inner_example'] # Array<String> | An optional list of account IDs to filter the results.
 }
 
 begin
@@ -66,7 +65,6 @@ end
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | The unique ID for this link. |  |
 | **account_ids** | [**Array&lt;String&gt;**](String.md) | An optional list of account IDs to filter the results. | [optional] |
-| **moneykit_version** | **String** |  | [optional][default to &#39;2023-02-18&#39;] |
 
 ### Return type
 

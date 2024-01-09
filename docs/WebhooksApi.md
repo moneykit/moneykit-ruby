@@ -9,7 +9,7 @@ All URIs are relative to *https://api.moneykit.com*
 
 ## trigger_test_link_webhook_event
 
-> <WebhookTestLinkResponse> trigger_test_link_webhook_event(id, webhook_test_link_request, opts)
+> <WebhookTestLinkResponse> trigger_test_link_webhook_event(id, webhook_test_link_request)
 
 Trigger a test webhook event for a link (Sandbox only).
 
@@ -27,13 +27,10 @@ end
 api_instance = MoneyKit::WebhooksApi.new
 id = 'mk_eqkWN34UEoa2NxyALG8pcV' # String | The unique ID for this link.
 webhook_test_link_request = MoneyKit::WebhookTestLinkRequest.new({webhook_event: MoneyKit::WebhookLinkTestEvent::LINK_STATE_CHANGED, webhook_idempotency_key: 'webhook_idempotency_key_example'}) # WebhookTestLinkRequest | 
-opts = {
-  moneykit_version: 'moneykit_version_example' # String | 
-}
 
 begin
   # Trigger a test webhook event for a link (Sandbox only).
-  result = api_instance.trigger_test_link_webhook_event(id, webhook_test_link_request, opts)
+  result = api_instance.trigger_test_link_webhook_event(id, webhook_test_link_request)
   p result
 rescue MoneyKit::ApiError => e
   puts "Error when calling WebhooksApi->trigger_test_link_webhook_event: #{e}"
@@ -44,12 +41,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<WebhookTestLinkResponse>, Integer, Hash)> trigger_test_link_webhook_event_with_http_info(id, webhook_test_link_request, opts)
+> <Array(<WebhookTestLinkResponse>, Integer, Hash)> trigger_test_link_webhook_event_with_http_info(id, webhook_test_link_request)
 
 ```ruby
 begin
   # Trigger a test webhook event for a link (Sandbox only).
-  data, status_code, headers = api_instance.trigger_test_link_webhook_event_with_http_info(id, webhook_test_link_request, opts)
+  data, status_code, headers = api_instance.trigger_test_link_webhook_event_with_http_info(id, webhook_test_link_request)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <WebhookTestLinkResponse>
@@ -64,7 +61,6 @@ end
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | The unique ID for this link. |  |
 | **webhook_test_link_request** | [**WebhookTestLinkRequest**](WebhookTestLinkRequest.md) |  |  |
-| **moneykit_version** | **String** |  | [optional][default to &#39;2023-02-18&#39;] |
 
 ### Return type
 

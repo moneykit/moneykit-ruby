@@ -10,7 +10,7 @@ All URIs are relative to *https://api.moneykit.com*
 
 ## get_institution
 
-> <Institution> get_institution(institution_id, opts)
+> <Institution> get_institution(institution_id)
 
 /institutions/{institution_id}
 
@@ -29,13 +29,10 @@ end
 
 api_instance = MoneyKit::InstitutionsApi.new
 institution_id = 'chase' # String | The institution ID to fetch.
-opts = {
-  moneykit_version: 'moneykit_version_example' # String | 
-}
 
 begin
   # /institutions/{institution_id}
-  result = api_instance.get_institution(institution_id, opts)
+  result = api_instance.get_institution(institution_id)
   p result
 rescue MoneyKit::ApiError => e
   puts "Error when calling InstitutionsApi->get_institution: #{e}"
@@ -46,12 +43,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<Institution>, Integer, Hash)> get_institution_with_http_info(institution_id, opts)
+> <Array(<Institution>, Integer, Hash)> get_institution_with_http_info(institution_id)
 
 ```ruby
 begin
   # /institutions/{institution_id}
-  data, status_code, headers = api_instance.get_institution_with_http_info(institution_id, opts)
+  data, status_code, headers = api_instance.get_institution_with_http_info(institution_id)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <Institution>
@@ -65,7 +62,6 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **institution_id** | **String** | The institution ID to fetch. |  |
-| **moneykit_version** | **String** |  | [optional][default to &#39;2023-02-18&#39;] |
 
 ### Return type
 
@@ -105,8 +101,7 @@ opts = {
   name: 'Chase', # String | If provided, returns only institutions containing this name (wholly or as a prefix).
   featured: true, # Boolean | If true, returns only featured institutions.
   cursor: 'cursor_example', # String | Cursor to fetch the next set of institutions. (You get this value from the previous call to `/institutions`.)
-  limit: 56, # Integer | A limit on the number of institutions to be returned.
-  moneykit_version: 'moneykit_version_example' # String | 
+  limit: 56 # Integer | A limit on the number of institutions to be returned.
 }
 
 begin
@@ -144,7 +139,6 @@ end
 | **featured** | **Boolean** | If true, returns only featured institutions. | [optional][default to false] |
 | **cursor** | **String** | Cursor to fetch the next set of institutions. (You get this value from the previous call to &#x60;/institutions&#x60;.) | [optional] |
 | **limit** | **Integer** | A limit on the number of institutions to be returned. | [optional][default to 50] |
-| **moneykit_version** | **String** |  | [optional][default to &#39;2023-02-18&#39;] |
 
 ### Return type
 

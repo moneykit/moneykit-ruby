@@ -32,8 +32,7 @@ api_instance = MoneyKit::UsersApi.new
 id = 'MyUser1234' # String | The unique ID for this user.  This is the same ID provided         in the call to <a href=#operation/create_link_session>/link-session</a> to create any link for this user.
 opts = {
   account_id: ['inner_example'], # Array<String> | If present, filters results to accounts matching the given IDs.
-  institution_id: ['inner_example'], # Array<String> | If present, filters results to accounts at institutions matching the given IDs.
-  moneykit_version: 'moneykit_version_example' # String | 
+  institution_id: ['inner_example'] # Array<String> | If present, filters results to accounts at institutions matching the given IDs.
 }
 
 begin
@@ -70,7 +69,6 @@ end
 | **id** | **String** | The unique ID for this user.  This is the same ID provided         in the call to &lt;a href&#x3D;#operation/create_link_session&gt;/link-session&lt;/a&gt; to create any link for this user. |  |
 | **account_id** | [**Array&lt;String&gt;**](String.md) | If present, filters results to accounts matching the given IDs. | [optional] |
 | **institution_id** | [**Array&lt;String&gt;**](String.md) | If present, filters results to accounts at institutions matching the given IDs. | [optional] |
-| **moneykit_version** | **String** |  | [optional][default to &#39;2023-02-18&#39;] |
 
 ### Return type
 
@@ -88,7 +86,7 @@ end
 
 ## get_user_links
 
-> <GetUserLinksResponse> get_user_links(id, opts)
+> <GetUserLinksResponse> get_user_links(id)
 
 /users/{id}/links
 
@@ -107,13 +105,10 @@ end
 
 api_instance = MoneyKit::UsersApi.new
 id = 'MyUser1234' # String | The unique ID for this user.  This is the same ID provided         in the call to <a href=#operation/create_link_session>/link-session</a> to create any link for this user.
-opts = {
-  moneykit_version: 'moneykit_version_example' # String | 
-}
 
 begin
   # /users/{id}/links
-  result = api_instance.get_user_links(id, opts)
+  result = api_instance.get_user_links(id)
   p result
 rescue MoneyKit::ApiError => e
   puts "Error when calling UsersApi->get_user_links: #{e}"
@@ -124,12 +119,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<GetUserLinksResponse>, Integer, Hash)> get_user_links_with_http_info(id, opts)
+> <Array(<GetUserLinksResponse>, Integer, Hash)> get_user_links_with_http_info(id)
 
 ```ruby
 begin
   # /users/{id}/links
-  data, status_code, headers = api_instance.get_user_links_with_http_info(id, opts)
+  data, status_code, headers = api_instance.get_user_links_with_http_info(id)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <GetUserLinksResponse>
@@ -143,7 +138,6 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | The unique ID for this user.  This is the same ID provided         in the call to &lt;a href&#x3D;#operation/create_link_session&gt;/link-session&lt;/a&gt; to create any link for this user. |  |
-| **moneykit_version** | **String** |  | [optional][default to &#39;2023-02-18&#39;] |
 
 ### Return type
 
@@ -188,8 +182,7 @@ opts = {
   page: 56, # Integer | The page number to return.
   size: 56, # Integer | The number of items to return per page.
   start_date: Date.parse('2013-10-20'), # Date | The earliest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to 90 days before the `end_date`.             <p>If you want to retrieve **all** transactions, use `1900-01-01`.
-  end_date: Date.parse('2013-10-20'), # Date | The latest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to today.
-  moneykit_version: 'moneykit_version_example' # String | 
+  end_date: Date.parse('2013-10-20') # Date | The latest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to today.
 }
 
 begin
@@ -232,7 +225,6 @@ end
 | **size** | **Integer** | The number of items to return per page. | [optional][default to 50] |
 | **start_date** | **Date** | The earliest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to 90 days before the &#x60;end_date&#x60;.             &lt;p&gt;If you want to retrieve **all** transactions, use &#x60;1900-01-01&#x60;. | [optional] |
 | **end_date** | **Date** | The latest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to today. | [optional] |
-| **moneykit_version** | **String** |  | [optional][default to &#39;2023-02-18&#39;] |
 
 ### Return type
 

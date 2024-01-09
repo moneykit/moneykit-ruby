@@ -12,7 +12,7 @@
 | **link_id** | **Object** |  |  |
 | **link_tags** | **Object** |  |  |
 | **state** | [**LinkProductState**](LinkProductState.md) |  |  |
-| **error** | [**PublicLinkError**](PublicLinkError.md) |  | [optional] |
+| **error** | [**LinkError**](LinkError.md) |  | [optional] |
 | **error_message** | **Object** |  | [optional] |
 | **product** | [**Product**](Product.md) |  |  |
 | **state_changed_at** | **Object** |  |  |
