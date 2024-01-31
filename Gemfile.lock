@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    moneykit (0.1.4)
+    moneykit (0.1.5)
       faraday (>= 1.0.1, < 3.0)
       faraday-multipart
 

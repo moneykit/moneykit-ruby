@@ -9,7 +9,7 @@ All URIs are relative to *https://api.moneykit.com*
 
 ## refresh_products
 
-> refresh_products(id, refresh_products_request)
+> <LinkCommon> refresh_products(id, refresh_products_request)
 
 /links/{id}/products
 
@@ -32,7 +32,8 @@ refresh_products_request = MoneyKit::RefreshProductsRequest.new({products: [Mone
 
 begin
   # /links/{id}/products
-  api_instance.refresh_products(id, refresh_products_request)
+  result = api_instance.refresh_products(id, refresh_products_request)
+  p result
 rescue MoneyKit::ApiError => e
   puts "Error when calling ProductsApi->refresh_products: #{e}"
 end
@@ -40,9 +41,9 @@ end
 
 #### Using the refresh_products_with_http_info variant
 
-This returns an Array which contains the response data (`nil` in this case), status code and headers.
+This returns an Array which contains the response data, status code and headers.
 
-> <Array(nil, Integer, Hash)> refresh_products_with_http_info(id, refresh_products_request)
+> <Array(<LinkCommon>, Integer, Hash)> refresh_products_with_http_info(id, refresh_products_request)
 
 ```ruby
 begin
@@ -50,7 +51,7 @@ begin
   data, status_code, headers = api_instance.refresh_products_with_http_info(id, refresh_products_request)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => nil
+  p data # => <LinkCommon>
 rescue MoneyKit::ApiError => e
   puts "Error when calling ProductsApi->refresh_products_with_http_info: #{e}"
 end
@@ -65,7 +66,7 @@ end
 
 ### Return type
 
-nil (empty response body)
+[**LinkCommon**](LinkCommon.md)
 
 ### Authorization
 

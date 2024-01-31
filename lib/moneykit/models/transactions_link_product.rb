@@ -26,6 +26,8 @@ module MoneyKit
     # The error message, if the last attempt to refresh the product failed.
     attr_accessor :error_message
 
+    attr_accessor :has_history
+
     attr_accessor :settings
 
     class EnumAttributeValidator
@@ -57,6 +59,7 @@ module MoneyKit
         :'last_attempted_at' => :'last_attempted_at',
         :'error_code' => :'error_code',
         :'error_message' => :'error_message',
+        :'has_history' => :'has_history',
         :'settings' => :'settings'
       }
     end
@@ -73,6 +76,7 @@ module MoneyKit
         :'last_attempted_at' => :'Time',
         :'error_code' => :'LinkProductFailureReasons',
         :'error_message' => :'String',
+        :'has_history' => :'Boolean',
         :'settings' => :'TransactionsProductSettings'
       }
     end
@@ -114,6 +118,12 @@ module MoneyKit
         self.error_message = attributes[:'error_message']
       end
 
+      if attributes.key?(:'has_history')
+        self.has_history = attributes[:'has_history']
+      else
+        self.has_history = nil
+      end
+
       if attributes.key?(:'settings')
         self.settings = attributes[:'settings']
       else
@@ -126,6 +136,10 @@ module MoneyKit
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
+      if @has_history.nil?
+        invalid_properties.push('invalid value for "has_history", has_history cannot be nil.')
+      end
+
       if @settings.nil?
         invalid_properties.push('invalid value for "settings", settings cannot be nil.')
       end
@@ -137,6 +151,7 @@ module MoneyKit
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
+      return false if @has_history.nil?
       return false if @settings.nil?
       true
     end
@@ -150,6 +165,7 @@ module MoneyKit
           last_attempted_at == o.last_attempted_at &&
           error_code == o.error_code &&
           error_message == o.error_message &&
+          has_history == o.has_history &&
           settings == o.settings
     end
 
@@ -162,7 +178,7 @@ module MoneyKit
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [refreshed_at, last_attempted_at, error_code, error_message, settings].hash
+      [refreshed_at, last_attempted_at, error_code, error_message, has_history, settings].hash
     end
 
     # Builds the object from hash

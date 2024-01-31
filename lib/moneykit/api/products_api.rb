@@ -24,10 +24,10 @@ module MoneyKit
     # @param id [String] The unique ID for this link.
     # @param refresh_products_request [RefreshProductsRequest] 
     # @param [Hash] opts the optional parameters
-    # @return [nil]
+    # @return [LinkCommon]
     def refresh_products(id, refresh_products_request, opts = {})
-      refresh_products_with_http_info(id, refresh_products_request, opts)
-      nil
+      data, _status_code, _headers = refresh_products_with_http_info(id, refresh_products_request, opts)
+      data
     end
 
     # /links/{id}/products
@@ -35,7 +35,7 @@ module MoneyKit
     # @param id [String] The unique ID for this link.
     # @param refresh_products_request [RefreshProductsRequest] 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
+    # @return [Array<(LinkCommon, Integer, Hash)>] LinkCommon data, response status code and response headers
     def refresh_products_with_http_info(id, refresh_products_request, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: ProductsApi.refresh_products ...'
@@ -71,7 +71,7 @@ module MoneyKit
       post_body = opts[:debug_body] || @api_client.object_to_http_body(refresh_products_request)
 
       # return_type
-      return_type = opts[:debug_return_type]
+      return_type = opts[:debug_return_type] || 'LinkCommon'
 
       # auth_names
       auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials']
