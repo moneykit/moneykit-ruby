@@ -156,7 +156,7 @@ end
 
 /links/{id}/accounts
 
-Returns a list of open, permissioned accounts associated with a <a href=#tag/Links>link</a>.
+Returns a list of open, permissioned accounts associated with a <a href=#tag/Links>link</a>
 
 ### Examples
 
