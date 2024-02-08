@@ -38,6 +38,8 @@ module MoneyKit
 
     attr_accessor :products
 
+    attr_accessor :available_products
+
     attr_accessor :provider
 
     # The webhook url assigned to this link.
@@ -77,6 +79,7 @@ module MoneyKit
         :'last_synced_at' => :'last_synced_at',
         :'tags' => :'tags',
         :'products' => :'products',
+        :'available_products' => :'available_products',
         :'provider' => :'provider',
         :'webhook' => :'webhook'
       }
@@ -99,6 +102,7 @@ module MoneyKit
         :'last_synced_at' => :'Time',
         :'tags' => :'Array<String>',
         :'products' => :'LinkProducts',
+        :'available_products' => :'Array<Product>',
         :'provider' => :'Provider',
         :'webhook' => :'String'
       }
@@ -175,6 +179,14 @@ module MoneyKit
         self.products = nil
       end
 
+      if attributes.key?(:'available_products')
+        if (value = attributes[:'available_products']).is_a?(Array)
+          self.available_products = value
+        end
+      else
+        self.available_products = nil
+      end
+
       if attributes.key?(:'provider')
         self.provider = attributes[:'provider']
       else
@@ -215,6 +227,10 @@ module MoneyKit
         invalid_properties.push('invalid value for "products", products cannot be nil.')
       end
 
+      if @available_products.nil?
+        invalid_properties.push('invalid value for "available_products", available_products cannot be nil.')
+      end
+
       if @provider.nil?
         invalid_properties.push('invalid value for "provider", provider cannot be nil.')
       end
@@ -232,6 +248,7 @@ module MoneyKit
       return false if @institution_avatar.nil?
       return false if @state.nil?
       return false if @products.nil?
+      return false if @available_products.nil?
       return false if @provider.nil?
       true
     end
@@ -250,6 +267,7 @@ module MoneyKit
           last_synced_at == o.last_synced_at &&
           tags == o.tags &&
           products == o.products &&
+          available_products == o.available_products &&
           provider == o.provider &&
           webhook == o.webhook
     end
@@ -263,7 +281,7 @@ module MoneyKit
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [link_id, institution_id, institution_name, institution_avatar, state, error_code, last_synced_at, tags, products, provider, webhook].hash
+      [link_id, institution_id, institution_name, institution_avatar, state, error_code, last_synced_at, tags, products, available_products, provider, webhook].hash
     end
 
     # Builds the object from hash

@@ -13,6 +13,7 @@
 | **last_synced_at** | **Time** | An ISO-8601 timestamp indicating the last time that the account was updated. | [optional] |
 | **tags** | **Array&lt;String&gt;** |  | [optional] |
 | **products** | [**LinkProducts**](LinkProducts.md) |  |  |
+| **available_products** | [**Array&lt;Product&gt;**](Product.md) |  |  |
 
 ## Example
 
@@ -28,7 +29,8 @@ instance = MoneyKit::LinkCommon.new(
   error_code: null,
   last_synced_at: 2023-02-16T09:14:11,
   tags: null,
-  products: null
+  products: null,
+  available_products: null
 )
 ```
 

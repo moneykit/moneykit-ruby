@@ -152,7 +152,7 @@ module MoneyKit
     end
 
     # /links/{id}/accounts
-    # Returns a list of open, permissioned accounts associated with a <a href=#tag/Links>link</a>
+    # Returns a list of open, permissioned accounts associated with a <a href=#tag/Links>link</a>.
     # @param id [String] The unique ID for this link.
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :account_ids An optional list of account IDs to filter the results.
@@ -163,7 +163,7 @@ module MoneyKit
     end
 
     # /links/{id}/accounts
-    # Returns a list of open, permissioned accounts associated with a &lt;a href&#x3D;#tag/Links&gt;link&lt;/a&gt;
+    # Returns a list of open, permissioned accounts associated with a &lt;a href&#x3D;#tag/Links&gt;link&lt;/a&gt;.
     # @param id [String] The unique ID for this link.
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :account_ids An optional list of account IDs to filter the results.

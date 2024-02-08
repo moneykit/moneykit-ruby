@@ -38,6 +38,8 @@ module MoneyKit
 
     attr_accessor :products
 
+    attr_accessor :available_products
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -71,7 +73,8 @@ module MoneyKit
         :'error_code' => :'error_code',
         :'last_synced_at' => :'last_synced_at',
         :'tags' => :'tags',
-        :'products' => :'products'
+        :'products' => :'products',
+        :'available_products' => :'available_products'
       }
     end
 
@@ -91,7 +94,8 @@ module MoneyKit
         :'error_code' => :'LinkError',
         :'last_synced_at' => :'Time',
         :'tags' => :'Array<String>',
-        :'products' => :'LinkProducts'
+        :'products' => :'LinkProducts',
+        :'available_products' => :'Array<Product>'
       }
     end
 
@@ -165,6 +169,14 @@ module MoneyKit
       else
         self.products = nil
       end
+
+      if attributes.key?(:'available_products')
+        if (value = attributes[:'available_products']).is_a?(Array)
+          self.available_products = value
+        end
+      else
+        self.available_products = nil
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -196,6 +208,10 @@ module MoneyKit
         invalid_properties.push('invalid value for "products", products cannot be nil.')
       end
 
+      if @available_products.nil?
+        invalid_properties.push('invalid value for "available_products", available_products cannot be nil.')
+      end
+
       invalid_properties
     end
 
@@ -209,6 +225,7 @@ module MoneyKit
       return false if @institution_avatar.nil?
       return false if @state.nil?
       return false if @products.nil?
+      return false if @available_products.nil?
       true
     end
 
@@ -225,7 +242,8 @@ module MoneyKit
           error_code == o.error_code &&
           last_synced_at == o.last_synced_at &&
           tags == o.tags &&
-          products == o.products
+          products == o.products &&
+          available_products == o.available_products
     end
 
     # @see the `==` method
@@ -237,7 +255,7 @@ module MoneyKit
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [link_id, institution_id, institution_name, institution_avatar, state, error_code, last_synced_at, tags, products].hash
+      [link_id, institution_id, institution_name, institution_avatar, state, error_code, last_synced_at, tags, products, available_products].hash
     end
 
     # Builds the object from hash

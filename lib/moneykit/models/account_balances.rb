@@ -26,6 +26,9 @@ module MoneyKit
     # The credit limit on the account.  Typically this exists only for credit-type accounts.             <p>In some cases, this may represent the overdraft limit for depository accounts.
     attr_accessor :limit
 
+    # The date that the balance was captured at.  This may not include a time. When this field is null, the balance was captured at an unknown time.
+    attr_accessor :balance_date
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -54,7 +57,8 @@ module MoneyKit
         :'currency' => :'currency',
         :'available' => :'available',
         :'current' => :'current',
-        :'limit' => :'limit'
+        :'limit' => :'limit',
+        :'balance_date' => :'balance_date'
       }
     end
 
@@ -69,7 +73,8 @@ module MoneyKit
         :'currency' => :'Currency',
         :'available' => :'Float',
         :'current' => :'Float',
-        :'limit' => :'Float'
+        :'limit' => :'Float',
+        :'balance_date' => :'Time'
       }
     end
 
@@ -111,6 +116,10 @@ module MoneyKit
       if attributes.key?(:'limit')
         self.limit = attributes[:'limit']
       end
+
+      if attributes.key?(:'balance_date')
+        self.balance_date = attributes[:'balance_date']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -141,7 +150,8 @@ module MoneyKit
           currency == o.currency &&
           available == o.available &&
           current == o.current &&
-          limit == o.limit
+          limit == o.limit &&
+          balance_date == o.balance_date
     end
 
     # @see the `==` method
@@ -153,7 +163,7 @@ module MoneyKit
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [currency, available, current, limit].hash
+      [currency, available, current, limit, balance_date].hash
     end
 
     # Builds the object from hash
