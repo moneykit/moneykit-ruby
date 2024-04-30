@@ -12,9 +12,9 @@ docs/Account.md
 docs/AccountBalances.md
 docs/AccountGroup.md
 docs/AccountIdentity.md
-docs/AccountNumbers.md
 docs/AccountNumbersApi.md
-docs/AccountWithAccountNumbers.md
+docs/AccountNumbersLegacy20230218.md
+docs/AccountWithAccountNumbersLegacy20230218.md
 docs/AccountsApi.md
 docs/AchNumber.md
 docs/Address.md
@@ -33,7 +33,7 @@ docs/Email.md
 docs/ExchangeTokenRequest.md
 docs/ExchangeTokenResponse.md
 docs/GenerateAccessTokenResponse.md
-docs/GetAccountNumbersResponse.md
+docs/GetAccountNumbersResponseLegacy20230218.md
 docs/GetAccountResponse.md
 docs/GetAccountsResponse.md
 docs/GetHoldingsResponse.md
@@ -93,7 +93,7 @@ docs/RequestedLinkPermission.md
 docs/Response401DisconnectLinksIdDelete.md
 docs/Response401ExchangeTokenLinkSessionExchangeTokenPost.md
 docs/Response401GetAccountLinksIdAccountsAccountIdGet.md
-docs/Response401GetAccountNumbersLinksIdAccountsNumbersGet.md
+docs/Response401GetAccountNumbersLegacy20230218LinksIdAccountsNumbersGet.md
 docs/Response401GetAccountsLinksIdAccountsGet.md
 docs/Response401GetHoldingsLinksIdInvestmentsHoldingsGet.md
 docs/Response401GetIdentitiesLinksIdIdentityGet.md
@@ -151,8 +151,8 @@ lib/moneykit/models/account.rb
 lib/moneykit/models/account_balances.rb
 lib/moneykit/models/account_group.rb
 lib/moneykit/models/account_identity.rb
-lib/moneykit/models/account_numbers.rb
-lib/moneykit/models/account_with_account_numbers.rb
+lib/moneykit/models/account_numbers_legacy20230218.rb
+lib/moneykit/models/account_with_account_numbers_legacy20230218.rb
 lib/moneykit/models/ach_number.rb
 lib/moneykit/models/address.rb
 lib/moneykit/models/api_error_auth_expired_access_token_response.rb
@@ -173,7 +173,7 @@ lib/moneykit/models/email.rb
 lib/moneykit/models/exchange_token_request.rb
 lib/moneykit/models/exchange_token_response.rb
 lib/moneykit/models/generate_access_token_response.rb
-lib/moneykit/models/get_account_numbers_response.rb
+lib/moneykit/models/get_account_numbers_response_legacy20230218.rb
 lib/moneykit/models/get_account_response.rb
 lib/moneykit/models/get_accounts_response.rb
 lib/moneykit/models/get_holdings_response.rb
@@ -227,7 +227,7 @@ lib/moneykit/models/requested_link_permission.rb
 lib/moneykit/models/response401_disconnect_links_id_delete.rb
 lib/moneykit/models/response401_exchange_token_link_session_exchange_token_post.rb
 lib/moneykit/models/response401_get_account_links_id_accounts_account_id_get.rb
-lib/moneykit/models/response401_get_account_numbers_links_id_accounts_numbers_get.rb
+lib/moneykit/models/response401_get_account_numbers_legacy20230218_links_id_accounts_numbers_get.rb
 lib/moneykit/models/response401_get_accounts_links_id_accounts_get.rb
 lib/moneykit/models/response401_get_holdings_links_id_investments_holdings_get.rb
 lib/moneykit/models/response401_get_identities_links_id_identity_get.rb
@@ -266,8 +266,8 @@ lib/moneykit/version.rb
 moneykit.gemspec
 spec/api_client_spec.rb
 spec/configuration_spec.rb
-spec/models/app_client_response_spec.rb
-spec/models/app_response_spec.rb
-spec/models/link_product_spec.rb
-spec/models/product_settings_spec.rb
+spec/models/account_numbers_legacy20230218_spec.rb
+spec/models/account_with_account_numbers_legacy20230218_spec.rb
+spec/models/get_account_numbers_response_legacy20230218_spec.rb
+spec/models/response401_get_account_numbers_legacy20230218_links_id_accounts_numbers_get_spec.rb
 spec/spec_helper.rb

@@ -4,12 +4,12 @@ All URIs are relative to *https://api.moneykit.com*
 
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
-| [**get_account_numbers**](AccountNumbersApi.md#get_account_numbers) | **GET** /links/{id}/accounts/numbers | /links/{id}/accounts/numbers |
+| [**get_account_numbers_legacy20230218**](AccountNumbersApi.md#get_account_numbers_legacy20230218) | **GET** /links/{id}/accounts/numbers | /links/{id}/accounts/numbers |
 
 
-## get_account_numbers
+## get_account_numbers_legacy20230218
 
-> <GetAccountNumbersResponse> get_account_numbers(id)
+> <GetAccountNumbersResponseLegacy20230218> get_account_numbers_legacy20230218(id)
 
 /links/{id}/accounts/numbers
 
@@ -27,32 +27,32 @@ MoneyKit.configure do |config|
 end
 
 api_instance = MoneyKit::AccountNumbersApi.new
-id = 'mk_eqkWN34UEoa2NxyALG8pcV' # String | The unique ID for this link.
+id = 'id_example' # String | The unique ID for this link.
 
 begin
   # /links/{id}/accounts/numbers
-  result = api_instance.get_account_numbers(id)
+  result = api_instance.get_account_numbers_legacy20230218(id)
   p result
 rescue MoneyKit::ApiError => e
-  puts "Error when calling AccountNumbersApi->get_account_numbers: #{e}"
+  puts "Error when calling AccountNumbersApi->get_account_numbers_legacy20230218: #{e}"
 end
 ```
 
-#### Using the get_account_numbers_with_http_info variant
+#### Using the get_account_numbers_legacy20230218_with_http_info variant
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<GetAccountNumbersResponse>, Integer, Hash)> get_account_numbers_with_http_info(id)
+> <Array(<GetAccountNumbersResponseLegacy20230218>, Integer, Hash)> get_account_numbers_legacy20230218_with_http_info(id)
 
 ```ruby
 begin
   # /links/{id}/accounts/numbers
-  data, status_code, headers = api_instance.get_account_numbers_with_http_info(id)
+  data, status_code, headers = api_instance.get_account_numbers_legacy20230218_with_http_info(id)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => <GetAccountNumbersResponse>
+  p data # => <GetAccountNumbersResponseLegacy20230218>
 rescue MoneyKit::ApiError => e
-  puts "Error when calling AccountNumbersApi->get_account_numbers_with_http_info: #{e}"
+  puts "Error when calling AccountNumbersApi->get_account_numbers_legacy20230218_with_http_info: #{e}"
 end
 ```
 
@@ -64,7 +64,7 @@ end
 
 ### Return type
 
-[**GetAccountNumbersResponse**](GetAccountNumbersResponse.md)
+[**GetAccountNumbersResponseLegacy20230218**](GetAccountNumbersResponseLegacy20230218.md)
 
 ### Authorization
 

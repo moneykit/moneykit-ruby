@@ -92,9 +92,9 @@ module MoneyKit
     # Returns a list of open, permissioned accounts associated with a <a href=#tag/Links>link</a>,         including full account and routing numbers for appropriate accounts (such as checking and savings accounts).         <p>**Note** that this endpoint does **not** trigger a fetch of account numbers from the institution; it merely returns         account numbers that have already been fetched, either because `prefetch` was requested when the link was created,         or because of an on-demand update.  **To force a check for new/updated account numbers, you must use the         <a href=#operation/refresh_products>/products</a> endpoint.**         <p>If you have requested prefetch or an on-demand update, you should check the `refreshed_at` date     for this product in the returned response, and compare that against the previous `refreshed_at` date, which you can     get from any previous response for this or any other account or link request.  If the refreshed_at date has not     increased, then updated data is not yet available.
     # @param id [String] The unique ID for this link.
     # @param [Hash] opts the optional parameters
-    # @return [GetAccountNumbersResponse]
-    def get_account_numbers(id, opts = {})
-      data, _status_code, _headers = get_account_numbers_with_http_info(id, opts)
+    # @return [GetAccountNumbersResponseLegacy20230218]
+    def get_account_numbers_legacy20230218(id, opts = {})
+      data, _status_code, _headers = get_account_numbers_legacy20230218_with_http_info(id, opts)
       data
     end
 
@@ -102,14 +102,14 @@ module MoneyKit
     # Returns a list of open, permissioned accounts associated with a &lt;a href&#x3D;#tag/Links&gt;link&lt;/a&gt;,         including full account and routing numbers for appropriate accounts (such as checking and savings accounts).         &lt;p&gt;**Note** that this endpoint does **not** trigger a fetch of account numbers from the institution; it merely returns         account numbers that have already been fetched, either because &#x60;prefetch&#x60; was requested when the link was created,         or because of an on-demand update.  **To force a check for new/updated account numbers, you must use the         &lt;a href&#x3D;#operation/refresh_products&gt;/products&lt;/a&gt; endpoint.**         &lt;p&gt;If you have requested prefetch or an on-demand update, you should check the &#x60;refreshed_at&#x60; date     for this product in the returned response, and compare that against the previous &#x60;refreshed_at&#x60; date, which you can     get from any previous response for this or any other account or link request.  If the refreshed_at date has not     increased, then updated data is not yet available.
     # @param id [String] The unique ID for this link.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(GetAccountNumbersResponse, Integer, Hash)>] GetAccountNumbersResponse data, response status code and response headers
-    def get_account_numbers_with_http_info(id, opts = {})
+    # @return [Array<(GetAccountNumbersResponseLegacy20230218, Integer, Hash)>] GetAccountNumbersResponseLegacy20230218 data, response status code and response headers
+    def get_account_numbers_legacy20230218_with_http_info(id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: AccountsApi.get_account_numbers ...'
+        @api_client.config.logger.debug 'Calling API: AccountsApi.get_account_numbers_legacy20230218 ...'
       end
       # verify the required parameter 'id' is set
       if @api_client.config.client_side_validation && id.nil?
-        fail ArgumentError, "Missing the required parameter 'id' when calling AccountsApi.get_account_numbers"
+        fail ArgumentError, "Missing the required parameter 'id' when calling AccountsApi.get_account_numbers_legacy20230218"
       end
       # resource path
       local_var_path = '/links/{id}/accounts/numbers'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
@@ -129,13 +129,13 @@ module MoneyKit
       post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:debug_return_type] || 'GetAccountNumbersResponse'
+      return_type = opts[:debug_return_type] || 'GetAccountNumbersResponseLegacy20230218'
 
       # auth_names
       auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials']
 
       new_options = opts.merge(
-        :operation => :"AccountsApi.get_account_numbers",
+        :operation => :"AccountsApi.get_account_numbers_legacy20230218",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -146,7 +146,7 @@ module MoneyKit
 
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: AccountsApi#get_account_numbers\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: AccountsApi#get_account_numbers_legacy20230218\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

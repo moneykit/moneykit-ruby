@@ -14,58 +14,22 @@ require 'date'
 require 'time'
 
 module MoneyKit
-  class TransactionsLinkProduct
-    # An ISO-8601 timestamp indicating the last time that the product was updated.
-    attr_accessor :refreshed_at
+  class AccountNumbersLegacy20230218
+    attr_accessor :ach
 
-    # An ISO-8601 timestamp indicating the last time that the product was attempted.
-    attr_accessor :last_attempted_at
+    attr_accessor :bacs
 
-    attr_accessor :error_code
+    attr_accessor :eft
 
-    # The error message, if the last attempt to refresh the product failed.
-    attr_accessor :error_message
-
-    # If this product can't currently be updated, the reason why it is unavailable.         <p>Unavailable products can't be refreshed, but past data, if any, is still accessible.
-    attr_accessor :unavailable
-
-    attr_accessor :settings
-
-    # DEPRECATED: No longer used as we fetch as much history as possible.
-    attr_accessor :has_history
-
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
+    attr_accessor :international
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'refreshed_at' => :'refreshed_at',
-        :'last_attempted_at' => :'last_attempted_at',
-        :'error_code' => :'error_code',
-        :'error_message' => :'error_message',
-        :'unavailable' => :'unavailable',
-        :'settings' => :'settings',
-        :'has_history' => :'has_history'
+        :'ach' => :'ach',
+        :'bacs' => :'bacs',
+        :'eft' => :'eft',
+        :'international' => :'international'
       }
     end
 
@@ -77,13 +41,10 @@ module MoneyKit
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'refreshed_at' => :'Time',
-        :'last_attempted_at' => :'Time',
-        :'error_code' => :'LinkProductFailureReasons',
-        :'error_message' => :'String',
-        :'unavailable' => :'String',
-        :'settings' => :'TransactionsProductSettings',
-        :'has_history' => :'Boolean'
+        :'ach' => :'Array<AchNumber>',
+        :'bacs' => :'Array<BacsNumber>',
+        :'eft' => :'Array<EftNumber>',
+        :'international' => :'Array<InternationalNumber>'
       }
     end
 
@@ -97,45 +58,47 @@ module MoneyKit
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `MoneyKit::TransactionsLinkProduct` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `MoneyKit::AccountNumbersLegacy20230218` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `MoneyKit::TransactionsLinkProduct`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `MoneyKit::AccountNumbersLegacy20230218`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'refreshed_at')
-        self.refreshed_at = attributes[:'refreshed_at']
-      end
-
-      if attributes.key?(:'last_attempted_at')
-        self.last_attempted_at = attributes[:'last_attempted_at']
-      end
-
-      if attributes.key?(:'error_code')
-        self.error_code = attributes[:'error_code']
-      end
-
-      if attributes.key?(:'error_message')
-        self.error_message = attributes[:'error_message']
-      end
-
-      if attributes.key?(:'unavailable')
-        self.unavailable = attributes[:'unavailable']
-      end
-
-      if attributes.key?(:'settings')
-        self.settings = attributes[:'settings']
-      end
-
-      if attributes.key?(:'has_history')
-        self.has_history = attributes[:'has_history']
+      if attributes.key?(:'ach')
+        if (value = attributes[:'ach']).is_a?(Array)
+          self.ach = value
+        end
       else
-        self.has_history = nil
+        self.ach = nil
+      end
+
+      if attributes.key?(:'bacs')
+        if (value = attributes[:'bacs']).is_a?(Array)
+          self.bacs = value
+        end
+      else
+        self.bacs = nil
+      end
+
+      if attributes.key?(:'eft')
+        if (value = attributes[:'eft']).is_a?(Array)
+          self.eft = value
+        end
+      else
+        self.eft = nil
+      end
+
+      if attributes.key?(:'international')
+        if (value = attributes[:'international']).is_a?(Array)
+          self.international = value
+        end
+      else
+        self.international = nil
       end
     end
 
@@ -144,8 +107,20 @@ module MoneyKit
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @has_history.nil?
-        invalid_properties.push('invalid value for "has_history", has_history cannot be nil.')
+      if @ach.nil?
+        invalid_properties.push('invalid value for "ach", ach cannot be nil.')
+      end
+
+      if @bacs.nil?
+        invalid_properties.push('invalid value for "bacs", bacs cannot be nil.')
+      end
+
+      if @eft.nil?
+        invalid_properties.push('invalid value for "eft", eft cannot be nil.')
+      end
+
+      if @international.nil?
+        invalid_properties.push('invalid value for "international", international cannot be nil.')
       end
 
       invalid_properties
@@ -155,7 +130,10 @@ module MoneyKit
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @has_history.nil?
+      return false if @ach.nil?
+      return false if @bacs.nil?
+      return false if @eft.nil?
+      return false if @international.nil?
       true
     end
 
@@ -164,13 +142,10 @@ module MoneyKit
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          refreshed_at == o.refreshed_at &&
-          last_attempted_at == o.last_attempted_at &&
-          error_code == o.error_code &&
-          error_message == o.error_message &&
-          unavailable == o.unavailable &&
-          settings == o.settings &&
-          has_history == o.has_history
+          ach == o.ach &&
+          bacs == o.bacs &&
+          eft == o.eft &&
+          international == o.international
     end
 
     # @see the `==` method
@@ -182,7 +157,7 @@ module MoneyKit
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [refreshed_at, last_attempted_at, error_code, error_message, unavailable, settings, has_history].hash
+      [ach, bacs, eft, international].hash
     end
 
     # Builds the object from hash

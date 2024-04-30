@@ -27,17 +27,13 @@ module MoneyKit
     # A **brief** description of the reason your app wants this data.         This description will follow the words \"...data is used to\", and will be displayed         to the user when permission is requested.  You should provide this field if your         app does not request this product by default, or if you want to show a particular         reason for requesting the product during this link session.
     attr_accessor :reason
 
-    # If true, MoneyKit will attempt to fetch as much transaction history as possible. Not all institutions supply the same extent of transaction history. Generally, however, at least the past 30 days of transactions are available.
-    attr_accessor :extend_history
-
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'required' => :'required',
         :'require_permission' => :'require_permission',
         :'prefetch' => :'prefetch',
-        :'reason' => :'reason',
-        :'extend_history' => :'extend_history'
+        :'reason' => :'reason'
       }
     end
 
@@ -52,8 +48,7 @@ module MoneyKit
         :'required' => :'Boolean',
         :'require_permission' => :'Boolean',
         :'prefetch' => :'Boolean',
-        :'reason' => :'String',
-        :'extend_history' => :'Boolean'
+        :'reason' => :'String'
       }
     end
 
@@ -99,12 +94,6 @@ module MoneyKit
       if attributes.key?(:'reason')
         self.reason = attributes[:'reason']
       end
-
-      if attributes.key?(:'extend_history')
-        self.extend_history = attributes[:'extend_history']
-      else
-        self.extend_history = false
-      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -130,8 +119,7 @@ module MoneyKit
           required == o.required &&
           require_permission == o.require_permission &&
           prefetch == o.prefetch &&
-          reason == o.reason &&
-          extend_history == o.extend_history
+          reason == o.reason
     end
 
     # @see the `==` method
@@ -143,7 +131,7 @@ module MoneyKit
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [required, require_permission, prefetch, reason, extend_history].hash
+      [required, require_permission, prefetch, reason].hash
     end
 
     # Builds the object from hash

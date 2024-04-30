@@ -10,7 +10,7 @@
 | **error_message** | **String** | The error message, if the last attempt to refresh the product failed. | [optional] |
 | **unavailable** | **String** | If this product can&#39;t currently be updated, the reason why it is unavailable.         &lt;p&gt;Unavailable products can&#39;t be refreshed, but past data, if any, is still accessible. | [optional] |
 | **settings** | [**TransactionsProductSettings**](TransactionsProductSettings.md) |  | [optional] |
-| **has_history** | **Boolean** |  |  |
+| **has_history** | **Boolean** | DEPRECATED: No longer used as we fetch as much history as possible. |  |
 
 ## Example
 

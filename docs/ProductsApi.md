@@ -27,7 +27,7 @@ MoneyKit.configure do |config|
 end
 
 api_instance = MoneyKit::ProductsApi.new
-id = 'mk_eqkWN34UEoa2NxyALG8pcV' # String | The unique ID for this link.
+id = 'id_example' # String | The unique ID for this link.
 refresh_products_request = MoneyKit::RefreshProductsRequest.new({products: [MoneyKit::Product::ACCOUNTS]}) # RefreshProductsRequest | 
 
 begin

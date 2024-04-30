@@ -28,7 +28,7 @@ MoneyKit.configure do |config|
 end
 
 api_instance = MoneyKit::InvestmentsApi.new
-id = 'mk_eqkWN34UEoa2NxyALG8pcV' # String | The unique ID for this link.
+id = 'id_example' # String | The unique ID for this link.
 opts = {
   account_ids: ['inner_example'] # Array<String> | An optional list of account IDs to filter the results.
 }
@@ -101,7 +101,7 @@ MoneyKit.configure do |config|
 end
 
 api_instance = MoneyKit::InvestmentsApi.new
-id = 'mk_eqkWN34UEoa2NxyALG8pcV' # String | The unique ID for this link.
+id = 'id_example' # String | The unique ID for this link.
 opts = {
   account_ids: ['inner_example'], # Array<String> | An optional list of account IDs to filter the results.
   page: 56, # Integer | The page number to return.

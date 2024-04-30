@@ -25,7 +25,7 @@ MoneyKit.configure do |config|
 end
 
 api_instance = MoneyKit::WebhooksApi.new
-id = 'mk_eqkWN34UEoa2NxyALG8pcV' # String | The unique ID for this link.
+id = 'id_example' # String | The unique ID for this link.
 webhook_test_link_request = MoneyKit::WebhookTestLinkRequest.new({webhook_event: MoneyKit::WebhookLinkTestEvent::LINK_STATE_CHANGED, webhook_idempotency_key: 'webhook_idempotency_key_example'}) # WebhookTestLinkRequest | 
 
 begin

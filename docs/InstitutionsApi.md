@@ -28,7 +28,7 @@ MoneyKit.configure do |config|
 end
 
 api_instance = MoneyKit::InstitutionsApi.new
-institution_id = 'chase' # String | The institution ID to fetch.
+institution_id = 'institution_id_example' # String | The institution ID to fetch.
 
 begin
   # /institutions/{institution_id}
@@ -98,7 +98,7 @@ end
 
 api_instance = MoneyKit::InstitutionsApi.new
 opts = {
-  name: 'Chase', # String | If provided, returns only institutions containing this name (wholly or as a prefix).
+  name: 'name_example', # String | If provided, returns only institutions containing this name (wholly or as a prefix).
   featured: true, # Boolean | If true, returns only featured institutions.
   cursor: 'cursor_example', # String | Cursor to fetch the next set of institutions. (You get this value from the previous call to `/institutions`.)
   limit: 56 # Integer | A limit on the number of institutions to be returned.

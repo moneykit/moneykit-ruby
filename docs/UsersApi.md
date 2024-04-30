@@ -29,7 +29,7 @@ MoneyKit.configure do |config|
 end
 
 api_instance = MoneyKit::UsersApi.new
-id = 'MyUser1234' # String | The unique ID for this user.  This is the same ID provided         in the call to <a href=#operation/create_link_session>/link-session</a> to create any link for this user.
+id = 'id_example' # String | The unique ID for this user.  This is the same ID provided         in the call to <a href=#operation/create_link_session>/link-session</a> to create any link for this user.
 opts = {
   account_ids: ['inner_example'], # Array<String> | If present, filters results to accounts matching the given IDs.
   institution_ids: ['inner_example'] # Array<String> | If present, filters results to accounts at institutions matching the given IDs.
@@ -104,7 +104,7 @@ MoneyKit.configure do |config|
 end
 
 api_instance = MoneyKit::UsersApi.new
-id = 'MyUser1234' # String | The unique ID for this user.  This is the same ID provided         in the call to <a href=#operation/create_link_session>/link-session</a> to create any link for this user.
+id = 'id_example' # String | The unique ID for this user.  This is the same ID provided         in the call to <a href=#operation/create_link_session>/link-session</a> to create any link for this user.
 
 begin
   # /users/{id}/links
@@ -173,7 +173,7 @@ MoneyKit.configure do |config|
 end
 
 api_instance = MoneyKit::UsersApi.new
-id = 'MyUser1234' # String | The unique ID for this user.  This is the same ID provided         in the call to <a href=#operation/create_link_session>/link-session</a> to create any link for this user.
+id = 'id_example' # String | The unique ID for this user.  This is the same ID provided         in the call to <a href=#operation/create_link_session>/link-session</a> to create any link for this user.
 opts = {
   transaction_type: [MoneyKit::TransactionTypeFilter::CREDIT], # Array<TransactionTypeFilter> | 
   category: ['inner_example'], # Array<String> | 

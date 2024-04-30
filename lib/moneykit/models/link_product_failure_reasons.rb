@@ -22,9 +22,10 @@ module MoneyKit
     TIMEOUT = "timeout".freeze
     UNKNOWN = "unknown".freeze
     NO_ACCOUNTS = "no_accounts".freeze
+    INSTITUTION_ERROR = "institution_error".freeze
 
     def self.all_vars
-      @all_vars ||= [RATE_LIMIT, AUTH_EXPIRED, INVALID_CREDENTIALS, NOT_SUPPORTED, TIMEOUT, UNKNOWN, NO_ACCOUNTS].freeze
+      @all_vars ||= [RATE_LIMIT, AUTH_EXPIRED, INVALID_CREDENTIALS, NOT_SUPPORTED, TIMEOUT, UNKNOWN, NO_ACCOUNTS, INSTITUTION_ERROR].freeze
     end
 
     # Builds the enum from string

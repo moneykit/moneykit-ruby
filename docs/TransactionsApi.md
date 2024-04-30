@@ -29,7 +29,7 @@ MoneyKit.configure do |config|
 end
 
 api_instance = MoneyKit::TransactionsApi.new
-id = 'mk_eqkWN34UEoa2NxyALG8pcV' # String | The unique ID for this link.
+id = 'id_example' # String | The unique ID for this link.
 opts = {
   account_ids: ['inner_example'], # Array<String> | An optional list of account IDs to filter the results.
   page: 56, # Integer | The page number to return.
@@ -110,7 +110,7 @@ MoneyKit.configure do |config|
 end
 
 api_instance = MoneyKit::TransactionsApi.new
-id = 'mk_eqkWN34UEoa2NxyALG8pcV' # String | The unique ID for this link.
+id = 'id_example' # String | The unique ID for this link.
 opts = {
   cursor: 'cursor_example', # String | A cursor value representing the last update requested. If included, the response will only return         changes after this update. If omitted, a complete history of updates will be returned. This value must be stored         by the client as we do not keep track of app cursors.
   size: 56 # Integer | The number of items to return.
@@ -185,7 +185,7 @@ MoneyKit.configure do |config|
 end
 
 api_instance = MoneyKit::TransactionsApi.new
-id = 'MyUser1234' # String | The unique ID for this user.  This is the same ID provided         in the call to <a href=#operation/create_link_session>/link-session</a> to create any link for this user.
+id = 'id_example' # String | The unique ID for this user.  This is the same ID provided         in the call to <a href=#operation/create_link_session>/link-session</a> to create any link for this user.
 opts = {
   transaction_type: [MoneyKit::TransactionTypeFilter::CREDIT], # Array<TransactionTypeFilter> | 
   category: ['inner_example'], # Array<String> | 
