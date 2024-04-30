@@ -112,7 +112,7 @@ end
 api_instance = MoneyKit::TransactionsApi.new
 id = 'mk_eqkWN34UEoa2NxyALG8pcV' # String | The unique ID for this link.
 opts = {
-  cursor: 'cursor_example', # String | A cursor value representing the last update requested. If included, the response will only return         changes after this update. If omitted, a complete history of updates will be returned. This value must be stored         by the client as we do not keep track of customer cursors.
+  cursor: 'cursor_example', # String | A cursor value representing the last update requested. If included, the response will only return         changes after this update. If omitted, a complete history of updates will be returned. This value must be stored         by the client as we do not keep track of app cursors.
   size: 56 # Integer | The number of items to return.
 }
 
@@ -148,7 +148,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | The unique ID for this link. |  |
-| **cursor** | **String** | A cursor value representing the last update requested. If included, the response will only return         changes after this update. If omitted, a complete history of updates will be returned. This value must be stored         by the client as we do not keep track of customer cursors. | [optional] |
+| **cursor** | **String** | A cursor value representing the last update requested. If included, the response will only return         changes after this update. If omitted, a complete history of updates will be returned. This value must be stored         by the client as we do not keep track of app cursors. | [optional] |
 | **size** | **Integer** | The number of items to return. | [optional][default to 50] |
 
 ### Return type

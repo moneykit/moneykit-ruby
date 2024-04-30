@@ -4,10 +4,10 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **account_numbers** | [**AccountNumbersProductSettings**](AccountNumbersProductSettings.md) |  | [optional] |
-| **identity** | [**IdentityProductSettings**](IdentityProductSettings.md) |  | [optional] |
+| **account_numbers** | [**ProductSettings**](ProductSettings.md) |  | [optional] |
+| **identity** | [**ProductSettings**](ProductSettings.md) |  | [optional] |
 | **transactions** | [**TransactionsProductSettings**](TransactionsProductSettings.md) |  | [optional] |
-| **investments** | [**InvestmentsProductSettings**](InvestmentsProductSettings.md) |  | [optional] |
+| **investments** | [**ProductSettings**](ProductSettings.md) |  | [optional] |
 
 ## Example
 

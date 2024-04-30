@@ -17,7 +17,7 @@ module MoneyKit
   class RequestedLinkPermission
     attr_accessor :scope
 
-    # A **brief** description of the reason your app wants this data.         This description will be displayed to the user when permission is requested.
+    # A **brief** description of the reason your app wants this data.         This description will follow the words \"...data is used to\", and will be displayed         to the user when permission is requested.
     attr_accessor :reason
 
     # If true, only institutions that support this data type will be available,         and the user **must** grant this permission or the link will not be created.  If false, then the available         institutions list may include those that do not support this data type, and even if the user declines to         grant this permission, the link will still be created (so long as at least one permission is granted).
@@ -62,7 +62,7 @@ module MoneyKit
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'scope' => :'LinkPermissionScope',
+        :'scope' => :'Product',
         :'reason' => :'String',
         :'required' => :'Boolean'
       }

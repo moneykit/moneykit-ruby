@@ -221,8 +221,8 @@ module MoneyKit
     # Fetches all accounts belonging to a <a href=#operation/get_user_accounts>user</a>.
     # @param id [String] The unique ID for this user.  This is the same ID provided         in the call to &lt;a href&#x3D;#operation/create_link_session&gt;/link-session&lt;/a&gt; to create any link for this user.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :account_id If present, filters results to accounts matching the given IDs.
-    # @option opts [Array<String>] :institution_id If present, filters results to accounts at institutions matching the given IDs.
+    # @option opts [Array<String>] :account_ids If present, filters results to accounts matching the given IDs.
+    # @option opts [Array<String>] :institution_ids If present, filters results to accounts at institutions matching the given IDs.
     # @return [GetUserAccountsResponse]
     def get_user_accounts(id, opts = {})
       data, _status_code, _headers = get_user_accounts_with_http_info(id, opts)
@@ -233,8 +233,8 @@ module MoneyKit
     # Fetches all accounts belonging to a &lt;a href&#x3D;#operation/get_user_accounts&gt;user&lt;/a&gt;.
     # @param id [String] The unique ID for this user.  This is the same ID provided         in the call to &lt;a href&#x3D;#operation/create_link_session&gt;/link-session&lt;/a&gt; to create any link for this user.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :account_id If present, filters results to accounts matching the given IDs.
-    # @option opts [Array<String>] :institution_id If present, filters results to accounts at institutions matching the given IDs.
+    # @option opts [Array<String>] :account_ids If present, filters results to accounts matching the given IDs.
+    # @option opts [Array<String>] :institution_ids If present, filters results to accounts at institutions matching the given IDs.
     # @return [Array<(GetUserAccountsResponse, Integer, Hash)>] GetUserAccountsResponse data, response status code and response headers
     def get_user_accounts_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -249,8 +249,8 @@ module MoneyKit
 
       # query parameters
       query_params = opts[:query_params] || {}
-      query_params[:'account_id'] = @api_client.build_collection_param(opts[:'account_id'], :multi) if !opts[:'account_id'].nil?
-      query_params[:'institution_id'] = @api_client.build_collection_param(opts[:'institution_id'], :multi) if !opts[:'institution_id'].nil?
+      query_params[:'account_ids'] = @api_client.build_collection_param(opts[:'account_ids'], :multi) if !opts[:'account_ids'].nil?
+      query_params[:'institution_ids'] = @api_client.build_collection_param(opts[:'institution_ids'], :multi) if !opts[:'institution_ids'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}

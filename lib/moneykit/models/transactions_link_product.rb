@@ -26,9 +26,12 @@ module MoneyKit
     # The error message, if the last attempt to refresh the product failed.
     attr_accessor :error_message
 
-    attr_accessor :has_history
+    # If this product can't currently be updated, the reason why it is unavailable.         <p>Unavailable products can't be refreshed, but past data, if any, is still accessible.
+    attr_accessor :unavailable
 
     attr_accessor :settings
+
+    attr_accessor :has_history
 
     class EnumAttributeValidator
       attr_reader :datatype
@@ -59,8 +62,9 @@ module MoneyKit
         :'last_attempted_at' => :'last_attempted_at',
         :'error_code' => :'error_code',
         :'error_message' => :'error_message',
-        :'has_history' => :'has_history',
-        :'settings' => :'settings'
+        :'unavailable' => :'unavailable',
+        :'settings' => :'settings',
+        :'has_history' => :'has_history'
       }
     end
 
@@ -76,8 +80,9 @@ module MoneyKit
         :'last_attempted_at' => :'Time',
         :'error_code' => :'LinkProductFailureReasons',
         :'error_message' => :'String',
-        :'has_history' => :'Boolean',
-        :'settings' => :'TransactionsProductSettings'
+        :'unavailable' => :'String',
+        :'settings' => :'TransactionsProductSettings',
+        :'has_history' => :'Boolean'
       }
     end
 
@@ -118,16 +123,18 @@ module MoneyKit
         self.error_message = attributes[:'error_message']
       end
 
-      if attributes.key?(:'has_history')
-        self.has_history = attributes[:'has_history']
-      else
-        self.has_history = nil
+      if attributes.key?(:'unavailable')
+        self.unavailable = attributes[:'unavailable']
       end
 
       if attributes.key?(:'settings')
         self.settings = attributes[:'settings']
+      end
+
+      if attributes.key?(:'has_history')
+        self.has_history = attributes[:'has_history']
       else
-        self.settings = nil
+        self.has_history = nil
       end
     end
 
@@ -140,10 +147,6 @@ module MoneyKit
         invalid_properties.push('invalid value for "has_history", has_history cannot be nil.')
       end
 
-      if @settings.nil?
-        invalid_properties.push('invalid value for "settings", settings cannot be nil.')
-      end
-
       invalid_properties
     end
 
@@ -152,7 +155,6 @@ module MoneyKit
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @has_history.nil?
-      return false if @settings.nil?
       true
     end
 
@@ -165,8 +167,9 @@ module MoneyKit
           last_attempted_at == o.last_attempted_at &&
           error_code == o.error_code &&
           error_message == o.error_message &&
-          has_history == o.has_history &&
-          settings == o.settings
+          unavailable == o.unavailable &&
+          settings == o.settings &&
+          has_history == o.has_history
     end
 
     # @see the `==` method
@@ -178,7 +181,7 @@ module MoneyKit
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [refreshed_at, last_attempted_at, error_code, error_message, has_history, settings].hash
+      [refreshed_at, last_attempted_at, error_code, error_message, unavailable, settings, has_history].hash
     end
 
     # Builds the object from hash

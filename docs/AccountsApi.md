@@ -245,8 +245,8 @@ end
 api_instance = MoneyKit::AccountsApi.new
 id = 'MyUser1234' # String | The unique ID for this user.  This is the same ID provided         in the call to <a href=#operation/create_link_session>/link-session</a> to create any link for this user.
 opts = {
-  account_id: ['inner_example'], # Array<String> | If present, filters results to accounts matching the given IDs.
-  institution_id: ['inner_example'] # Array<String> | If present, filters results to accounts at institutions matching the given IDs.
+  account_ids: ['inner_example'], # Array<String> | If present, filters results to accounts matching the given IDs.
+  institution_ids: ['inner_example'] # Array<String> | If present, filters results to accounts at institutions matching the given IDs.
 }
 
 begin
@@ -281,8 +281,8 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | The unique ID for this user.  This is the same ID provided         in the call to &lt;a href&#x3D;#operation/create_link_session&gt;/link-session&lt;/a&gt; to create any link for this user. |  |
-| **account_id** | [**Array&lt;String&gt;**](String.md) | If present, filters results to accounts matching the given IDs. | [optional] |
-| **institution_id** | [**Array&lt;String&gt;**](String.md) | If present, filters results to accounts at institutions matching the given IDs. | [optional] |
+| **account_ids** | [**Array&lt;String&gt;**](String.md) | If present, filters results to accounts matching the given IDs. | [optional] |
+| **institution_ids** | [**Array&lt;String&gt;**](String.md) | If present, filters results to accounts at institutions matching the given IDs. | [optional] |
 
 ### Return type
 

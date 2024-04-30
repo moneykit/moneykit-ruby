@@ -4,11 +4,11 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **accounts** | [**AccountsLinkProduct**](AccountsLinkProduct.md) |  | [optional] |
-| **account_numbers** | [**AccountNumbersLinkProduct**](AccountNumbersLinkProduct.md) |  | [optional] |
-| **identity** | [**IdentityLinkProduct**](IdentityLinkProduct.md) |  | [optional] |
+| **accounts** | [**LinkProduct**](LinkProduct.md) |  | [optional] |
+| **account_numbers** | [**LinkProduct**](LinkProduct.md) |  | [optional] |
+| **identity** | [**LinkProduct**](LinkProduct.md) |  | [optional] |
 | **transactions** | [**TransactionsLinkProduct**](TransactionsLinkProduct.md) |  | [optional] |
-| **investments** | [**InvestmentsLinkProduct**](InvestmentsLinkProduct.md) |  | [optional] |
+| **investments** | [**LinkProduct**](LinkProduct.md) |  | [optional] |
 
 ## Example
 

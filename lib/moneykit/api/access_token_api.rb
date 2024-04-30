@@ -158,7 +158,7 @@ module MoneyKit
     # /auth/introspect
     # Get details about the client and application associated with your `access_token`.
     # @param [Hash] opts the optional parameters
-    # @return [IntrospectClientResponse]
+    # @return [AppClientResponse]
     def instrospect_client(opts = {})
       data, _status_code, _headers = instrospect_client_with_http_info(opts)
       data
@@ -167,7 +167,7 @@ module MoneyKit
     # /auth/introspect
     # Get details about the client and application associated with your &#x60;access_token&#x60;.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(IntrospectClientResponse, Integer, Hash)>] IntrospectClientResponse data, response status code and response headers
+    # @return [Array<(AppClientResponse, Integer, Hash)>] AppClientResponse data, response status code and response headers
     def instrospect_client_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: AccessTokenApi.instrospect_client ...'
@@ -190,7 +190,7 @@ module MoneyKit
       post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:debug_return_type] || 'IntrospectClientResponse'
+      return_type = opts[:debug_return_type] || 'AppClientResponse'
 
       # auth_names
       auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials']

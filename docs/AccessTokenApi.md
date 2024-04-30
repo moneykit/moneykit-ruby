@@ -155,7 +155,7 @@ This endpoint does not need any parameter.
 
 ## instrospect_client
 
-> <IntrospectClientResponse> instrospect_client
+> <AppClientResponse> instrospect_client
 
 /auth/introspect
 
@@ -187,7 +187,7 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<IntrospectClientResponse>, Integer, Hash)> instrospect_client_with_http_info
+> <Array(<AppClientResponse>, Integer, Hash)> instrospect_client_with_http_info
 
 ```ruby
 begin
@@ -195,7 +195,7 @@ begin
   data, status_code, headers = api_instance.instrospect_client_with_http_info
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => <IntrospectClientResponse>
+  p data # => <AppClientResponse>
 rescue MoneyKit::ApiError => e
   puts "Error when calling AccessTokenApi->instrospect_client_with_http_info: #{e}"
 end
@@ -207,7 +207,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**IntrospectClientResponse**](IntrospectClientResponse.md)
+[**AppClientResponse**](AppClientResponse.md)
 
 ### Authorization
 

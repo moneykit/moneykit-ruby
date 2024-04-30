@@ -16,12 +16,12 @@ require 'time'
 module MoneyKit
   class InvestmentTransactionResponse
     # The unique ID for this investment transaction.
-    attr_accessor :id
+    attr_accessor :investment_transaction_id
 
     # The ID of the account in which this investment transaction occurred.
     attr_accessor :account_id
 
-    # The total value of this transaction, denominated in account currency.  Positive values indicate         debits (deposits); negative values are credits (withdrawals).  For example, for a `buy` transaction, the amount         will be equal to `-(quantity * price + fees)`.
+    # The total value of this transaction, denominated in account currency.  Positive values indicate         debits (withdrawals); negative values are credits (deposits).  When a transaction has both quantity and price,         the amount should be equal to `quantity * price + fees`.
     attr_accessor :amount
 
     # The effective (posted) date of the transaction, in ISO-8601 format.
@@ -36,7 +36,7 @@ module MoneyKit
     # The type of transaction (buy, sell, cash, fee, transfer).  May include a dotted subtype,         for example, `buy.buy_to_cover` or `fee.transfer_fee`.
     attr_accessor :type
 
-    # The combined value of any fees applied to the transaction.  Fees are subtracted from the         total transaction amount, and are reported as positive values; refunds are reported as negative values.
+    # The combined value of any fees applied to the transaction.  Fees are reported as positive         values; refunds are reported as negative values.
     attr_accessor :fees
 
     # The currency exchange rate applied.  Only present for transactions involving a security that is         denominated in a currency other than the account currency.
@@ -54,7 +54,7 @@ module MoneyKit
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'id' => :'id',
+        :'investment_transaction_id' => :'investment_transaction_id',
         :'account_id' => :'account_id',
         :'amount' => :'amount',
         :'date' => :'date',
@@ -77,7 +77,7 @@ module MoneyKit
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'id' => :'String',
+        :'investment_transaction_id' => :'String',
         :'account_id' => :'String',
         :'amount' => :'String',
         :'date' => :'Date',
@@ -113,10 +113,10 @@ module MoneyKit
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'id')
-        self.id = attributes[:'id']
+      if attributes.key?(:'investment_transaction_id')
+        self.investment_transaction_id = attributes[:'investment_transaction_id']
       else
-        self.id = nil
+        self.investment_transaction_id = nil
       end
 
       if attributes.key?(:'account_id')
@@ -179,8 +179,8 @@ module MoneyKit
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @id.nil?
-        invalid_properties.push('invalid value for "id", id cannot be nil.')
+      if @investment_transaction_id.nil?
+        invalid_properties.push('invalid value for "investment_transaction_id", investment_transaction_id cannot be nil.')
       end
 
       if @account_id.nil?
@@ -210,7 +210,7 @@ module MoneyKit
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @id.nil?
+      return false if @investment_transaction_id.nil?
       return false if @account_id.nil?
       return false if @amount.nil?
       return false if @date.nil?
@@ -224,7 +224,7 @@ module MoneyKit
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          id == o.id &&
+          investment_transaction_id == o.investment_transaction_id &&
           account_id == o.account_id &&
           amount == o.amount &&
           date == o.date &&
@@ -247,7 +247,7 @@ module MoneyKit
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, account_id, amount, date, datetime, description, type, fees, forex_rate, price, quantity, security_id].hash
+      [investment_transaction_id, account_id, amount, date, datetime, description, type, fees, forex_rate, price, quantity, security_id].hash
     end
 
     # Builds the object from hash

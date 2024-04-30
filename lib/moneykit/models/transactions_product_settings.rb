@@ -18,8 +18,14 @@ module MoneyKit
     # If true, only institutions supporting this product will be available.
     attr_accessor :required
 
+    # This flag matters only if `required` is false.  For non-required products,         the product permission is normally presented to the user as optional (granted by default, but the user may         opt out).  If this flag is true, however, the product permission will be presented in the UI as non-optional:         the user's only choice is to grant the permission or to cancel the link.         <p>         Note that this field is ignored if `required` is true.  Permission is always mandatory for required products.
+    attr_accessor :require_permission
+
     # If true, the data will be available as soon as possible after linking, even if `required` is false. If false, the data will be available after the first manual data refresh.
     attr_accessor :prefetch
+
+    # A **brief** description of the reason your app wants this data.         This description will follow the words \"...data is used to\", and will be displayed         to the user when permission is requested.  You should provide this field if your         app does not request this product by default, or if you want to show a particular         reason for requesting the product during this link session.
+    attr_accessor :reason
 
     # If true, MoneyKit will attempt to fetch as much transaction history as possible. Not all institutions supply the same extent of transaction history. Generally, however, at least the past 30 days of transactions are available.
     attr_accessor :extend_history
@@ -28,7 +34,9 @@ module MoneyKit
     def self.attribute_map
       {
         :'required' => :'required',
+        :'require_permission' => :'require_permission',
         :'prefetch' => :'prefetch',
+        :'reason' => :'reason',
         :'extend_history' => :'extend_history'
       }
     end
@@ -42,7 +50,9 @@ module MoneyKit
     def self.openapi_types
       {
         :'required' => :'Boolean',
+        :'require_permission' => :'Boolean',
         :'prefetch' => :'Boolean',
+        :'reason' => :'String',
         :'extend_history' => :'Boolean'
       }
     end
@@ -74,10 +84,20 @@ module MoneyKit
         self.required = false
       end
 
+      if attributes.key?(:'require_permission')
+        self.require_permission = attributes[:'require_permission']
+      else
+        self.require_permission = false
+      end
+
       if attributes.key?(:'prefetch')
         self.prefetch = attributes[:'prefetch']
       else
         self.prefetch = false
+      end
+
+      if attributes.key?(:'reason')
+        self.reason = attributes[:'reason']
       end
 
       if attributes.key?(:'extend_history')
@@ -108,7 +128,9 @@ module MoneyKit
       return true if self.equal?(o)
       self.class == o.class &&
           required == o.required &&
+          require_permission == o.require_permission &&
           prefetch == o.prefetch &&
+          reason == o.reason &&
           extend_history == o.extend_history
     end
 
@@ -121,7 +143,7 @@ module MoneyKit
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [required, prefetch, extend_history].hash
+      [required, require_permission, prefetch, reason, extend_history].hash
     end
 
     # Builds the object from hash

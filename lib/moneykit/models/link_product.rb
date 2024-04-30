@@ -14,22 +14,54 @@ require 'date'
 require 'time'
 
 module MoneyKit
-  class MoneyKitConnectFeatures
-    # If enabled, the user can report linking issues directly to MoneyKit via 'Report Issue' button.
-    attr_accessor :issue_reporter
+  class LinkProduct
+    # An ISO-8601 timestamp indicating the last time that the product was updated.
+    attr_accessor :refreshed_at
 
-    # If enabled, the user can register for, or login into, Money ID.
-    attr_accessor :enable_money_id
+    # An ISO-8601 timestamp indicating the last time that the product was attempted.
+    attr_accessor :last_attempted_at
 
-    # If enabled, the user will see a warning when trying to connect the same institution more than once.
-    attr_accessor :duplicate_institution_warning
+    attr_accessor :error_code
+
+    # The error message, if the last attempt to refresh the product failed.
+    attr_accessor :error_message
+
+    # If this product can't currently be updated, the reason why it is unavailable.         <p>Unavailable products can't be refreshed, but past data, if any, is still accessible.
+    attr_accessor :unavailable
+
+    attr_accessor :settings
+
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
+
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'issue_reporter' => :'issue_reporter',
-        :'enable_money_id' => :'enable_money_id',
-        :'duplicate_institution_warning' => :'duplicate_institution_warning'
+        :'refreshed_at' => :'refreshed_at',
+        :'last_attempted_at' => :'last_attempted_at',
+        :'error_code' => :'error_code',
+        :'error_message' => :'error_message',
+        :'unavailable' => :'unavailable',
+        :'settings' => :'settings'
       }
     end
 
@@ -41,9 +73,12 @@ module MoneyKit
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'issue_reporter' => :'Boolean',
-        :'enable_money_id' => :'Boolean',
-        :'duplicate_institution_warning' => :'Boolean'
+        :'refreshed_at' => :'Time',
+        :'last_attempted_at' => :'Time',
+        :'error_code' => :'LinkProductFailureReasons',
+        :'error_message' => :'String',
+        :'unavailable' => :'String',
+        :'settings' => :'ProductSettings'
       }
     end
 
@@ -57,33 +92,39 @@ module MoneyKit
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `MoneyKit::MoneyKitConnectFeatures` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `MoneyKit::LinkProduct` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `MoneyKit::MoneyKitConnectFeatures`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `MoneyKit::LinkProduct`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'issue_reporter')
-        self.issue_reporter = attributes[:'issue_reporter']
-      else
-        self.issue_reporter = false
+      if attributes.key?(:'refreshed_at')
+        self.refreshed_at = attributes[:'refreshed_at']
       end
 
-      if attributes.key?(:'enable_money_id')
-        self.enable_money_id = attributes[:'enable_money_id']
-      else
-        self.enable_money_id = false
+      if attributes.key?(:'last_attempted_at')
+        self.last_attempted_at = attributes[:'last_attempted_at']
       end
 
-      if attributes.key?(:'duplicate_institution_warning')
-        self.duplicate_institution_warning = attributes[:'duplicate_institution_warning']
-      else
-        self.duplicate_institution_warning = false
+      if attributes.key?(:'error_code')
+        self.error_code = attributes[:'error_code']
+      end
+
+      if attributes.key?(:'error_message')
+        self.error_message = attributes[:'error_message']
+      end
+
+      if attributes.key?(:'unavailable')
+        self.unavailable = attributes[:'unavailable']
+      end
+
+      if attributes.key?(:'settings')
+        self.settings = attributes[:'settings']
       end
     end
 
@@ -107,9 +148,12 @@ module MoneyKit
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          issue_reporter == o.issue_reporter &&
-          enable_money_id == o.enable_money_id &&
-          duplicate_institution_warning == o.duplicate_institution_warning
+          refreshed_at == o.refreshed_at &&
+          last_attempted_at == o.last_attempted_at &&
+          error_code == o.error_code &&
+          error_message == o.error_message &&
+          unavailable == o.unavailable &&
+          settings == o.settings
     end
 
     # @see the `==` method
@@ -121,7 +165,7 @@ module MoneyKit
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [issue_reporter, enable_money_id, duplicate_institution_warning].hash
+      [refreshed_at, last_attempted_at, error_code, error_message, unavailable, settings].hash
     end
 
     # Builds the object from hash

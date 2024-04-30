@@ -122,8 +122,8 @@ module MoneyKit
         fail ArgumentError, 'invalid value for "opts[:"page"]" when calling InvestmentsApi.get_investment_transactions, must be greater than or equal to 1.'
       end
 
-      if @api_client.config.client_side_validation && !opts[:'size'].nil? && opts[:'size'] > 100
-        fail ArgumentError, 'invalid value for "opts[:"size"]" when calling InvestmentsApi.get_investment_transactions, must be smaller than or equal to 100.'
+      if @api_client.config.client_side_validation && !opts[:'size'].nil? && opts[:'size'] > 500
+        fail ArgumentError, 'invalid value for "opts[:"size"]" when calling InvestmentsApi.get_investment_transactions, must be smaller than or equal to 500.'
       end
 
       if @api_client.config.client_side_validation && !opts[:'size'].nil? && opts[:'size'] < 1

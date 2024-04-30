@@ -25,7 +25,7 @@ module MoneyKit
 
     attr_accessor :country
 
-    # The domain of the institution's customer-facing website.
+    # The domain of the institution's user-facing website.
     attr_accessor :domain
 
     # The primary color of this institution, represented as hexcode.

@@ -1,4 +1,4 @@
-# MoneyKit::TransactionsLinkProduct
+# MoneyKit::LinkProduct
 
 ## Properties
 
@@ -9,22 +9,20 @@
 | **error_code** | [**LinkProductFailureReasons**](LinkProductFailureReasons.md) |  | [optional] |
 | **error_message** | **String** | The error message, if the last attempt to refresh the product failed. | [optional] |
 | **unavailable** | **String** | If this product can&#39;t currently be updated, the reason why it is unavailable.         &lt;p&gt;Unavailable products can&#39;t be refreshed, but past data, if any, is still accessible. | [optional] |
-| **settings** | [**TransactionsProductSettings**](TransactionsProductSettings.md) |  | [optional] |
-| **has_history** | **Boolean** |  |  |
+| **settings** | [**ProductSettings**](ProductSettings.md) |  | [optional] |
 
 ## Example
 
 ```ruby
 require 'moneykit'
 
-instance = MoneyKit::TransactionsLinkProduct.new(
+instance = MoneyKit::LinkProduct.new(
   refreshed_at: 2023-02-16T09:14:11,
   last_attempted_at: 2023-02-16T09:14:11,
   error_code: null,
   error_message: null,
   unavailable: null,
-  settings: null,
-  has_history: null
+  settings: null
 )
 ```
 

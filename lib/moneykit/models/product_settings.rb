@@ -14,22 +14,26 @@ require 'date'
 require 'time'
 
 module MoneyKit
-  class MoneyKitConnectFeatures
-    # If enabled, the user can report linking issues directly to MoneyKit via 'Report Issue' button.
-    attr_accessor :issue_reporter
+  class ProductSettings
+    # If true, only institutions supporting this product will be available.
+    attr_accessor :required
 
-    # If enabled, the user can register for, or login into, Money ID.
-    attr_accessor :enable_money_id
+    # This flag matters only if `required` is false.  For non-required products,         the product permission is normally presented to the user as optional (granted by default, but the user may         opt out).  If this flag is true, however, the product permission will be presented in the UI as non-optional:         the user's only choice is to grant the permission or to cancel the link.         <p>         Note that this field is ignored if `required` is true.  Permission is always mandatory for required products.
+    attr_accessor :require_permission
 
-    # If enabled, the user will see a warning when trying to connect the same institution more than once.
-    attr_accessor :duplicate_institution_warning
+    # If true, the data will be available as soon as possible after linking, even if `required` is false. If false, the data will be available after the first manual data refresh.
+    attr_accessor :prefetch
+
+    # A **brief** description of the reason your app wants this data.         This description will follow the words \"...data is used to\", and will be displayed         to the user when permission is requested.  You should provide this field if your         app does not request this product by default, or if you want to show a particular         reason for requesting the product during this link session.
+    attr_accessor :reason
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'issue_reporter' => :'issue_reporter',
-        :'enable_money_id' => :'enable_money_id',
-        :'duplicate_institution_warning' => :'duplicate_institution_warning'
+        :'required' => :'required',
+        :'require_permission' => :'require_permission',
+        :'prefetch' => :'prefetch',
+        :'reason' => :'reason'
       }
     end
 
@@ -41,9 +45,10 @@ module MoneyKit
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'issue_reporter' => :'Boolean',
-        :'enable_money_id' => :'Boolean',
-        :'duplicate_institution_warning' => :'Boolean'
+        :'required' => :'Boolean',
+        :'require_permission' => :'Boolean',
+        :'prefetch' => :'Boolean',
+        :'reason' => :'String'
       }
     end
 
@@ -57,33 +62,37 @@ module MoneyKit
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `MoneyKit::MoneyKitConnectFeatures` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `MoneyKit::ProductSettings` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `MoneyKit::MoneyKitConnectFeatures`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `MoneyKit::ProductSettings`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'issue_reporter')
-        self.issue_reporter = attributes[:'issue_reporter']
+      if attributes.key?(:'required')
+        self.required = attributes[:'required']
       else
-        self.issue_reporter = false
+        self.required = false
       end
 
-      if attributes.key?(:'enable_money_id')
-        self.enable_money_id = attributes[:'enable_money_id']
+      if attributes.key?(:'require_permission')
+        self.require_permission = attributes[:'require_permission']
       else
-        self.enable_money_id = false
+        self.require_permission = false
       end
 
-      if attributes.key?(:'duplicate_institution_warning')
-        self.duplicate_institution_warning = attributes[:'duplicate_institution_warning']
+      if attributes.key?(:'prefetch')
+        self.prefetch = attributes[:'prefetch']
       else
-        self.duplicate_institution_warning = false
+        self.prefetch = false
+      end
+
+      if attributes.key?(:'reason')
+        self.reason = attributes[:'reason']
       end
     end
 
@@ -107,9 +116,10 @@ module MoneyKit
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          issue_reporter == o.issue_reporter &&
-          enable_money_id == o.enable_money_id &&
-          duplicate_institution_warning == o.duplicate_institution_warning
+          required == o.required &&
+          require_permission == o.require_permission &&
+          prefetch == o.prefetch &&
+          reason == o.reason
     end
 
     # @see the `==` method
@@ -121,7 +131,7 @@ module MoneyKit
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [issue_reporter, enable_money_id, duplicate_institution_warning].hash
+      [required, require_permission, prefetch, reason].hash
     end
 
     # Builds the object from hash

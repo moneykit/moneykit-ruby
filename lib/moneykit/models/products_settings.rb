@@ -41,10 +41,10 @@ module MoneyKit
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'account_numbers' => :'AccountNumbersProductSettings',
-        :'identity' => :'IdentityProductSettings',
+        :'account_numbers' => :'ProductSettings',
+        :'identity' => :'ProductSettings',
         :'transactions' => :'TransactionsProductSettings',
-        :'investments' => :'InvestmentsProductSettings'
+        :'investments' => :'ProductSettings'
       }
     end
 

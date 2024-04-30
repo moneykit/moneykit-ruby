@@ -56,8 +56,8 @@ module MoneyKit
         fail ArgumentError, 'invalid value for "opts[:"page"]" when calling TransactionsApi.get_transactions, must be greater than or equal to 1.'
       end
 
-      if @api_client.config.client_side_validation && !opts[:'size'].nil? && opts[:'size'] > 100
-        fail ArgumentError, 'invalid value for "opts[:"size"]" when calling TransactionsApi.get_transactions, must be smaller than or equal to 100.'
+      if @api_client.config.client_side_validation && !opts[:'size'].nil? && opts[:'size'] > 500
+        fail ArgumentError, 'invalid value for "opts[:"size"]" when calling TransactionsApi.get_transactions, must be smaller than or equal to 500.'
       end
 
       if @api_client.config.client_side_validation && !opts[:'size'].nil? && opts[:'size'] < 1
@@ -113,7 +113,7 @@ module MoneyKit
     # Provides a paginated feed of transactions, grouped into `created`, `updated`, and `removed` lists.         <p>Each call will also return a `cursor.next` value.  In subsequent calls, include that value to receive         only changes that have occurred since the previous call.         <p>Large numbers of transactions will be paginated, and the `has_more` field will be true.  You should         continue calling this endpoint with each new `cursor.next` value until `has_more` is false.         <p>**Note** that this endpoint does **not** trigger a fetch of transactions from the institution; it merely returns         transactions that have already been fetched, either because `prefetch` was requested when the link was created,         or because of scheduled or on-demand updates.         <p>MoneyKit checks for updated account data, including transactions, periodically throughout the day, but the         update frequency can vary, depending on the downstream data provider, the institution, and whether one or both         provide webhook-based updates.         **To force a check for updated transactions, you can use the <a href=#operation/refresh_products>/products</a> endpoint.**         <p>Note also that the `transactions.updates_available` webhook will alert you when new data is available.
     # @param id [String] The unique ID for this link.
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :cursor A cursor value representing the last update requested. If included, the response will only return         changes after this update. If omitted, a complete history of updates will be returned. This value must be stored         by the client as we do not keep track of customer cursors.
+    # @option opts [String] :cursor A cursor value representing the last update requested. If included, the response will only return         changes after this update. If omitted, a complete history of updates will be returned. This value must be stored         by the client as we do not keep track of app cursors.
     # @option opts [Integer] :size The number of items to return. (default to 50)
     # @return [TransactionSyncResponse]
     def get_transactions_diff(id, opts = {})
@@ -125,7 +125,7 @@ module MoneyKit
     # Provides a paginated feed of transactions, grouped into &#x60;created&#x60;, &#x60;updated&#x60;, and &#x60;removed&#x60; lists.         &lt;p&gt;Each call will also return a &#x60;cursor.next&#x60; value.  In subsequent calls, include that value to receive         only changes that have occurred since the previous call.         &lt;p&gt;Large numbers of transactions will be paginated, and the &#x60;has_more&#x60; field will be true.  You should         continue calling this endpoint with each new &#x60;cursor.next&#x60; value until &#x60;has_more&#x60; is false.         &lt;p&gt;**Note** that this endpoint does **not** trigger a fetch of transactions from the institution; it merely returns         transactions that have already been fetched, either because &#x60;prefetch&#x60; was requested when the link was created,         or because of scheduled or on-demand updates.         &lt;p&gt;MoneyKit checks for updated account data, including transactions, periodically throughout the day, but the         update frequency can vary, depending on the downstream data provider, the institution, and whether one or both         provide webhook-based updates.         **To force a check for updated transactions, you can use the &lt;a href&#x3D;#operation/refresh_products&gt;/products&lt;/a&gt; endpoint.**         &lt;p&gt;Note also that the &#x60;transactions.updates_available&#x60; webhook will alert you when new data is available.
     # @param id [String] The unique ID for this link.
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :cursor A cursor value representing the last update requested. If included, the response will only return         changes after this update. If omitted, a complete history of updates will be returned. This value must be stored         by the client as we do not keep track of customer cursors.
+    # @option opts [String] :cursor A cursor value representing the last update requested. If included, the response will only return         changes after this update. If omitted, a complete history of updates will be returned. This value must be stored         by the client as we do not keep track of app cursors.
     # @option opts [Integer] :size The number of items to return. (default to 50)
     # @return [Array<(TransactionSyncResponse, Integer, Hash)>] TransactionSyncResponse data, response status code and response headers
     def get_transactions_diff_with_http_info(id, opts = {})
@@ -229,8 +229,8 @@ module MoneyKit
         fail ArgumentError, 'invalid value for "opts[:"page"]" when calling TransactionsApi.get_user_transactions, must be greater than or equal to 1.'
       end
 
-      if @api_client.config.client_side_validation && !opts[:'size'].nil? && opts[:'size'] > 100
-        fail ArgumentError, 'invalid value for "opts[:"size"]" when calling TransactionsApi.get_user_transactions, must be smaller than or equal to 100.'
+      if @api_client.config.client_side_validation && !opts[:'size'].nil? && opts[:'size'] > 500
+        fail ArgumentError, 'invalid value for "opts[:"size"]" when calling TransactionsApi.get_user_transactions, must be smaller than or equal to 500.'
       end
 
       if @api_client.config.client_side_validation && !opts[:'size'].nil? && opts[:'size'] < 1

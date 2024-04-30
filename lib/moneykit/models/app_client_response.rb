@@ -14,22 +14,30 @@ require 'date'
 require 'time'
 
 module MoneyKit
-  class MoneyKitConnectFeatures
-    # If enabled, the user can report linking issues directly to MoneyKit via 'Report Issue' button.
-    attr_accessor :issue_reporter
+  # application client
+  class AppClientResponse
+    # The client's client ID.
+    attr_accessor :client_id
 
-    # If enabled, the user can register for, or login into, Money ID.
-    attr_accessor :enable_money_id
+    # Friendly client name for identification.
+    attr_accessor :client_name
 
-    # If enabled, the user will see a warning when trying to connect the same institution more than once.
-    attr_accessor :duplicate_institution_warning
+    # Actions allowed by this client.
+    attr_accessor :scope
+
+    attr_accessor :app
+
+    # Set to timestamp if the client has been disabled.
+    attr_accessor :disabled_at
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'issue_reporter' => :'issue_reporter',
-        :'enable_money_id' => :'enable_money_id',
-        :'duplicate_institution_warning' => :'duplicate_institution_warning'
+        :'client_id' => :'client_id',
+        :'client_name' => :'client_name',
+        :'scope' => :'scope',
+        :'app' => :'app',
+        :'disabled_at' => :'disabled_at'
       }
     end
 
@@ -41,9 +49,11 @@ module MoneyKit
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'issue_reporter' => :'Boolean',
-        :'enable_money_id' => :'Boolean',
-        :'duplicate_institution_warning' => :'Boolean'
+        :'client_id' => :'String',
+        :'client_name' => :'String',
+        :'scope' => :'String',
+        :'app' => :'AppResponse',
+        :'disabled_at' => :'Time'
       }
     end
 
@@ -57,33 +67,43 @@ module MoneyKit
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `MoneyKit::MoneyKitConnectFeatures` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `MoneyKit::AppClientResponse` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `MoneyKit::MoneyKitConnectFeatures`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `MoneyKit::AppClientResponse`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'issue_reporter')
-        self.issue_reporter = attributes[:'issue_reporter']
+      if attributes.key?(:'client_id')
+        self.client_id = attributes[:'client_id']
       else
-        self.issue_reporter = false
+        self.client_id = nil
       end
 
-      if attributes.key?(:'enable_money_id')
-        self.enable_money_id = attributes[:'enable_money_id']
+      if attributes.key?(:'client_name')
+        self.client_name = attributes[:'client_name']
       else
-        self.enable_money_id = false
+        self.client_name = nil
       end
 
-      if attributes.key?(:'duplicate_institution_warning')
-        self.duplicate_institution_warning = attributes[:'duplicate_institution_warning']
+      if attributes.key?(:'scope')
+        self.scope = attributes[:'scope']
       else
-        self.duplicate_institution_warning = false
+        self.scope = nil
+      end
+
+      if attributes.key?(:'app')
+        self.app = attributes[:'app']
+      else
+        self.app = nil
+      end
+
+      if attributes.key?(:'disabled_at')
+        self.disabled_at = attributes[:'disabled_at']
       end
     end
 
@@ -92,6 +112,22 @@ module MoneyKit
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
+      if @client_id.nil?
+        invalid_properties.push('invalid value for "client_id", client_id cannot be nil.')
+      end
+
+      if @client_name.nil?
+        invalid_properties.push('invalid value for "client_name", client_name cannot be nil.')
+      end
+
+      if @scope.nil?
+        invalid_properties.push('invalid value for "scope", scope cannot be nil.')
+      end
+
+      if @app.nil?
+        invalid_properties.push('invalid value for "app", app cannot be nil.')
+      end
+
       invalid_properties
     end
 
@@ -99,6 +135,10 @@ module MoneyKit
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
+      return false if @client_id.nil?
+      return false if @client_name.nil?
+      return false if @scope.nil?
+      return false if @app.nil?
       true
     end
 
@@ -107,9 +147,11 @@ module MoneyKit
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          issue_reporter == o.issue_reporter &&
-          enable_money_id == o.enable_money_id &&
-          duplicate_institution_warning == o.duplicate_institution_warning
+          client_id == o.client_id &&
+          client_name == o.client_name &&
+          scope == o.scope &&
+          app == o.app &&
+          disabled_at == o.disabled_at
     end
 
     # @see the `==` method
@@ -121,7 +163,7 @@ module MoneyKit
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [issue_reporter, enable_money_id, duplicate_institution_warning].hash
+      [client_id, client_name, scope, app, disabled_at].hash
     end
 
     # Builds the object from hash

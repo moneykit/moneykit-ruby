@@ -14,22 +14,27 @@ require 'date'
 require 'time'
 
 module MoneyKit
-  class MoneyKitConnectFeatures
-    # If enabled, the user can report linking issues directly to MoneyKit via 'Report Issue' button.
-    attr_accessor :issue_reporter
+  # App for a specific environment
+  class AppResponse
+    # Your app's ID.
+    attr_accessor :app_id
 
-    # If enabled, the user can register for, or login into, Money ID.
-    attr_accessor :enable_money_id
+    # Your app's name.
+    attr_accessor :name
 
-    # If enabled, the user will see a warning when trying to connect the same institution more than once.
-    attr_accessor :duplicate_institution_warning
+    # Your app's ID.
+    attr_accessor :id
+
+    # Your app's name.
+    attr_accessor :app_name
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'issue_reporter' => :'issue_reporter',
-        :'enable_money_id' => :'enable_money_id',
-        :'duplicate_institution_warning' => :'duplicate_institution_warning'
+        :'app_id' => :'app_id',
+        :'name' => :'name',
+        :'id' => :'id',
+        :'app_name' => :'app_name'
       }
     end
 
@@ -41,9 +46,10 @@ module MoneyKit
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'issue_reporter' => :'Boolean',
-        :'enable_money_id' => :'Boolean',
-        :'duplicate_institution_warning' => :'Boolean'
+        :'app_id' => :'String',
+        :'name' => :'String',
+        :'id' => :'String',
+        :'app_name' => :'String'
       }
     end
 
@@ -57,33 +63,39 @@ module MoneyKit
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `MoneyKit::MoneyKitConnectFeatures` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `MoneyKit::AppResponse` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `MoneyKit::MoneyKitConnectFeatures`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `MoneyKit::AppResponse`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'issue_reporter')
-        self.issue_reporter = attributes[:'issue_reporter']
+      if attributes.key?(:'app_id')
+        self.app_id = attributes[:'app_id']
       else
-        self.issue_reporter = false
+        self.app_id = nil
       end
 
-      if attributes.key?(:'enable_money_id')
-        self.enable_money_id = attributes[:'enable_money_id']
+      if attributes.key?(:'name')
+        self.name = attributes[:'name']
       else
-        self.enable_money_id = false
+        self.name = nil
       end
 
-      if attributes.key?(:'duplicate_institution_warning')
-        self.duplicate_institution_warning = attributes[:'duplicate_institution_warning']
+      if attributes.key?(:'id')
+        self.id = attributes[:'id']
       else
-        self.duplicate_institution_warning = false
+        self.id = nil
+      end
+
+      if attributes.key?(:'app_name')
+        self.app_name = attributes[:'app_name']
+      else
+        self.app_name = nil
       end
     end
 
@@ -92,6 +104,22 @@ module MoneyKit
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
+      if @app_id.nil?
+        invalid_properties.push('invalid value for "app_id", app_id cannot be nil.')
+      end
+
+      if @name.nil?
+        invalid_properties.push('invalid value for "name", name cannot be nil.')
+      end
+
+      if @id.nil?
+        invalid_properties.push('invalid value for "id", id cannot be nil.')
+      end
+
+      if @app_name.nil?
+        invalid_properties.push('invalid value for "app_name", app_name cannot be nil.')
+      end
+
       invalid_properties
     end
 
@@ -99,6 +127,10 @@ module MoneyKit
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
+      return false if @app_id.nil?
+      return false if @name.nil?
+      return false if @id.nil?
+      return false if @app_name.nil?
       true
     end
 
@@ -107,9 +139,10 @@ module MoneyKit
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          issue_reporter == o.issue_reporter &&
-          enable_money_id == o.enable_money_id &&
-          duplicate_institution_warning == o.duplicate_institution_warning
+          app_id == o.app_id &&
+          name == o.name &&
+          id == o.id &&
+          app_name == o.app_name
     end
 
     # @see the `==` method
@@ -121,7 +154,7 @@ module MoneyKit
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [issue_reporter, enable_money_id, duplicate_institution_warning].hash
+      [app_id, name, id, app_name].hash
     end
 
     # Builds the object from hash

@@ -16,7 +16,7 @@ require 'time'
 module MoneyKit
   class SecurityResponse
     # A unique MoneyKit ID for this security.
-    attr_accessor :id
+    attr_accessor :security_id
 
     # A user-facing name for this security.
     attr_accessor :name
@@ -45,7 +45,7 @@ module MoneyKit
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'id' => :'id',
+        :'security_id' => :'security_id',
         :'name' => :'name',
         :'type' => :'type',
         :'currency' => :'currency',
@@ -65,7 +65,7 @@ module MoneyKit
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'id' => :'String',
+        :'security_id' => :'String',
         :'name' => :'String',
         :'type' => :'String',
         :'currency' => :'String',
@@ -98,10 +98,10 @@ module MoneyKit
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'id')
-        self.id = attributes[:'id']
+      if attributes.key?(:'security_id')
+        self.security_id = attributes[:'security_id']
       else
-        self.id = nil
+        self.security_id = nil
       end
 
       if attributes.key?(:'name')
@@ -148,8 +148,8 @@ module MoneyKit
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @id.nil?
-        invalid_properties.push('invalid value for "id", id cannot be nil.')
+      if @security_id.nil?
+        invalid_properties.push('invalid value for "security_id", security_id cannot be nil.')
       end
 
       if @name.nil?
@@ -171,7 +171,7 @@ module MoneyKit
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @id.nil?
+      return false if @security_id.nil?
       return false if @name.nil?
       return false if @type.nil?
       return false if @currency.nil?
@@ -183,7 +183,7 @@ module MoneyKit
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          id == o.id &&
+          security_id == o.security_id &&
           name == o.name &&
           type == o.type &&
           currency == o.currency &&
@@ -203,7 +203,7 @@ module MoneyKit
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, name, type, currency, ticker, isin, sedol, close_price, close_date].hash
+      [security_id, name, type, currency, ticker, isin, sedol, close_price, close_date].hash
     end
 
     # Builds the object from hash
