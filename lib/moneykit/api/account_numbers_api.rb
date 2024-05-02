@@ -24,8 +24,8 @@ module MoneyKit
     # @param id [String] The unique ID for this link.
     # @param [Hash] opts the optional parameters
     # @return [GetAccountNumbersResponseLegacy20230218]
-    def get_account_numbers_legacy20230218(id, opts = {})
-      data, _status_code, _headers = get_account_numbers_legacy20230218_with_http_info(id, opts)
+    def get_account_numbers(id, opts = {})
+      data, _status_code, _headers = get_account_numbers_with_http_info(id, opts)
       data
     end
 
@@ -34,13 +34,13 @@ module MoneyKit
     # @param id [String] The unique ID for this link.
     # @param [Hash] opts the optional parameters
     # @return [Array<(GetAccountNumbersResponseLegacy20230218, Integer, Hash)>] GetAccountNumbersResponseLegacy20230218 data, response status code and response headers
-    def get_account_numbers_legacy20230218_with_http_info(id, opts = {})
+    def get_account_numbers_with_http_info(id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: AccountNumbersApi.get_account_numbers_legacy20230218 ...'
+        @api_client.config.logger.debug 'Calling API: AccountNumbersApi.get_account_numbers ...'
       end
       # verify the required parameter 'id' is set
       if @api_client.config.client_side_validation && id.nil?
-        fail ArgumentError, "Missing the required parameter 'id' when calling AccountNumbersApi.get_account_numbers_legacy20230218"
+        fail ArgumentError, "Missing the required parameter 'id' when calling AccountNumbersApi.get_account_numbers"
       end
       # resource path
       local_var_path = '/links/{id}/accounts/numbers'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
@@ -66,7 +66,7 @@ module MoneyKit
       auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials']
 
       new_options = opts.merge(
-        :operation => :"AccountNumbersApi.get_account_numbers_legacy20230218",
+        :operation => :"AccountNumbersApi.get_account_numbers",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -77,7 +77,7 @@ module MoneyKit
 
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: AccountNumbersApi#get_account_numbers_legacy20230218\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: AccountNumbersApi#get_account_numbers\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
