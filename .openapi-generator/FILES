@@ -90,7 +90,7 @@ docs/ProductsSettings.md
 docs/Provider.md
 docs/RefreshProductsRequest.md
 docs/RequestedLinkPermission.md
-docs/Response401DisconnectLinksIdDelete.md
+docs/Response401DeleteLinkLinksIdDelete.md
 docs/Response401ExchangeTokenLinkSessionExchangeTokenPost.md
 docs/Response401GetAccountLinksIdAccountsAccountIdGet.md
 docs/Response401GetAccountNumbers.md
@@ -224,7 +224,7 @@ lib/moneykit/models/products_settings.rb
 lib/moneykit/models/provider.rb
 lib/moneykit/models/refresh_products_request.rb
 lib/moneykit/models/requested_link_permission.rb
-lib/moneykit/models/response401_disconnect_links_id_delete.rb
+lib/moneykit/models/response401_delete_link_links_id_delete.rb
 lib/moneykit/models/response401_exchange_token_link_session_exchange_token_post.rb
 lib/moneykit/models/response401_get_account_links_id_accounts_account_id_get.rb
 lib/moneykit/models/response401_get_account_numbers.rb
@@ -266,4 +266,5 @@ lib/moneykit/version.rb
 moneykit.gemspec
 spec/api_client_spec.rb
 spec/configuration_spec.rb
+spec/models/response401_delete_link_links_id_delete_spec.rb
 spec/spec_helper.rb

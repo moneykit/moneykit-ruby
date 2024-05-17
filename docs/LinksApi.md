@@ -4,16 +4,16 @@ All URIs are relative to *https://api.moneykit.com*
 
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
-| [**disconnect**](LinksApi.md#disconnect) | **DELETE** /links/{id} | /links/{id} |
+| [**delete_link**](LinksApi.md#delete_link) | **DELETE** /links/{id} | /links/{id} |
 | [**get_link**](LinksApi.md#get_link) | **GET** /links/{id} | /links/{id} |
 | [**get_user_links**](LinksApi.md#get_user_links) | **GET** /users/{id}/links | /users/{id}/links |
 | [**reset_login**](LinksApi.md#reset_login) | **POST** /links/{id}/reset | Force a \&quot;relink required\&quot; state on a link (Test only). |
 | [**update_link**](LinksApi.md#update_link) | **PATCH** /links/{id} | /links/{id} |
 
 
-## disconnect
+## delete_link
 
-> disconnect(id)
+> delete_link(id)
 
 /links/{id}
 
@@ -35,27 +35,27 @@ id = 'id_example' # String | The unique ID for this link.
 
 begin
   # /links/{id}
-  api_instance.disconnect(id)
+  api_instance.delete_link(id)
 rescue MoneyKit::ApiError => e
-  puts "Error when calling LinksApi->disconnect: #{e}"
+  puts "Error when calling LinksApi->delete_link: #{e}"
 end
 ```
 
-#### Using the disconnect_with_http_info variant
+#### Using the delete_link_with_http_info variant
 
 This returns an Array which contains the response data (`nil` in this case), status code and headers.
 
-> <Array(nil, Integer, Hash)> disconnect_with_http_info(id)
+> <Array(nil, Integer, Hash)> delete_link_with_http_info(id)
 
 ```ruby
 begin
   # /links/{id}
-  data, status_code, headers = api_instance.disconnect_with_http_info(id)
+  data, status_code, headers = api_instance.delete_link_with_http_info(id)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => nil
 rescue MoneyKit::ApiError => e
-  puts "Error when calling LinksApi->disconnect_with_http_info: #{e}"
+  puts "Error when calling LinksApi->delete_link_with_http_info: #{e}"
 end
 ```
 

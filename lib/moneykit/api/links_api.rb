@@ -24,8 +24,8 @@ module MoneyKit
     # @param id [String] The unique ID for this link.
     # @param [Hash] opts the optional parameters
     # @return [nil]
-    def disconnect(id, opts = {})
-      disconnect_with_http_info(id, opts)
+    def delete_link(id, opts = {})
+      delete_link_with_http_info(id, opts)
       nil
     end
 
@@ -34,13 +34,13 @@ module MoneyKit
     # @param id [String] The unique ID for this link.
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
-    def disconnect_with_http_info(id, opts = {})
+    def delete_link_with_http_info(id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: LinksApi.disconnect ...'
+        @api_client.config.logger.debug 'Calling API: LinksApi.delete_link ...'
       end
       # verify the required parameter 'id' is set
       if @api_client.config.client_side_validation && id.nil?
-        fail ArgumentError, "Missing the required parameter 'id' when calling LinksApi.disconnect"
+        fail ArgumentError, "Missing the required parameter 'id' when calling LinksApi.delete_link"
       end
       # resource path
       local_var_path = '/links/{id}'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
@@ -66,7 +66,7 @@ module MoneyKit
       auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials']
 
       new_options = opts.merge(
-        :operation => :"LinksApi.disconnect",
+        :operation => :"LinksApi.delete_link",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -77,7 +77,7 @@ module MoneyKit
 
       data, status_code, headers = @api_client.call_api(:DELETE, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: LinksApi#disconnect\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: LinksApi#delete_link\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
