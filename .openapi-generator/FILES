@@ -266,5 +266,4 @@ lib/moneykit/version.rb
 moneykit.gemspec
 spec/api_client_spec.rb
 spec/configuration_spec.rb
-spec/models/response401_delete_link_links_id_delete_spec.rb
 spec/spec_helper.rb
