@@ -50,7 +50,7 @@ module MoneyKit
         :'total' => :'Integer',
         :'page' => :'Integer',
         :'size' => :'Integer',
-        :'transactions' => :'Array<Transaction>',
+        :'transactions' => :'Array<TransactionResponse>',
         :'accounts' => :'Hash<String, BasicAccountDetails>'
       }
     end

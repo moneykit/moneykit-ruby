@@ -24,10 +24,10 @@ module MoneyKit
     # @param id [String] The unique ID for this link.
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :account_ids An optional list of account IDs to filter the results.
-    # @option opts [Integer] :page The page number to return. (default to 1)
-    # @option opts [Integer] :size The number of items to return per page. (default to 50)
     # @option opts [Date] :start_date The earliest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to 90 days before the &#x60;end_date&#x60;.             &lt;p&gt;If you want to retrieve **all** transactions, use &#x60;1900-01-01&#x60;.
     # @option opts [Date] :end_date The latest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to today.
+    # @option opts [Integer] :page The page number to return. (default to 1)
+    # @option opts [Integer] :size The number of items to return per page. (default to 50)
     # @return [GetTransactionsResponse]
     def get_transactions(id, opts = {})
       data, _status_code, _headers = get_transactions_with_http_info(id, opts)
@@ -39,10 +39,10 @@ module MoneyKit
     # @param id [String] The unique ID for this link.
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :account_ids An optional list of account IDs to filter the results.
-    # @option opts [Integer] :page The page number to return. (default to 1)
-    # @option opts [Integer] :size The number of items to return per page. (default to 50)
     # @option opts [Date] :start_date The earliest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to 90 days before the &#x60;end_date&#x60;.             &lt;p&gt;If you want to retrieve **all** transactions, use &#x60;1900-01-01&#x60;.
     # @option opts [Date] :end_date The latest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to today.
+    # @option opts [Integer] :page The page number to return. (default to 1)
+    # @option opts [Integer] :size The number of items to return per page. (default to 50)
     # @return [Array<(GetTransactionsResponse, Integer, Hash)>] GetTransactionsResponse data, response status code and response headers
     def get_transactions_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -70,10 +70,10 @@ module MoneyKit
       # query parameters
       query_params = opts[:query_params] || {}
       query_params[:'account_ids'] = @api_client.build_collection_param(opts[:'account_ids'], :multi) if !opts[:'account_ids'].nil?
-      query_params[:'page'] = opts[:'page'] if !opts[:'page'].nil?
-      query_params[:'size'] = opts[:'size'] if !opts[:'size'].nil?
       query_params[:'start_date'] = opts[:'start_date'] if !opts[:'start_date'].nil?
       query_params[:'end_date'] = opts[:'end_date'] if !opts[:'end_date'].nil?
+      query_params[:'page'] = opts[:'page'] if !opts[:'page'].nil?
+      query_params[:'size'] = opts[:'size'] if !opts[:'size'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
@@ -110,38 +110,38 @@ module MoneyKit
     end
 
     # /links/{id}/transactions/sync
-    # Provides a paginated feed of transactions, grouped into `created`, `updated`, and `removed` lists.         <p>Each call will also return a `cursor.next` value.  In subsequent calls, include that value to receive         only changes that have occurred since the previous call.         <p>Large numbers of transactions will be paginated, and the `has_more` field will be true.  You should         continue calling this endpoint with each new `cursor.next` value until `has_more` is false.         <p>**Note** that this endpoint does **not** trigger a fetch of transactions from the institution; it merely returns         transactions that have already been fetched, either because `prefetch` was requested when the link was created,         or because of scheduled or on-demand updates.         <p>MoneyKit checks for updated account data, including transactions, periodically throughout the day, but the         update frequency can vary, depending on the downstream data provider, the institution, and whether one or both         provide webhook-based updates.         **To force a check for updated transactions, you can use the <a href=#operation/refresh_products>/products</a> endpoint.**         <p>Note also that the `transactions.updates_available` webhook will alert you when new data is available.
+    # Provides a paginated feed of transactions, grouped into `created`, `updated`, and `removed` lists.         <p>Each call will also return a `cursor.next` value.  In subsequent calls, include that value to receive         only changes that have occurred since the previous call.         <p>**Pending** transactions will only be reported as `created`.  Pending transactions are completely         removed and replaced with each transaction refresh or update; no attempt is made to track their removal or         modification.         <p>Large numbers of transactions will be paginated, and the `has_more` field will be true.  You should         continue calling this endpoint with each new `cursor.next` value until `has_more` is false.         <p>**Note** that this endpoint does **not** trigger a fetch of transactions from the institution; it merely returns         transactions that have already been fetched, either because `prefetch` was requested when the link was created,         or because of scheduled or on-demand updates.         <p>MoneyKit checks for updated account data, including transactions, periodically throughout the day, but the         update frequency can vary, depending on the downstream data provider, the institution, and whether one or both         provide webhook-based updates.         **To force a check for updated transactions, you can use the <a href=#operation/refresh_products>/products</a> endpoint.**         <p>Note also that the `transactions.updates_available` webhook will alert you when new data is available.
     # @param id [String] The unique ID for this link.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :cursor A cursor value representing the last update requested. If included, the response will only return         changes after this update. If omitted, a complete history of updates will be returned. This value must be stored         by the client as we do not keep track of app cursors.
     # @option opts [Integer] :size The number of items to return. (default to 50)
     # @return [TransactionSyncResponse]
-    def get_transactions_diff(id, opts = {})
-      data, _status_code, _headers = get_transactions_diff_with_http_info(id, opts)
+    def get_transactions_sync(id, opts = {})
+      data, _status_code, _headers = get_transactions_sync_with_http_info(id, opts)
       data
     end
 
     # /links/{id}/transactions/sync
-    # Provides a paginated feed of transactions, grouped into &#x60;created&#x60;, &#x60;updated&#x60;, and &#x60;removed&#x60; lists.         &lt;p&gt;Each call will also return a &#x60;cursor.next&#x60; value.  In subsequent calls, include that value to receive         only changes that have occurred since the previous call.         &lt;p&gt;Large numbers of transactions will be paginated, and the &#x60;has_more&#x60; field will be true.  You should         continue calling this endpoint with each new &#x60;cursor.next&#x60; value until &#x60;has_more&#x60; is false.         &lt;p&gt;**Note** that this endpoint does **not** trigger a fetch of transactions from the institution; it merely returns         transactions that have already been fetched, either because &#x60;prefetch&#x60; was requested when the link was created,         or because of scheduled or on-demand updates.         &lt;p&gt;MoneyKit checks for updated account data, including transactions, periodically throughout the day, but the         update frequency can vary, depending on the downstream data provider, the institution, and whether one or both         provide webhook-based updates.         **To force a check for updated transactions, you can use the &lt;a href&#x3D;#operation/refresh_products&gt;/products&lt;/a&gt; endpoint.**         &lt;p&gt;Note also that the &#x60;transactions.updates_available&#x60; webhook will alert you when new data is available.
+    # Provides a paginated feed of transactions, grouped into &#x60;created&#x60;, &#x60;updated&#x60;, and &#x60;removed&#x60; lists.         &lt;p&gt;Each call will also return a &#x60;cursor.next&#x60; value.  In subsequent calls, include that value to receive         only changes that have occurred since the previous call.         &lt;p&gt;**Pending** transactions will only be reported as &#x60;created&#x60;.  Pending transactions are completely         removed and replaced with each transaction refresh or update; no attempt is made to track their removal or         modification.         &lt;p&gt;Large numbers of transactions will be paginated, and the &#x60;has_more&#x60; field will be true.  You should         continue calling this endpoint with each new &#x60;cursor.next&#x60; value until &#x60;has_more&#x60; is false.         &lt;p&gt;**Note** that this endpoint does **not** trigger a fetch of transactions from the institution; it merely returns         transactions that have already been fetched, either because &#x60;prefetch&#x60; was requested when the link was created,         or because of scheduled or on-demand updates.         &lt;p&gt;MoneyKit checks for updated account data, including transactions, periodically throughout the day, but the         update frequency can vary, depending on the downstream data provider, the institution, and whether one or both         provide webhook-based updates.         **To force a check for updated transactions, you can use the &lt;a href&#x3D;#operation/refresh_products&gt;/products&lt;/a&gt; endpoint.**         &lt;p&gt;Note also that the &#x60;transactions.updates_available&#x60; webhook will alert you when new data is available.
     # @param id [String] The unique ID for this link.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :cursor A cursor value representing the last update requested. If included, the response will only return         changes after this update. If omitted, a complete history of updates will be returned. This value must be stored         by the client as we do not keep track of app cursors.
     # @option opts [Integer] :size The number of items to return. (default to 50)
     # @return [Array<(TransactionSyncResponse, Integer, Hash)>] TransactionSyncResponse data, response status code and response headers
-    def get_transactions_diff_with_http_info(id, opts = {})
+    def get_transactions_sync_with_http_info(id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: TransactionsApi.get_transactions_diff ...'
+        @api_client.config.logger.debug 'Calling API: TransactionsApi.get_transactions_sync ...'
       end
       # verify the required parameter 'id' is set
       if @api_client.config.client_side_validation && id.nil?
-        fail ArgumentError, "Missing the required parameter 'id' when calling TransactionsApi.get_transactions_diff"
+        fail ArgumentError, "Missing the required parameter 'id' when calling TransactionsApi.get_transactions_sync"
       end
       if @api_client.config.client_side_validation && !opts[:'size'].nil? && opts[:'size'] > 500
-        fail ArgumentError, 'invalid value for "opts[:"size"]" when calling TransactionsApi.get_transactions_diff, must be smaller than or equal to 500.'
+        fail ArgumentError, 'invalid value for "opts[:"size"]" when calling TransactionsApi.get_transactions_sync, must be smaller than or equal to 500.'
       end
 
       if @api_client.config.client_side_validation && !opts[:'size'].nil? && opts[:'size'] < 1
-        fail ArgumentError, 'invalid value for "opts[:"size"]" when calling TransactionsApi.get_transactions_diff, must be greater than or equal to 1.'
+        fail ArgumentError, 'invalid value for "opts[:"size"]" when calling TransactionsApi.get_transactions_sync, must be greater than or equal to 1.'
       end
 
       # resource path
@@ -170,7 +170,7 @@ module MoneyKit
       auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials']
 
       new_options = opts.merge(
-        :operation => :"TransactionsApi.get_transactions_diff",
+        :operation => :"TransactionsApi.get_transactions_sync",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -181,7 +181,7 @@ module MoneyKit
 
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: TransactionsApi#get_transactions_diff\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: TransactionsApi#get_transactions_sync\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

@@ -208,6 +208,74 @@ module MoneyKit
       return data, status_code, headers
     end
 
+    # /links/import
+    # Creates a new link with pre-populated accounts and transactions.  The new link will be created     in an initially `disconnected` state, with an error code of `auth_expired`, but all data will be available.     As with any disconnected link, the imported link can then be reconnected at any time by starting a new     <a href=#operation/create_link_session>/link-session</a> with `existing_link_id` set to the link's `link_id`.  Note that the link can be     reconnected using any suitable provider.
+    # @param import_link_request [ImportLinkRequest] 
+    # @param [Hash] opts the optional parameters
+    # @return [LinkResponse]
+    def import_link(import_link_request, opts = {})
+      data, _status_code, _headers = import_link_with_http_info(import_link_request, opts)
+      data
+    end
+
+    # /links/import
+    # Creates a new link with pre-populated accounts and transactions.  The new link will be created     in an initially &#x60;disconnected&#x60; state, with an error code of &#x60;auth_expired&#x60;, but all data will be available.     As with any disconnected link, the imported link can then be reconnected at any time by starting a new     &lt;a href&#x3D;#operation/create_link_session&gt;/link-session&lt;/a&gt; with &#x60;existing_link_id&#x60; set to the link&#39;s &#x60;link_id&#x60;.  Note that the link can be     reconnected using any suitable provider.
+    # @param import_link_request [ImportLinkRequest] 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(LinkResponse, Integer, Hash)>] LinkResponse data, response status code and response headers
+    def import_link_with_http_info(import_link_request, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: LinksApi.import_link ...'
+      end
+      # verify the required parameter 'import_link_request' is set
+      if @api_client.config.client_side_validation && import_link_request.nil?
+        fail ArgumentError, "Missing the required parameter 'import_link_request' when calling LinksApi.import_link"
+      end
+      # resource path
+      local_var_path = '/links/import'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+        header_params['Content-Type'] = content_type
+      end
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(import_link_request)
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'LinkResponse'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials']
+
+      new_options = opts.merge(
+        :operation => :"LinksApi.import_link",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: LinksApi#import_link\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Force a \"relink required\" state on a link (Test only).
     # @param id [String] The unique ID for this link.
     # @param [Hash] opts the optional parameters

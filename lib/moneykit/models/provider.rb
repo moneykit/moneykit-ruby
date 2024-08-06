@@ -21,10 +21,9 @@ module MoneyKit
     YODLEE = "yodlee".freeze
     MX = "mx".freeze
     AKOYA = "akoya".freeze
-    SOPHTRON = "sophtron".freeze
 
     def self.all_vars
-      @all_vars ||= [MONEYKIT, FINICITY, PLAID, YODLEE, MX, AKOYA, SOPHTRON].freeze
+      @all_vars ||= [MONEYKIT, FINICITY, PLAID, YODLEE, MX, AKOYA].freeze
     end
 
     # Builds the enum from string

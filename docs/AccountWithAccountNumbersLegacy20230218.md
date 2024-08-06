@@ -9,6 +9,7 @@
 | **name** | **String** | The account name, according to the institution.  Note that some institutions allow         the end user to nickname the account; in such cases this field may be the name assigned by the user. |  |
 | **account_mask** | **String** | The last four characters (usually digits) of the account number.         Note that this mask may be non-unique between accounts. | [optional] |
 | **balances** | [**AccountBalances**](AccountBalances.md) |  |  |
+| **original_id** | **String** | The original ID of this account, if supplied (by you) during an import. | [optional] |
 | **numbers** | [**AccountNumbersLegacy20230218**](AccountNumbersLegacy20230218.md) |  |  |
 
 ## Example
@@ -22,6 +23,7 @@ instance = MoneyKit::AccountWithAccountNumbersLegacy20230218.new(
   name: Premier Checking,
   account_mask: 3748,
   balances: null,
+  original_id: null,
   numbers: null
 )
 ```

@@ -28,7 +28,7 @@ MoneyKit.configure do |config|
 end
 
 api_instance = MoneyKit::LinkSessionApi.new
-create_link_session_request = MoneyKit::CreateLinkSessionRequest.new({customer_user: MoneyKit::LinkSessionCustomerUser.new({id: 'id_example'}), redirect_uri: 'https://yourdomain.com/oauth.html'}) # CreateLinkSessionRequest | 
+create_link_session_request = MoneyKit::CreateLinkSessionRequest.new({customer_user: MoneyKit::CustomerUser.new({id: 'id_example'}), redirect_uri: 'https://yourdomain.com/oauth.html'}) # CreateLinkSessionRequest | 
 
 begin
   # /link-session

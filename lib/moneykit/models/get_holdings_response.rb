@@ -43,7 +43,7 @@ module MoneyKit
       {
         :'holdings' => :'Array<HoldingResponse>',
         :'securities' => :'Array<SecurityResponse>',
-        :'accounts' => :'Array<Account>',
+        :'accounts' => :'Array<AccountResponse>',
         :'link' => :'LinkCommon'
       }
     end

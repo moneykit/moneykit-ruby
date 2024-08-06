@@ -19,8 +19,8 @@ module MoneyKit
       # List of class defined in anyOf (OpenAPI v3)
       def openapi_any_of
         [
+          :'AppLinkStateChangedWebhook',
           :'LinkProductRefreshWebhook',
-          :'LinkStateChangedWebhook',
           :'TransactionUpdatesAvailableWebhook'
         ]
       end

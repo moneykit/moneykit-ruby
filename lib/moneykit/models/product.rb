@@ -20,9 +20,10 @@ module MoneyKit
     IDENTITY = "identity".freeze
     TRANSACTIONS = "transactions".freeze
     INVESTMENTS = "investments".freeze
+    ENRICHMENT = "enrichment".freeze
 
     def self.all_vars
-      @all_vars ||= [ACCOUNTS, ACCOUNT_NUMBERS, IDENTITY, TRANSACTIONS, INVESTMENTS].freeze
+      @all_vars ||= [ACCOUNTS, ACCOUNT_NUMBERS, IDENTITY, TRANSACTIONS, INVESTMENTS, ENRICHMENT].freeze
     end
 
     # Builds the enum from string

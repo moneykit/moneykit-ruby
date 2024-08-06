@@ -7,7 +7,7 @@
 | **total** | **Integer** | The total number of results for this query. |  |
 | **page** | **Integer** | The page number corresponding to this batch of results. |  |
 | **size** | **Integer** | The number of results in this batch. |  |
-| **transactions** | [**Array&lt;Transaction&gt;**](Transaction.md) |  |  |
+| **transactions** | [**Array&lt;TransactionResponse&gt;**](TransactionResponse.md) |  |  |
 | **accounts** | [**Hash&lt;String, BasicAccountDetails&gt;**](BasicAccountDetails.md) |  |  |
 
 ## Example

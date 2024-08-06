@@ -4,14 +4,14 @@ All URIs are relative to *https://api.moneykit.com*
 
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
-| [**generate_access_token**](AccessTokenApi.md#generate_access_token) | **POST** /auth/token | /auth/token |
-| [**get_well_known_jwks**](AccessTokenApi.md#get_well_known_jwks) | **GET** /.well-known/jwks.json | JSON Web Key Set |
+| [**create_access_token**](AccessTokenApi.md#create_access_token) | **POST** /auth/token | /auth/token |
+| [**get_app_jwks**](AccessTokenApi.md#get_app_jwks) | **GET** /.well-known/jwks.json | JSON Web Key Set |
 | [**instrospect_client**](AccessTokenApi.md#instrospect_client) | **GET** /auth/introspect | /auth/introspect |
 
 
-## generate_access_token
+## create_access_token
 
-> <GenerateAccessTokenResponse> generate_access_token(opts)
+> <CreateAccessTokenResponse> create_access_token(opts)
 
 /auth/token
 
@@ -39,28 +39,28 @@ opts = {
 
 begin
   # /auth/token
-  result = api_instance.generate_access_token(opts)
+  result = api_instance.create_access_token(opts)
   p result
 rescue MoneyKit::ApiError => e
-  puts "Error when calling AccessTokenApi->generate_access_token: #{e}"
+  puts "Error when calling AccessTokenApi->create_access_token: #{e}"
 end
 ```
 
-#### Using the generate_access_token_with_http_info variant
+#### Using the create_access_token_with_http_info variant
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<GenerateAccessTokenResponse>, Integer, Hash)> generate_access_token_with_http_info(opts)
+> <Array(<CreateAccessTokenResponse>, Integer, Hash)> create_access_token_with_http_info(opts)
 
 ```ruby
 begin
   # /auth/token
-  data, status_code, headers = api_instance.generate_access_token_with_http_info(opts)
+  data, status_code, headers = api_instance.create_access_token_with_http_info(opts)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => <GenerateAccessTokenResponse>
+  p data # => <CreateAccessTokenResponse>
 rescue MoneyKit::ApiError => e
-  puts "Error when calling AccessTokenApi->generate_access_token_with_http_info: #{e}"
+  puts "Error when calling AccessTokenApi->create_access_token_with_http_info: #{e}"
 end
 ```
 
@@ -75,7 +75,7 @@ end
 
 ### Return type
 
-[**GenerateAccessTokenResponse**](GenerateAccessTokenResponse.md)
+[**CreateAccessTokenResponse**](CreateAccessTokenResponse.md)
 
 ### Authorization
 
@@ -87,9 +87,9 @@ end
 - **Accept**: application/json
 
 
-## get_well_known_jwks
+## get_app_jwks
 
-> <JWKSet> get_well_known_jwks
+> <JWKSet> get_app_jwks(opts)
 
 JSON Web Key Set
 
@@ -107,37 +107,42 @@ MoneyKit.configure do |config|
 end
 
 api_instance = MoneyKit::AccessTokenApi.new
+opts = {
+  x_client_id: 'x_client_id_example' # String | Your client ID.
+}
 
 begin
   # JSON Web Key Set
-  result = api_instance.get_well_known_jwks
+  result = api_instance.get_app_jwks(opts)
   p result
 rescue MoneyKit::ApiError => e
-  puts "Error when calling AccessTokenApi->get_well_known_jwks: #{e}"
+  puts "Error when calling AccessTokenApi->get_app_jwks: #{e}"
 end
 ```
 
-#### Using the get_well_known_jwks_with_http_info variant
+#### Using the get_app_jwks_with_http_info variant
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<JWKSet>, Integer, Hash)> get_well_known_jwks_with_http_info
+> <Array(<JWKSet>, Integer, Hash)> get_app_jwks_with_http_info(opts)
 
 ```ruby
 begin
   # JSON Web Key Set
-  data, status_code, headers = api_instance.get_well_known_jwks_with_http_info
+  data, status_code, headers = api_instance.get_app_jwks_with_http_info(opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <JWKSet>
 rescue MoneyKit::ApiError => e
-  puts "Error when calling AccessTokenApi->get_well_known_jwks_with_http_info: #{e}"
+  puts "Error when calling AccessTokenApi->get_app_jwks_with_http_info: #{e}"
 end
 ```
 
 ### Parameters
 
-This endpoint does not need any parameter.
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **x_client_id** | **String** | Your client ID. | [optional] |
 
 ### Return type
 

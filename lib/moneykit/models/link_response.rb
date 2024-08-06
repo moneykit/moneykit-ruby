@@ -31,7 +31,7 @@ module MoneyKit
 
     attr_accessor :error_code
 
-    # An ISO-8601 timestamp indicating the last time that the account was updated.
+    # (Deprecated) An ISO-8601 timestamp indicating the last time that the link was updated.
     attr_accessor :last_synced_at
 
     attr_accessor :tags
@@ -97,8 +97,8 @@ module MoneyKit
         :'institution_id' => :'String',
         :'institution_name' => :'String',
         :'institution_avatar' => :'String',
-        :'state' => :'LinkState',
-        :'error_code' => :'LinkError',
+        :'state' => :'PublicLinkState',
+        :'error_code' => :'PublicLinkError',
         :'last_synced_at' => :'Time',
         :'tags' => :'Array<String>',
         :'products' => :'LinkProducts',

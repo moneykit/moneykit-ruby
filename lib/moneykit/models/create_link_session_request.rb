@@ -58,7 +58,7 @@ module MoneyKit
     def self.openapi_types
       {
         :'settings' => :'LinkSessionSettingOverrides',
-        :'customer_user' => :'LinkSessionCustomerUser',
+        :'customer_user' => :'CustomerUser',
         :'existing_link_id' => :'String',
         :'institution_id' => :'String',
         :'redirect_uri' => :'String',

@@ -4,7 +4,7 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **accounts** | [**Array&lt;Account&gt;**](Account.md) |  |  |
+| **accounts** | [**Array&lt;AccountResponse&gt;**](AccountResponse.md) |  |  |
 | **link** | [**LinkCommon**](LinkCommon.md) |  |  |
 
 ## Example

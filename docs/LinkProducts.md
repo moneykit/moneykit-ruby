@@ -4,11 +4,12 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **accounts** | [**LinkProduct**](LinkProduct.md) |  | [optional] |
-| **account_numbers** | [**LinkProduct**](LinkProduct.md) |  | [optional] |
-| **identity** | [**LinkProduct**](LinkProduct.md) |  | [optional] |
+| **accounts** | [**LinkProductResponse**](LinkProductResponse.md) |  | [optional] |
+| **account_numbers** | [**LinkProductResponse**](LinkProductResponse.md) |  | [optional] |
+| **identity** | [**LinkProductResponse**](LinkProductResponse.md) |  | [optional] |
 | **transactions** | [**TransactionsLinkProduct**](TransactionsLinkProduct.md) |  | [optional] |
-| **investments** | [**LinkProduct**](LinkProduct.md) |  | [optional] |
+| **investments** | [**LinkProductResponse**](LinkProductResponse.md) |  | [optional] |
+| **enrichment** | [**LinkProductResponse**](LinkProductResponse.md) |  | [optional] |
 
 ## Example
 
@@ -20,7 +21,8 @@ instance = MoneyKit::LinkProducts.new(
   account_numbers: null,
   identity: null,
   transactions: null,
-  investments: null
+  investments: null,
+  enrichment: null
 )
 ```
 

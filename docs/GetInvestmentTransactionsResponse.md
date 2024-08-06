@@ -9,7 +9,7 @@
 | **size** | **Integer** | The number of results in this batch. |  |
 | **investment_transactions** | [**Array&lt;InvestmentTransactionResponse&gt;**](InvestmentTransactionResponse.md) |  |  |
 | **securities** | [**Array&lt;SecurityResponse&gt;**](SecurityResponse.md) |  |  |
-| **accounts** | [**Array&lt;Account&gt;**](Account.md) |  |  |
+| **accounts** | [**Array&lt;AccountResponse&gt;**](AccountResponse.md) |  |  |
 | **link** | [**LinkCommon**](LinkCommon.md) |  |  |
 
 ## Example

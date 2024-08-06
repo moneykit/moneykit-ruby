@@ -26,9 +26,9 @@ module MoneyKit
     # @option opts [String] :scope Actions to be allowed for this token, given as one or more strings separated by spaces.             If omitted, all actions allowed for your application will be granted to this token. (default to '')
     # @option opts [String] :client_id Your application&#39;s MoneyKit client ID.
     # @option opts [String] :client_secret Your application&#39;s MoneyKit client secret.
-    # @return [GenerateAccessTokenResponse]
-    def generate_access_token(opts = {})
-      data, _status_code, _headers = generate_access_token_with_http_info(opts)
+    # @return [CreateAccessTokenResponse]
+    def create_access_token(opts = {})
+      data, _status_code, _headers = create_access_token_with_http_info(opts)
       data
     end
 
@@ -39,14 +39,14 @@ module MoneyKit
     # @option opts [String] :scope Actions to be allowed for this token, given as one or more strings separated by spaces.             If omitted, all actions allowed for your application will be granted to this token. (default to '')
     # @option opts [String] :client_id Your application&#39;s MoneyKit client ID.
     # @option opts [String] :client_secret Your application&#39;s MoneyKit client secret.
-    # @return [Array<(GenerateAccessTokenResponse, Integer, Hash)>] GenerateAccessTokenResponse data, response status code and response headers
-    def generate_access_token_with_http_info(opts = {})
+    # @return [Array<(CreateAccessTokenResponse, Integer, Hash)>] CreateAccessTokenResponse data, response status code and response headers
+    def create_access_token_with_http_info(opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: AccessTokenApi.generate_access_token ...'
+        @api_client.config.logger.debug 'Calling API: AccessTokenApi.create_access_token ...'
       end
       pattern = Regexp.new(/^(client_credentials|refresh_token)$/)
       if @api_client.config.client_side_validation && !opts[:'grant_type'].nil? && opts[:'grant_type'] !~ pattern
-        fail ArgumentError, "invalid value for 'opts[:\"grant_type\"]' when calling AccessTokenApi.generate_access_token, must conform to the pattern #{pattern}."
+        fail ArgumentError, "invalid value for 'opts[:\"grant_type\"]' when calling AccessTokenApi.create_access_token, must conform to the pattern #{pattern}."
       end
 
       # resource path
@@ -76,13 +76,13 @@ module MoneyKit
       post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:debug_return_type] || 'GenerateAccessTokenResponse'
+      return_type = opts[:debug_return_type] || 'CreateAccessTokenResponse'
 
       # auth_names
       auth_names = opts[:debug_auth_names] || ['HTTPBasic']
 
       new_options = opts.merge(
-        :operation => :"AccessTokenApi.generate_access_token",
+        :operation => :"AccessTokenApi.create_access_token",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -93,7 +93,7 @@ module MoneyKit
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: AccessTokenApi#generate_access_token\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: AccessTokenApi#create_access_token\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -101,19 +101,21 @@ module MoneyKit
     # JSON Web Key Set
     # The JSON Web Key Set (JWKS) is a set of keys containing the public keys used to verify webhook JSON Web Tokens (JWT) issued by MoneyKit webhooks.
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :x_client_id Your client ID.
     # @return [JWKSet]
-    def get_well_known_jwks(opts = {})
-      data, _status_code, _headers = get_well_known_jwks_with_http_info(opts)
+    def get_app_jwks(opts = {})
+      data, _status_code, _headers = get_app_jwks_with_http_info(opts)
       data
     end
 
     # JSON Web Key Set
     # The JSON Web Key Set (JWKS) is a set of keys containing the public keys used to verify webhook JSON Web Tokens (JWT) issued by MoneyKit webhooks.
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :x_client_id Your client ID.
     # @return [Array<(JWKSet, Integer, Hash)>] JWKSet data, response status code and response headers
-    def get_well_known_jwks_with_http_info(opts = {})
+    def get_app_jwks_with_http_info(opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: AccessTokenApi.get_well_known_jwks ...'
+        @api_client.config.logger.debug 'Calling API: AccessTokenApi.get_app_jwks ...'
       end
       # resource path
       local_var_path = '/.well-known/jwks.json'
@@ -125,6 +127,7 @@ module MoneyKit
       header_params = opts[:header_params] || {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params[:'X-Client-Id'] = opts[:'x_client_id'] if !opts[:'x_client_id'].nil?
 
       # form parameters
       form_params = opts[:form_params] || {}
@@ -139,7 +142,7 @@ module MoneyKit
       auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials']
 
       new_options = opts.merge(
-        :operation => :"AccessTokenApi.get_well_known_jwks",
+        :operation => :"AccessTokenApi.get_app_jwks",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -150,7 +153,7 @@ module MoneyKit
 
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: AccessTokenApi#get_well_known_jwks\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: AccessTokenApi#get_app_jwks\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

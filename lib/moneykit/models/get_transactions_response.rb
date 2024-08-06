@@ -53,8 +53,8 @@ module MoneyKit
         :'total' => :'Integer',
         :'page' => :'Integer',
         :'size' => :'Integer',
-        :'transactions' => :'Array<Transaction>',
-        :'accounts' => :'Array<Account>',
+        :'transactions' => :'Array<TransactionResponse>',
+        :'accounts' => :'Array<AccountResponse>',
         :'link' => :'LinkCommon'
       }
     end

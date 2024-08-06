@@ -25,6 +25,8 @@ module MoneyKit
 
     attr_accessor :investments
 
+    attr_accessor :enrichment
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -32,7 +34,8 @@ module MoneyKit
         :'account_numbers' => :'account_numbers',
         :'identity' => :'identity',
         :'transactions' => :'transactions',
-        :'investments' => :'investments'
+        :'investments' => :'investments',
+        :'enrichment' => :'enrichment'
       }
     end
 
@@ -44,11 +47,12 @@ module MoneyKit
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'accounts' => :'LinkProduct',
-        :'account_numbers' => :'LinkProduct',
-        :'identity' => :'LinkProduct',
+        :'accounts' => :'LinkProductResponse',
+        :'account_numbers' => :'LinkProductResponse',
+        :'identity' => :'LinkProductResponse',
         :'transactions' => :'TransactionsLinkProduct',
-        :'investments' => :'LinkProduct'
+        :'investments' => :'LinkProductResponse',
+        :'enrichment' => :'LinkProductResponse'
       }
     end
 
@@ -92,6 +96,10 @@ module MoneyKit
       if attributes.key?(:'investments')
         self.investments = attributes[:'investments']
       end
+
+      if attributes.key?(:'enrichment')
+        self.enrichment = attributes[:'enrichment']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -118,7 +126,8 @@ module MoneyKit
           account_numbers == o.account_numbers &&
           identity == o.identity &&
           transactions == o.transactions &&
-          investments == o.investments
+          investments == o.investments &&
+          enrichment == o.enrichment
     end
 
     # @see the `==` method
@@ -130,7 +139,7 @@ module MoneyKit
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [accounts, account_numbers, identity, transactions, investments].hash
+      [accounts, account_numbers, identity, transactions, investments, enrichment].hash
     end
 
     # Builds the object from hash

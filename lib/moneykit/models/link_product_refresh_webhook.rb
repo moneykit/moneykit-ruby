@@ -15,8 +15,6 @@ require 'time'
 
 module MoneyKit
   class LinkProductRefreshWebhook
-    attr_accessor :webhook_event
-
     attr_accessor :webhook_major_version
 
     attr_accessor :webhook_minor_version
@@ -28,6 +26,8 @@ module MoneyKit
     attr_accessor :link_id
 
     attr_accessor :link_tags
+
+    attr_accessor :webhook_event
 
     attr_accessor :product
 
@@ -62,13 +62,13 @@ module MoneyKit
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'webhook_event' => :'webhook_event',
         :'webhook_major_version' => :'webhook_major_version',
         :'webhook_minor_version' => :'webhook_minor_version',
         :'webhook_idempotency_key' => :'webhook_idempotency_key',
         :'webhook_timestamp' => :'webhook_timestamp',
         :'link_id' => :'link_id',
         :'link_tags' => :'link_tags',
+        :'webhook_event' => :'webhook_event',
         :'product' => :'product',
         :'state' => :'state',
         :'state_changed_at' => :'state_changed_at',
@@ -84,13 +84,13 @@ module MoneyKit
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'webhook_event' => :'String',
         :'webhook_major_version' => :'Integer',
         :'webhook_minor_version' => :'Integer',
         :'webhook_idempotency_key' => :'String',
         :'webhook_timestamp' => :'Time',
         :'link_id' => :'String',
         :'link_tags' => :'Array<String>',
+        :'webhook_event' => :'String',
         :'product' => :'Product',
         :'state' => :'LinkProductState',
         :'state_changed_at' => :'Time',
@@ -118,12 +118,6 @@ module MoneyKit
         end
         h[k.to_sym] = v
       }
-
-      if attributes.key?(:'webhook_event')
-        self.webhook_event = attributes[:'webhook_event']
-      else
-        self.webhook_event = 'link.product_refresh'
-      end
 
       if attributes.key?(:'webhook_major_version')
         self.webhook_major_version = attributes[:'webhook_major_version']
@@ -161,6 +155,12 @@ module MoneyKit
         end
       else
         self.link_tags = nil
+      end
+
+      if attributes.key?(:'webhook_event')
+        self.webhook_event = attributes[:'webhook_event']
+      else
+        self.webhook_event = 'link.product_refresh'
       end
 
       if attributes.key?(:'product')
@@ -226,8 +226,6 @@ module MoneyKit
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      webhook_event_validator = EnumAttributeValidator.new('String', ["link.product_refresh"])
-      return false unless webhook_event_validator.valid?(@webhook_event)
       webhook_major_version_validator = EnumAttributeValidator.new('Integer', [1])
       return false unless webhook_major_version_validator.valid?(@webhook_major_version)
       webhook_minor_version_validator = EnumAttributeValidator.new('Integer', [0])
@@ -236,20 +234,12 @@ module MoneyKit
       return false if @webhook_timestamp.nil?
       return false if @link_id.nil?
       return false if @link_tags.nil?
+      webhook_event_validator = EnumAttributeValidator.new('String', ["link.product_refresh"])
+      return false unless webhook_event_validator.valid?(@webhook_event)
       return false if @product.nil?
       return false if @state.nil?
       return false if @state_changed_at.nil?
       true
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] webhook_event Object to be assigned
-    def webhook_event=(webhook_event)
-      validator = EnumAttributeValidator.new('String', ["link.product_refresh"])
-      unless validator.valid?(webhook_event)
-        fail ArgumentError, "invalid value for \"webhook_event\", must be one of #{validator.allowable_values}."
-      end
-      @webhook_event = webhook_event
     end
 
     # Custom attribute writer method checking allowed values (enum).
@@ -272,18 +262,28 @@ module MoneyKit
       @webhook_minor_version = webhook_minor_version
     end
 
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] webhook_event Object to be assigned
+    def webhook_event=(webhook_event)
+      validator = EnumAttributeValidator.new('String', ["link.product_refresh"])
+      unless validator.valid?(webhook_event)
+        fail ArgumentError, "invalid value for \"webhook_event\", must be one of #{validator.allowable_values}."
+      end
+      @webhook_event = webhook_event
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          webhook_event == o.webhook_event &&
           webhook_major_version == o.webhook_major_version &&
           webhook_minor_version == o.webhook_minor_version &&
           webhook_idempotency_key == o.webhook_idempotency_key &&
           webhook_timestamp == o.webhook_timestamp &&
           link_id == o.link_id &&
           link_tags == o.link_tags &&
+          webhook_event == o.webhook_event &&
           product == o.product &&
           state == o.state &&
           state_changed_at == o.state_changed_at &&
@@ -299,7 +299,7 @@ module MoneyKit
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [webhook_event, webhook_major_version, webhook_minor_version, webhook_idempotency_key, webhook_timestamp, link_id, link_tags, product, state, state_changed_at, error_message].hash
+      [webhook_major_version, webhook_minor_version, webhook_idempotency_key, webhook_timestamp, link_id, link_tags, webhook_event, product, state, state_changed_at, error_message].hash
     end
 
     # Builds the object from hash

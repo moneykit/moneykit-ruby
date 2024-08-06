@@ -4,15 +4,15 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **webhook_event** | **Object** |  | [optional] |
 | **webhook_major_version** | **Object** |  | [optional] |
 | **webhook_minor_version** | **Object** |  | [optional] |
 | **webhook_idempotency_key** | **Object** |  |  |
 | **webhook_timestamp** | **Object** |  |  |
 | **link_id** | **Object** |  |  |
 | **link_tags** | **Object** |  |  |
+| **webhook_event** | **Object** |  | [optional] |
 | **state** | [**LinkProductState**](LinkProductState.md) |  |  |
-| **error** | [**LinkError**](LinkError.md) |  | [optional] |
+| **error** | [**PublicLinkError**](PublicLinkError.md) |  | [optional] |
 | **error_message** | **Object** |  | [optional] |
 | **product** | [**Product**](Product.md) |  |  |
 | **state_changed_at** | **Object** |  |  |
@@ -24,13 +24,13 @@
 require 'moneykit'
 
 instance = MoneyKit::Body.new(
-  webhook_event: null,
   webhook_major_version: null,
   webhook_minor_version: null,
   webhook_idempotency_key: null,
   webhook_timestamp: null,
   link_id: null,
   link_tags: null,
+  webhook_event: null,
   state: null,
   error: null,
   error_message: null,

@@ -97,8 +97,6 @@ module MoneyKit
 
       if attributes.key?(:'primary')
         self.primary = attributes[:'primary']
-      else
-        self.primary = false
       end
 
       if attributes.key?(:'type')

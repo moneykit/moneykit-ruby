@@ -4,7 +4,7 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **account** | [**Account**](Account.md) |  |  |
+| **account** | [**AccountResponse**](AccountResponse.md) |  |  |
 | **link** | [**LinkCommon**](LinkCommon.md) |  |  |
 
 ## Example

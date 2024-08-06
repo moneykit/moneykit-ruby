@@ -6,7 +6,7 @@
 | ---- | ---- | ----------- | ----- |
 | **holdings** | [**Array&lt;HoldingResponse&gt;**](HoldingResponse.md) |  |  |
 | **securities** | [**Array&lt;SecurityResponse&gt;**](SecurityResponse.md) |  |  |
-| **accounts** | [**Array&lt;Account&gt;**](Account.md) |  |  |
+| **accounts** | [**Array&lt;AccountResponse&gt;**](AccountResponse.md) |  |  |
 | **link** | [**LinkCommon**](LinkCommon.md) |  |  |
 
 ## Example

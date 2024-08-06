@@ -79,7 +79,7 @@ module MoneyKit
       {
         :'refreshed_at' => :'Time',
         :'last_attempted_at' => :'Time',
-        :'error_code' => :'LinkProductFailureReasons',
+        :'error_code' => :'LinkProductError',
         :'error_message' => :'String',
         :'unavailable' => :'String',
         :'settings' => :'TransactionsProductSettings',

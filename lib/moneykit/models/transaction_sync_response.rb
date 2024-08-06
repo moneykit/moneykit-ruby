@@ -42,7 +42,7 @@ module MoneyKit
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'transactions' => :'TransactionDiff',
+        :'transactions' => :'TransactionSync',
         :'cursor' => :'CursorPagination',
         :'has_more' => :'Boolean',
         :'link' => :'LinkCommon'

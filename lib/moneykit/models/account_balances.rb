@@ -15,6 +15,7 @@ require 'time'
 
 module MoneyKit
   class AccountBalances
+    # A three-character currency code (ISO-4217 or similar, *e.g.*, `USD`, `CAD`) for the account balances.
     attr_accessor :currency
 
     # The amount of funds available for use.  Not all institutions report the available balance.             <p>Note that the available balance typically does not include overdraft limits.
@@ -28,28 +29,6 @@ module MoneyKit
 
     # The date that the balance was captured at.  This may not include a time. When this field is null, the balance was captured at an unknown time.
     attr_accessor :balance_date
-
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -70,7 +49,7 @@ module MoneyKit
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'currency' => :'Currency',
+        :'currency' => :'String',
         :'available' => :'Float',
         :'current' => :'Float',
         :'limit' => :'Float',
@@ -101,8 +80,6 @@ module MoneyKit
 
       if attributes.key?(:'currency')
         self.currency = attributes[:'currency']
-      else
-        self.currency = nil
       end
 
       if attributes.key?(:'available')
@@ -127,10 +104,6 @@ module MoneyKit
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @currency.nil?
-        invalid_properties.push('invalid value for "currency", currency cannot be nil.')
-      end
-
       invalid_properties
     end
 
@@ -138,7 +111,6 @@ module MoneyKit
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @currency.nil?
       true
     end
 

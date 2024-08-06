@@ -5,7 +5,7 @@ All URIs are relative to *https://api.moneykit.com*
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
 | [**get_transactions**](TransactionsApi.md#get_transactions) | **GET** /links/{id}/transactions | /links/{id}/transactions |
-| [**get_transactions_diff**](TransactionsApi.md#get_transactions_diff) | **GET** /links/{id}/transactions/sync | /links/{id}/transactions/sync |
+| [**get_transactions_sync**](TransactionsApi.md#get_transactions_sync) | **GET** /links/{id}/transactions/sync | /links/{id}/transactions/sync |
 | [**get_user_transactions**](TransactionsApi.md#get_user_transactions) | **GET** /users/{id}/transactions | /users/{id}/transactions |
 
 
@@ -32,10 +32,10 @@ api_instance = MoneyKit::TransactionsApi.new
 id = 'id_example' # String | The unique ID for this link.
 opts = {
   account_ids: ['inner_example'], # Array<String> | An optional list of account IDs to filter the results.
-  page: 56, # Integer | The page number to return.
-  size: 56, # Integer | The number of items to return per page.
   start_date: Date.parse('2013-10-20'), # Date | The earliest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to 90 days before the `end_date`.             <p>If you want to retrieve **all** transactions, use `1900-01-01`.
-  end_date: Date.parse('2013-10-20') # Date | The latest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to today.
+  end_date: Date.parse('2013-10-20'), # Date | The latest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to today.
+  page: 56, # Integer | The page number to return.
+  size: 56 # Integer | The number of items to return per page.
 }
 
 begin
@@ -71,10 +71,10 @@ end
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | The unique ID for this link. |  |
 | **account_ids** | [**Array&lt;String&gt;**](String.md) | An optional list of account IDs to filter the results. | [optional] |
-| **page** | **Integer** | The page number to return. | [optional][default to 1] |
-| **size** | **Integer** | The number of items to return per page. | [optional][default to 50] |
 | **start_date** | **Date** | The earliest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to 90 days before the &#x60;end_date&#x60;.             &lt;p&gt;If you want to retrieve **all** transactions, use &#x60;1900-01-01&#x60;. | [optional] |
 | **end_date** | **Date** | The latest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to today. | [optional] |
+| **page** | **Integer** | The page number to return. | [optional][default to 1] |
+| **size** | **Integer** | The number of items to return per page. | [optional][default to 50] |
 
 ### Return type
 
@@ -90,13 +90,13 @@ end
 - **Accept**: application/json
 
 
-## get_transactions_diff
+## get_transactions_sync
 
-> <TransactionSyncResponse> get_transactions_diff(id, opts)
+> <TransactionSyncResponse> get_transactions_sync(id, opts)
 
 /links/{id}/transactions/sync
 
-Provides a paginated feed of transactions, grouped into `created`, `updated`, and `removed` lists.         <p>Each call will also return a `cursor.next` value.  In subsequent calls, include that value to receive         only changes that have occurred since the previous call.         <p>Large numbers of transactions will be paginated, and the `has_more` field will be true.  You should         continue calling this endpoint with each new `cursor.next` value until `has_more` is false.         <p>**Note** that this endpoint does **not** trigger a fetch of transactions from the institution; it merely returns         transactions that have already been fetched, either because `prefetch` was requested when the link was created,         or because of scheduled or on-demand updates.         <p>MoneyKit checks for updated account data, including transactions, periodically throughout the day, but the         update frequency can vary, depending on the downstream data provider, the institution, and whether one or both         provide webhook-based updates.         **To force a check for updated transactions, you can use the <a href=#operation/refresh_products>/products</a> endpoint.**         <p>Note also that the `transactions.updates_available` webhook will alert you when new data is available.
+Provides a paginated feed of transactions, grouped into `created`, `updated`, and `removed` lists.         <p>Each call will also return a `cursor.next` value.  In subsequent calls, include that value to receive         only changes that have occurred since the previous call.         <p>**Pending** transactions will only be reported as `created`.  Pending transactions are completely         removed and replaced with each transaction refresh or update; no attempt is made to track their removal or         modification.         <p>Large numbers of transactions will be paginated, and the `has_more` field will be true.  You should         continue calling this endpoint with each new `cursor.next` value until `has_more` is false.         <p>**Note** that this endpoint does **not** trigger a fetch of transactions from the institution; it merely returns         transactions that have already been fetched, either because `prefetch` was requested when the link was created,         or because of scheduled or on-demand updates.         <p>MoneyKit checks for updated account data, including transactions, periodically throughout the day, but the         update frequency can vary, depending on the downstream data provider, the institution, and whether one or both         provide webhook-based updates.         **To force a check for updated transactions, you can use the <a href=#operation/refresh_products>/products</a> endpoint.**         <p>Note also that the `transactions.updates_available` webhook will alert you when new data is available.
 
 ### Examples
 
@@ -118,28 +118,28 @@ opts = {
 
 begin
   # /links/{id}/transactions/sync
-  result = api_instance.get_transactions_diff(id, opts)
+  result = api_instance.get_transactions_sync(id, opts)
   p result
 rescue MoneyKit::ApiError => e
-  puts "Error when calling TransactionsApi->get_transactions_diff: #{e}"
+  puts "Error when calling TransactionsApi->get_transactions_sync: #{e}"
 end
 ```
 
-#### Using the get_transactions_diff_with_http_info variant
+#### Using the get_transactions_sync_with_http_info variant
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<TransactionSyncResponse>, Integer, Hash)> get_transactions_diff_with_http_info(id, opts)
+> <Array(<TransactionSyncResponse>, Integer, Hash)> get_transactions_sync_with_http_info(id, opts)
 
 ```ruby
 begin
   # /links/{id}/transactions/sync
-  data, status_code, headers = api_instance.get_transactions_diff_with_http_info(id, opts)
+  data, status_code, headers = api_instance.get_transactions_sync_with_http_info(id, opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <TransactionSyncResponse>
 rescue MoneyKit::ApiError => e
-  puts "Error when calling TransactionsApi->get_transactions_diff_with_http_info: #{e}"
+  puts "Error when calling TransactionsApi->get_transactions_sync_with_http_info: #{e}"
 end
 ```
 

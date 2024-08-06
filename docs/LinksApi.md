@@ -7,6 +7,7 @@ All URIs are relative to *https://api.moneykit.com*
 | [**delete_link**](LinksApi.md#delete_link) | **DELETE** /links/{id} | /links/{id} |
 | [**get_link**](LinksApi.md#get_link) | **GET** /links/{id} | /links/{id} |
 | [**get_user_links**](LinksApi.md#get_user_links) | **GET** /users/{id}/links | /users/{id}/links |
+| [**import_link**](LinksApi.md#import_link) | **POST** /links/import | /links/import |
 | [**reset_login**](LinksApi.md#reset_login) | **POST** /links/{id}/reset | Force a \&quot;relink required\&quot; state on a link (Test only). |
 | [**update_link**](LinksApi.md#update_link) | **PATCH** /links/{id} | /links/{id} |
 
@@ -214,6 +215,75 @@ end
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## import_link
+
+> <LinkResponse> import_link(import_link_request)
+
+/links/import
+
+Creates a new link with pre-populated accounts and transactions.  The new link will be created     in an initially `disconnected` state, with an error code of `auth_expired`, but all data will be available.     As with any disconnected link, the imported link can then be reconnected at any time by starting a new     <a href=#operation/create_link_session>/link-session</a> with `existing_link_id` set to the link's `link_id`.  Note that the link can be     reconnected using any suitable provider.
+
+### Examples
+
+```ruby
+require 'time'
+require 'moneykit'
+# setup authorization
+MoneyKit.configure do |config|
+  # Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+  config.access_token = 'YOUR ACCESS TOKEN'
+end
+
+api_instance = MoneyKit::LinksApi.new
+import_link_request = MoneyKit::ImportLinkRequest.new({customer_user: MoneyKit::CustomerUser.new({id: 'id_example'}), institution_id: 'chase', accounts: [MoneyKit::AccountImportData.new({account_id: '74583934', name: 'Premier Checking', type: 'depository.checking', balances: MoneyKit::AccountBalances.new})], transactions: [MoneyKit::TransactionImportData.new({account_id: '74583934', amount: '384.05', date: 3.56})]}) # ImportLinkRequest | 
+
+begin
+  # /links/import
+  result = api_instance.import_link(import_link_request)
+  p result
+rescue MoneyKit::ApiError => e
+  puts "Error when calling LinksApi->import_link: #{e}"
+end
+```
+
+#### Using the import_link_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<LinkResponse>, Integer, Hash)> import_link_with_http_info(import_link_request)
+
+```ruby
+begin
+  # /links/import
+  data, status_code, headers = api_instance.import_link_with_http_info(import_link_request)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <LinkResponse>
+rescue MoneyKit::ApiError => e
+  puts "Error when calling LinksApi->import_link_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **import_link_request** | [**ImportLinkRequest**](ImportLinkRequest.md) |  |  |
+
+### Return type
+
+[**LinkResponse**](LinkResponse.md)
+
+### Authorization
+
+[OAuth2ClientCredentials](../README.md#OAuth2ClientCredentials)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 

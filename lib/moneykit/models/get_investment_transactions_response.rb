@@ -58,7 +58,7 @@ module MoneyKit
         :'size' => :'Integer',
         :'investment_transactions' => :'Array<InvestmentTransactionResponse>',
         :'securities' => :'Array<SecurityResponse>',
-        :'accounts' => :'Array<Account>',
+        :'accounts' => :'Array<AccountResponse>',
         :'link' => :'LinkCommon'
       }
     end

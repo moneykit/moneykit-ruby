@@ -9,7 +9,7 @@
 | **name** | **String** | The name of the institution. |  |
 | **country** | [**Country**](Country.md) |  |  |
 | **domain** | **String** | The domain of the institution&#39;s user-facing website. | [optional] |
-| **color** | **String** | The primary color of this institution, represented as hexcode. |  |
+| **color** | **String** | The primary color of this institution, represented as hexcode. | [optional] |
 | **color_dark** | **String** | The dark-mode primary color of this institution, represented as hexcode. | [optional] |
 | **is_featured** | **Boolean** | True for institutions that should be visually promoted to the end-user. |  |
 

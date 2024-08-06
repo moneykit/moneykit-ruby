@@ -29,6 +29,9 @@ module MoneyKit
 
     attr_accessor :balances
 
+    # The original ID of this account, if supplied (by you) during an import.
+    attr_accessor :original_id
+
     attr_accessor :numbers
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -39,6 +42,7 @@ module MoneyKit
         :'name' => :'name',
         :'account_mask' => :'account_mask',
         :'balances' => :'balances',
+        :'original_id' => :'original_id',
         :'numbers' => :'numbers'
       }
     end
@@ -56,6 +60,7 @@ module MoneyKit
         :'name' => :'String',
         :'account_mask' => :'String',
         :'balances' => :'AccountBalances',
+        :'original_id' => :'String',
         :'numbers' => :'AccountNumbersLegacy20230218'
       }
     end
@@ -107,6 +112,10 @@ module MoneyKit
         self.balances = attributes[:'balances']
       else
         self.balances = nil
+      end
+
+      if attributes.key?(:'original_id')
+        self.original_id = attributes[:'original_id']
       end
 
       if attributes.key?(:'numbers')
@@ -166,6 +175,7 @@ module MoneyKit
           name == o.name &&
           account_mask == o.account_mask &&
           balances == o.balances &&
+          original_id == o.original_id &&
           numbers == o.numbers
     end
 
@@ -178,7 +188,7 @@ module MoneyKit
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [account_id, account_type, name, account_mask, balances, numbers].hash
+      [account_id, account_type, name, account_mask, balances, original_id, numbers].hash
     end
 
     # Builds the object from hash

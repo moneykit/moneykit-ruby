@@ -5,7 +5,7 @@
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **number** | **String** | A phone number for the account owner. |  |
-| **primary** | **Boolean** | Indicates if this is the primary phone number for the account owner. | [optional][default to false] |
+| **primary** | **Boolean** | Indicates if this is the primary phone number for the account owner. | [optional] |
 | **type** | [**PhoneNumberType**](PhoneNumberType.md) |  |  |
 
 ## Example

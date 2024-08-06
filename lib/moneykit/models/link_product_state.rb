@@ -15,11 +15,13 @@ require 'time'
 
 module MoneyKit
   class LinkProductState
+    PENDING = "pending".freeze
+    IN_PROGRESS = "in_progress".freeze
     COMPLETED = "completed".freeze
     FAILED = "failed".freeze
 
     def self.all_vars
-      @all_vars ||= [COMPLETED, FAILED].freeze
+      @all_vars ||= [PENDING, IN_PROGRESS, COMPLETED, FAILED].freeze
     end
 
     # Builds the enum from string

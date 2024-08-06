@@ -145,8 +145,6 @@ module MoneyKit
 
       if attributes.key?(:'color')
         self.color = attributes[:'color']
-      else
-        self.color = nil
       end
 
       if attributes.key?(:'color_dark')
@@ -181,10 +179,6 @@ module MoneyKit
         invalid_properties.push('invalid value for "country", country cannot be nil.')
       end
 
-      if @color.nil?
-        invalid_properties.push('invalid value for "color", color cannot be nil.')
-      end
-
       if @is_featured.nil?
         invalid_properties.push('invalid value for "is_featured", is_featured cannot be nil.')
       end
@@ -200,7 +194,6 @@ module MoneyKit
       return false if @institution_id_aliases.nil?
       return false if @name.nil?
       return false if @country.nil?
-      return false if @color.nil?
       return false if @is_featured.nil?
       true
     end

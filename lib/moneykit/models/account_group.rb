@@ -36,7 +36,7 @@ module MoneyKit
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'accounts' => :'Array<Account>',
+        :'accounts' => :'Array<AccountResponse>',
         :'last_synced_at' => :'Time'
       }
     end

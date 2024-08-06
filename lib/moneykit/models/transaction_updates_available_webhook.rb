@@ -15,8 +15,6 @@ require 'time'
 
 module MoneyKit
   class TransactionUpdatesAvailableWebhook
-    attr_accessor :webhook_event
-
     attr_accessor :webhook_major_version
 
     attr_accessor :webhook_minor_version
@@ -26,6 +24,10 @@ module MoneyKit
     attr_accessor :webhook_timestamp
 
     attr_accessor :link_id
+
+    attr_accessor :link_tags
+
+    attr_accessor :webhook_event
 
     attr_accessor :has_history
 
@@ -54,12 +56,13 @@ module MoneyKit
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'webhook_event' => :'webhook_event',
         :'webhook_major_version' => :'webhook_major_version',
         :'webhook_minor_version' => :'webhook_minor_version',
         :'webhook_idempotency_key' => :'webhook_idempotency_key',
         :'webhook_timestamp' => :'webhook_timestamp',
         :'link_id' => :'link_id',
+        :'link_tags' => :'link_tags',
+        :'webhook_event' => :'webhook_event',
         :'has_history' => :'has_history'
       }
     end
@@ -72,12 +75,13 @@ module MoneyKit
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'webhook_event' => :'String',
         :'webhook_major_version' => :'Integer',
         :'webhook_minor_version' => :'Integer',
         :'webhook_idempotency_key' => :'String',
         :'webhook_timestamp' => :'Time',
         :'link_id' => :'String',
+        :'link_tags' => :'Array<String>',
+        :'webhook_event' => :'String',
         :'has_history' => :'Boolean'
       }
     end
@@ -102,12 +106,6 @@ module MoneyKit
         end
         h[k.to_sym] = v
       }
-
-      if attributes.key?(:'webhook_event')
-        self.webhook_event = attributes[:'webhook_event']
-      else
-        self.webhook_event = 'transactions.updates_available'
-      end
 
       if attributes.key?(:'webhook_major_version')
         self.webhook_major_version = attributes[:'webhook_major_version']
@@ -139,6 +137,20 @@ module MoneyKit
         self.link_id = nil
       end
 
+      if attributes.key?(:'link_tags')
+        if (value = attributes[:'link_tags']).is_a?(Array)
+          self.link_tags = value
+        end
+      else
+        self.link_tags = nil
+      end
+
+      if attributes.key?(:'webhook_event')
+        self.webhook_event = attributes[:'webhook_event']
+      else
+        self.webhook_event = 'transactions.updates_available'
+      end
+
       if attributes.key?(:'has_history')
         self.has_history = attributes[:'has_history']
       else
@@ -163,6 +175,10 @@ module MoneyKit
         invalid_properties.push('invalid value for "link_id", link_id cannot be nil.')
       end
 
+      if @link_tags.nil?
+        invalid_properties.push('invalid value for "link_tags", link_tags cannot be nil.')
+      end
+
       if @has_history.nil?
         invalid_properties.push('invalid value for "has_history", has_history cannot be nil.')
       end
@@ -174,8 +190,6 @@ module MoneyKit
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      webhook_event_validator = EnumAttributeValidator.new('String', ["transactions.updates_available"])
-      return false unless webhook_event_validator.valid?(@webhook_event)
       webhook_major_version_validator = EnumAttributeValidator.new('Integer', [1])
       return false unless webhook_major_version_validator.valid?(@webhook_major_version)
       webhook_minor_version_validator = EnumAttributeValidator.new('Integer', [0])
@@ -183,18 +197,11 @@ module MoneyKit
       return false if @webhook_idempotency_key.nil?
       return false if @webhook_timestamp.nil?
       return false if @link_id.nil?
+      return false if @link_tags.nil?
+      webhook_event_validator = EnumAttributeValidator.new('String', ["transactions.updates_available"])
+      return false unless webhook_event_validator.valid?(@webhook_event)
       return false if @has_history.nil?
       true
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] webhook_event Object to be assigned
-    def webhook_event=(webhook_event)
-      validator = EnumAttributeValidator.new('String', ["transactions.updates_available"])
-      unless validator.valid?(webhook_event)
-        fail ArgumentError, "invalid value for \"webhook_event\", must be one of #{validator.allowable_values}."
-      end
-      @webhook_event = webhook_event
     end
 
     # Custom attribute writer method checking allowed values (enum).
@@ -217,17 +224,28 @@ module MoneyKit
       @webhook_minor_version = webhook_minor_version
     end
 
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] webhook_event Object to be assigned
+    def webhook_event=(webhook_event)
+      validator = EnumAttributeValidator.new('String', ["transactions.updates_available"])
+      unless validator.valid?(webhook_event)
+        fail ArgumentError, "invalid value for \"webhook_event\", must be one of #{validator.allowable_values}."
+      end
+      @webhook_event = webhook_event
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          webhook_event == o.webhook_event &&
           webhook_major_version == o.webhook_major_version &&
           webhook_minor_version == o.webhook_minor_version &&
           webhook_idempotency_key == o.webhook_idempotency_key &&
           webhook_timestamp == o.webhook_timestamp &&
           link_id == o.link_id &&
+          link_tags == o.link_tags &&
+          webhook_event == o.webhook_event &&
           has_history == o.has_history
     end
 
@@ -240,7 +258,7 @@ module MoneyKit
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [webhook_event, webhook_major_version, webhook_minor_version, webhook_idempotency_key, webhook_timestamp, link_id, has_history].hash
+      [webhook_major_version, webhook_minor_version, webhook_idempotency_key, webhook_timestamp, link_id, link_tags, webhook_event, has_history].hash
     end
 
     # Builds the object from hash

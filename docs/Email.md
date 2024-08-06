@@ -5,7 +5,7 @@
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **address** | **String** | An email address for the account owner. |  |
-| **primary** | **Boolean** | Indicates if this is the primary email address for the account owner. | [optional][default to false] |
+| **primary** | **Boolean** | Indicates if this is the primary email address for the account owner. | [optional] |
 
 ## Example
 

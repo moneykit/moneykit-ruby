@@ -35,7 +35,7 @@ module MoneyKit
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'accounts' => :'Array<Account>',
+        :'accounts' => :'Array<AccountResponse>',
         :'link' => :'LinkCommon'
       }
     end

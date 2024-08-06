@@ -19,7 +19,7 @@ module MoneyKit
     # The client's client ID.
     attr_accessor :client_id
 
-    # Friendly client name for identification.
+    # (deprecated) Friendly client name for identification.
     attr_accessor :client_name
 
     # Actions allowed by this client.
