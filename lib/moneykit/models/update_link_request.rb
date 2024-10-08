@@ -18,12 +18,15 @@ module MoneyKit
     # Sets the webhook URL for this link.         To remove a webhook for this link, set to `null`.
     attr_accessor :webhook
 
+    attr_accessor :link_tags
+
     attr_accessor :tags
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'webhook' => :'webhook',
+        :'link_tags' => :'link_tags',
         :'tags' => :'tags'
       }
     end
@@ -37,6 +40,7 @@ module MoneyKit
     def self.openapi_types
       {
         :'webhook' => :'String',
+        :'link_tags' => :'Array<String>',
         :'tags' => :'Array<String>'
       }
     end
@@ -64,6 +68,12 @@ module MoneyKit
 
       if attributes.key?(:'webhook')
         self.webhook = attributes[:'webhook']
+      end
+
+      if attributes.key?(:'link_tags')
+        if (value = attributes[:'link_tags']).is_a?(Array)
+          self.link_tags = value
+        end
       end
 
       if attributes.key?(:'tags')
@@ -122,6 +132,7 @@ module MoneyKit
       return true if self.equal?(o)
       self.class == o.class &&
           webhook == o.webhook &&
+          link_tags == o.link_tags &&
           tags == o.tags
     end
 
@@ -134,7 +145,7 @@ module MoneyKit
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [webhook, tags].hash
+      [webhook, link_tags, tags].hash
     end
 
     # Builds the object from hash
@@ -169,7 +180,7 @@ module MoneyKit
       when :Time
         Time.parse(value)
       when :Date
-        ::Date.parse(value)
+        Date.parse(value)
       when :String
         value.to_s
       when :Integer

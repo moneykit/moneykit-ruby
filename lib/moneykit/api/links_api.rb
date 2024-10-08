@@ -86,7 +86,7 @@ module MoneyKit
     # Fetches details about a link.
     # @param id [String] The unique ID for this link.
     # @param [Hash] opts the optional parameters
-    # @return [LinkResponse]
+    # @return [LinkCommon]
     def get_link(id, opts = {})
       data, _status_code, _headers = get_link_with_http_info(id, opts)
       data
@@ -96,7 +96,7 @@ module MoneyKit
     # Fetches details about a link.
     # @param id [String] The unique ID for this link.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(LinkResponse, Integer, Hash)>] LinkResponse data, response status code and response headers
+    # @return [Array<(LinkCommon, Integer, Hash)>] LinkCommon data, response status code and response headers
     def get_link_with_http_info(id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: LinksApi.get_link ...'
@@ -123,7 +123,7 @@ module MoneyKit
       post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:debug_return_type] || 'LinkResponse'
+      return_type = opts[:debug_return_type] || 'LinkCommon'
 
       # auth_names
       auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials']
@@ -147,7 +147,7 @@ module MoneyKit
 
     # /users/{id}/links
     # Fetches all links belonging to a <a href=#operation/get_user_accounts>user</a>.
-    # @param id [String] The unique ID for this user.  This is the same ID provided         in the call to &lt;a href&#x3D;#operation/create_link_session&gt;/link-session&lt;/a&gt; to create any link for this user.
+    # @param id [String] The unique ID for this user.  This is the same ID provided         in the call to &lt;a href&#x3D;/api/operation/create_link_session#customer_user-id&gt;link-session&lt;/a&gt; to create any link for this user.
     # @param [Hash] opts the optional parameters
     # @return [GetUserLinksResponse]
     def get_user_links(id, opts = {})
@@ -157,7 +157,7 @@ module MoneyKit
 
     # /users/{id}/links
     # Fetches all links belonging to a &lt;a href&#x3D;#operation/get_user_accounts&gt;user&lt;/a&gt;.
-    # @param id [String] The unique ID for this user.  This is the same ID provided         in the call to &lt;a href&#x3D;#operation/create_link_session&gt;/link-session&lt;/a&gt; to create any link for this user.
+    # @param id [String] The unique ID for this user.  This is the same ID provided         in the call to &lt;a href&#x3D;/api/operation/create_link_session#customer_user-id&gt;link-session&lt;/a&gt; to create any link for this user.
     # @param [Hash] opts the optional parameters
     # @return [Array<(GetUserLinksResponse, Integer, Hash)>] GetUserLinksResponse data, response status code and response headers
     def get_user_links_with_http_info(id, opts = {})
@@ -209,20 +209,20 @@ module MoneyKit
     end
 
     # /links/import
-    # Creates a new link with pre-populated accounts and transactions.  The new link will be created     in an initially `disconnected` state, with an error code of `auth_expired`, but all data will be available.     As with any disconnected link, the imported link can then be reconnected at any time by starting a new     <a href=#operation/create_link_session>/link-session</a> with `existing_link_id` set to the link's `link_id`.  Note that the link can be     reconnected using any suitable provider.
+    # Creates a new link with pre-populated accounts and transactions.  The new link will be created     in an initially `disconnected` state, with an error code of `auth_expired`, but all data will be available.     As with any disconnected link, the imported link can then be reconnected at any time by starting a new     <a href=#operation/create_link_session>/link-session</a> with `existing_link_id` set to the link's `link_id`.  Note that the link can be     reconnected using any suitable provider.     <p>     The imported data has a maximum size limit of 1MB, which corresponds very roughly to about 4000 transactions.     The data is processed synchronously, so you can expect a delay of up to 10 seconds before the response is     transmitted.  You should set generous HTTP read timeouts to avoid disconnecting before the import is complete.
     # @param import_link_request [ImportLinkRequest] 
     # @param [Hash] opts the optional parameters
-    # @return [LinkResponse]
+    # @return [LinkCommon]
     def import_link(import_link_request, opts = {})
       data, _status_code, _headers = import_link_with_http_info(import_link_request, opts)
       data
     end
 
     # /links/import
-    # Creates a new link with pre-populated accounts and transactions.  The new link will be created     in an initially &#x60;disconnected&#x60; state, with an error code of &#x60;auth_expired&#x60;, but all data will be available.     As with any disconnected link, the imported link can then be reconnected at any time by starting a new     &lt;a href&#x3D;#operation/create_link_session&gt;/link-session&lt;/a&gt; with &#x60;existing_link_id&#x60; set to the link&#39;s &#x60;link_id&#x60;.  Note that the link can be     reconnected using any suitable provider.
+    # Creates a new link with pre-populated accounts and transactions.  The new link will be created     in an initially &#x60;disconnected&#x60; state, with an error code of &#x60;auth_expired&#x60;, but all data will be available.     As with any disconnected link, the imported link can then be reconnected at any time by starting a new     &lt;a href&#x3D;#operation/create_link_session&gt;/link-session&lt;/a&gt; with &#x60;existing_link_id&#x60; set to the link&#39;s &#x60;link_id&#x60;.  Note that the link can be     reconnected using any suitable provider.     &lt;p&gt;     The imported data has a maximum size limit of 1MB, which corresponds very roughly to about 4000 transactions.     The data is processed synchronously, so you can expect a delay of up to 10 seconds before the response is     transmitted.  You should set generous HTTP read timeouts to avoid disconnecting before the import is complete.
     # @param import_link_request [ImportLinkRequest] 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(LinkResponse, Integer, Hash)>] LinkResponse data, response status code and response headers
+    # @return [Array<(LinkCommon, Integer, Hash)>] LinkCommon data, response status code and response headers
     def import_link_with_http_info(import_link_request, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: LinksApi.import_link ...'
@@ -254,7 +254,7 @@ module MoneyKit
       post_body = opts[:debug_body] || @api_client.object_to_http_body(import_link_request)
 
       # return_type
-      return_type = opts[:debug_return_type] || 'LinkResponse'
+      return_type = opts[:debug_return_type] || 'LinkCommon'
 
       # auth_names
       auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials']
@@ -279,7 +279,7 @@ module MoneyKit
     # Force a \"relink required\" state on a link (Test only).
     # @param id [String] The unique ID for this link.
     # @param [Hash] opts the optional parameters
-    # @return [LinkResponse]
+    # @return [LinkCommon]
     def reset_login(id, opts = {})
       data, _status_code, _headers = reset_login_with_http_info(id, opts)
       data
@@ -288,7 +288,7 @@ module MoneyKit
     # Force a \&quot;relink required\&quot; state on a link (Test only).
     # @param id [String] The unique ID for this link.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(LinkResponse, Integer, Hash)>] LinkResponse data, response status code and response headers
+    # @return [Array<(LinkCommon, Integer, Hash)>] LinkCommon data, response status code and response headers
     def reset_login_with_http_info(id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: LinksApi.reset_login ...'
@@ -315,7 +315,7 @@ module MoneyKit
       post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:debug_return_type] || 'LinkResponse'
+      return_type = opts[:debug_return_type] || 'LinkCommon'
 
       # auth_names
       auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials']
@@ -342,7 +342,7 @@ module MoneyKit
     # @param id [String] The unique ID for this link.
     # @param update_link_request [UpdateLinkRequest] 
     # @param [Hash] opts the optional parameters
-    # @return [LinkResponse]
+    # @return [LinkCommon]
     def update_link(id, update_link_request, opts = {})
       data, _status_code, _headers = update_link_with_http_info(id, update_link_request, opts)
       data
@@ -353,7 +353,7 @@ module MoneyKit
     # @param id [String] The unique ID for this link.
     # @param update_link_request [UpdateLinkRequest] 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(LinkResponse, Integer, Hash)>] LinkResponse data, response status code and response headers
+    # @return [Array<(LinkCommon, Integer, Hash)>] LinkCommon data, response status code and response headers
     def update_link_with_http_info(id, update_link_request, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: LinksApi.update_link ...'
@@ -389,7 +389,7 @@ module MoneyKit
       post_body = opts[:debug_body] || @api_client.object_to_http_body(update_link_request)
 
       # return_type
-      return_type = opts[:debug_return_type] || 'LinkResponse'
+      return_type = opts[:debug_return_type] || 'LinkCommon'
 
       # auth_names
       auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials']

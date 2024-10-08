@@ -11,7 +11,9 @@
 | **state** | [**PublicLinkState**](PublicLinkState.md) |  |  |
 | **error_code** | [**PublicLinkError**](PublicLinkError.md) |  | [optional] |
 | **last_synced_at** | **Time** | (Deprecated) An ISO-8601 timestamp indicating the last time that the link was updated. | [optional] |
+| **provider** | [**Provider**](Provider.md) |  |  |
 | **tags** | **Array&lt;String&gt;** |  | [optional] |
+| **webhook** | **String** | The webhook url assigned to this link. | [optional] |
 | **products** | [**LinkProducts**](LinkProducts.md) |  |  |
 | **available_products** | [**Array&lt;Product&gt;**](Product.md) |  |  |
 
@@ -28,7 +30,9 @@ instance = MoneyKit::LinkCommon.new(
   state: null,
   error_code: null,
   last_synced_at: 2023-02-16T09:14:11,
+  provider: null,
   tags: null,
+  webhook: https://example.com/webhook,
   products: null,
   available_products: null
 )

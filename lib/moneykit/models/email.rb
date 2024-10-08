@@ -18,7 +18,7 @@ module MoneyKit
     # An email address for the account owner.
     attr_accessor :address
 
-    # Indicates if this is the primary email address for the account owner.
+    # Indicates if this is the primary email address for the account owner, as reported by the institution.
     attr_accessor :primary
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -147,7 +147,7 @@ module MoneyKit
       when :Time
         Time.parse(value)
       when :Date
-        ::Date.parse(value)
+        Date.parse(value)
       when :String
         value.to_s
       when :Integer

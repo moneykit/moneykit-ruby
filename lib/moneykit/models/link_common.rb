@@ -34,7 +34,12 @@ module MoneyKit
     # (Deprecated) An ISO-8601 timestamp indicating the last time that the link was updated.
     attr_accessor :last_synced_at
 
+    attr_accessor :provider
+
     attr_accessor :tags
+
+    # The webhook url assigned to this link.
+    attr_accessor :webhook
 
     attr_accessor :products
 
@@ -72,7 +77,9 @@ module MoneyKit
         :'state' => :'state',
         :'error_code' => :'error_code',
         :'last_synced_at' => :'last_synced_at',
+        :'provider' => :'provider',
         :'tags' => :'tags',
+        :'webhook' => :'webhook',
         :'products' => :'products',
         :'available_products' => :'available_products'
       }
@@ -93,7 +100,9 @@ module MoneyKit
         :'state' => :'PublicLinkState',
         :'error_code' => :'PublicLinkError',
         :'last_synced_at' => :'Time',
+        :'provider' => :'Provider',
         :'tags' => :'Array<String>',
+        :'webhook' => :'String',
         :'products' => :'LinkProducts',
         :'available_products' => :'Array<Product>'
       }
@@ -158,10 +167,20 @@ module MoneyKit
         self.last_synced_at = attributes[:'last_synced_at']
       end
 
+      if attributes.key?(:'provider')
+        self.provider = attributes[:'provider']
+      else
+        self.provider = nil
+      end
+
       if attributes.key?(:'tags')
         if (value = attributes[:'tags']).is_a?(Array)
           self.tags = value
         end
+      end
+
+      if attributes.key?(:'webhook')
+        self.webhook = attributes[:'webhook']
       end
 
       if attributes.key?(:'products')
@@ -204,6 +223,10 @@ module MoneyKit
         invalid_properties.push('invalid value for "state", state cannot be nil.')
       end
 
+      if @provider.nil?
+        invalid_properties.push('invalid value for "provider", provider cannot be nil.')
+      end
+
       if @products.nil?
         invalid_properties.push('invalid value for "products", products cannot be nil.')
       end
@@ -224,6 +247,7 @@ module MoneyKit
       return false if @institution_name.nil?
       return false if @institution_avatar.nil?
       return false if @state.nil?
+      return false if @provider.nil?
       return false if @products.nil?
       return false if @available_products.nil?
       true
@@ -241,7 +265,9 @@ module MoneyKit
           state == o.state &&
           error_code == o.error_code &&
           last_synced_at == o.last_synced_at &&
+          provider == o.provider &&
           tags == o.tags &&
+          webhook == o.webhook &&
           products == o.products &&
           available_products == o.available_products
     end
@@ -255,7 +281,7 @@ module MoneyKit
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [link_id, institution_id, institution_name, institution_avatar, state, error_code, last_synced_at, tags, products, available_products].hash
+      [link_id, institution_id, institution_name, institution_avatar, state, error_code, last_synced_at, provider, tags, webhook, products, available_products].hash
     end
 
     # Builds the object from hash
@@ -290,7 +316,7 @@ module MoneyKit
       when :Time
         Time.parse(value)
       when :Date
-        ::Date.parse(value)
+        Date.parse(value)
       when :String
         value.to_s
       when :Integer

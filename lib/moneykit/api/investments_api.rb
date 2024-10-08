@@ -92,8 +92,8 @@ module MoneyKit
     # @option opts [Array<String>] :account_ids An optional list of account IDs to filter the results.
     # @option opts [Integer] :page The page number to return. (default to 1)
     # @option opts [Integer] :size The number of items to return per page. (default to 50)
-    # @option opts [Date] :start_date The earliest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to 90 days before the &#x60;end_date&#x60;.             &lt;p&gt;If you want to retrieve **all** transactions, use &#x60;1900-01-01&#x60;.
-    # @option opts [Date] :end_date The latest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to today.
+    # @option opts [Date] :start_date The earliest date for which data should be returned, formatted as YYYY-MM-DD.
+    # @option opts [Date] :end_date The latest date for which data should be returned, formatted as YYYY-MM-DD.
     # @return [GetInvestmentTransactionsResponse]
     def get_investment_transactions(id, opts = {})
       data, _status_code, _headers = get_investment_transactions_with_http_info(id, opts)
@@ -107,8 +107,8 @@ module MoneyKit
     # @option opts [Array<String>] :account_ids An optional list of account IDs to filter the results.
     # @option opts [Integer] :page The page number to return. (default to 1)
     # @option opts [Integer] :size The number of items to return per page. (default to 50)
-    # @option opts [Date] :start_date The earliest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to 90 days before the &#x60;end_date&#x60;.             &lt;p&gt;If you want to retrieve **all** transactions, use &#x60;1900-01-01&#x60;.
-    # @option opts [Date] :end_date The latest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to today.
+    # @option opts [Date] :start_date The earliest date for which data should be returned, formatted as YYYY-MM-DD.
+    # @option opts [Date] :end_date The latest date for which data should be returned, formatted as YYYY-MM-DD.
     # @return [Array<(GetInvestmentTransactionsResponse, Integer, Hash)>] GetInvestmentTransactionsResponse data, response status code and response headers
     def get_investment_transactions_with_http_info(id, opts = {})
       if @api_client.config.debugging

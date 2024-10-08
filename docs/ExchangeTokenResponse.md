@@ -4,7 +4,7 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **link_id** | **String** | The unique ID associated with this link. |  |
+| **link_id** | **String** | DEPRECATED: Please use &#x60;link.link_id&#x60; for this value |  |
 | **link** | [**LinkCommon**](LinkCommon.md) |  |  |
 
 ## Example

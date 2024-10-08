@@ -24,12 +24,16 @@ module MoneyKit
     # If enabled, the user will see a warning when trying to connect the same institution more than once.
     attr_accessor :duplicate_institution_warning
 
+    # If enabled, the user can click a button in the MoneyKit Connect SDK to connect manually if the institution they are looking for doesn't exist in our catalog.
+    attr_accessor :connect_manually
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'issue_reporter' => :'issue_reporter',
         :'enable_money_id' => :'enable_money_id',
-        :'duplicate_institution_warning' => :'duplicate_institution_warning'
+        :'duplicate_institution_warning' => :'duplicate_institution_warning',
+        :'connect_manually' => :'connect_manually'
       }
     end
 
@@ -43,7 +47,8 @@ module MoneyKit
       {
         :'issue_reporter' => :'Boolean',
         :'enable_money_id' => :'Boolean',
-        :'duplicate_institution_warning' => :'Boolean'
+        :'duplicate_institution_warning' => :'Boolean',
+        :'connect_manually' => :'Boolean'
       }
     end
 
@@ -85,6 +90,12 @@ module MoneyKit
       else
         self.duplicate_institution_warning = false
       end
+
+      if attributes.key?(:'connect_manually')
+        self.connect_manually = attributes[:'connect_manually']
+      else
+        self.connect_manually = false
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -109,7 +120,8 @@ module MoneyKit
       self.class == o.class &&
           issue_reporter == o.issue_reporter &&
           enable_money_id == o.enable_money_id &&
-          duplicate_institution_warning == o.duplicate_institution_warning
+          duplicate_institution_warning == o.duplicate_institution_warning &&
+          connect_manually == o.connect_manually
     end
 
     # @see the `==` method
@@ -121,7 +133,7 @@ module MoneyKit
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [issue_reporter, enable_money_id, duplicate_institution_warning].hash
+      [issue_reporter, enable_money_id, duplicate_institution_warning, connect_manually].hash
     end
 
     # Builds the object from hash
@@ -156,7 +168,7 @@ module MoneyKit
       when :Time
         Time.parse(value)
       when :Date
-        ::Date.parse(value)
+        Date.parse(value)
       when :String
         value.to_s
       when :Integer

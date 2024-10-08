@@ -24,8 +24,8 @@ module MoneyKit
     # @param id [String] The unique ID for this link.
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :account_ids An optional list of account IDs to filter the results.
-    # @option opts [Date] :start_date The earliest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to 90 days before the &#x60;end_date&#x60;.             &lt;p&gt;If you want to retrieve **all** transactions, use &#x60;1900-01-01&#x60;.
-    # @option opts [Date] :end_date The latest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to today.
+    # @option opts [Date] :start_date The earliest date for which data should be returned, formatted as YYYY-MM-DD.
+    # @option opts [Date] :end_date The latest date for which data should be returned, formatted as YYYY-MM-DD.
     # @option opts [Integer] :page The page number to return. (default to 1)
     # @option opts [Integer] :size The number of items to return per page. (default to 50)
     # @return [GetTransactionsResponse]
@@ -39,8 +39,8 @@ module MoneyKit
     # @param id [String] The unique ID for this link.
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :account_ids An optional list of account IDs to filter the results.
-    # @option opts [Date] :start_date The earliest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to 90 days before the &#x60;end_date&#x60;.             &lt;p&gt;If you want to retrieve **all** transactions, use &#x60;1900-01-01&#x60;.
-    # @option opts [Date] :end_date The latest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to today.
+    # @option opts [Date] :start_date The earliest date for which data should be returned, formatted as YYYY-MM-DD.
+    # @option opts [Date] :end_date The latest date for which data should be returned, formatted as YYYY-MM-DD.
     # @option opts [Integer] :page The page number to return. (default to 1)
     # @option opts [Integer] :size The number of items to return per page. (default to 50)
     # @return [Array<(GetTransactionsResponse, Integer, Hash)>] GetTransactionsResponse data, response status code and response headers
@@ -110,7 +110,7 @@ module MoneyKit
     end
 
     # /links/{id}/transactions/sync
-    # Provides a paginated feed of transactions, grouped into `created`, `updated`, and `removed` lists.         <p>Each call will also return a `cursor.next` value.  In subsequent calls, include that value to receive         only changes that have occurred since the previous call.         <p>**Pending** transactions will only be reported as `created`.  Pending transactions are completely         removed and replaced with each transaction refresh or update; no attempt is made to track their removal or         modification.         <p>Large numbers of transactions will be paginated, and the `has_more` field will be true.  You should         continue calling this endpoint with each new `cursor.next` value until `has_more` is false.         <p>**Note** that this endpoint does **not** trigger a fetch of transactions from the institution; it merely returns         transactions that have already been fetched, either because `prefetch` was requested when the link was created,         or because of scheduled or on-demand updates.         <p>MoneyKit checks for updated account data, including transactions, periodically throughout the day, but the         update frequency can vary, depending on the downstream data provider, the institution, and whether one or both         provide webhook-based updates.         **To force a check for updated transactions, you can use the <a href=#operation/refresh_products>/products</a> endpoint.**         <p>Note also that the `transactions.updates_available` webhook will alert you when new data is available.
+    # Provides a paginated feed of transactions, grouped into `created`, `updated`, and `removed` lists.         <p>Each call will also return a `cursor.next` value.  In subsequent calls, include that value to receive         only changes that have occurred since the previous call.  **Note** that these lists are **unordered**,         so it is possible to get transactions with dates that precede those you've fetched in previous calls to this         endpoint.  Older transactions can be added, for example, when historical data becomes accessible later.         <p>**Pending** transactions will only be reported as `created`.  Pending transactions are completely         removed and replaced with each transaction refresh or update; no attempt is made to track their removal or         modification.  Pending transactions will **not** be reported in the `removed` list.  If you store         pending transactions, you should remove and replace them entirely each time you fetch new transactions.         <p>Large numbers of transactions will be paginated, and the `has_more` field will be true.  You should         continue calling this endpoint with each new `cursor.next` value until `has_more` is false.         <p>**Note** that this endpoint does **not** trigger a fetch of transactions from the institution; it merely returns         transactions that have already been fetched, either because `prefetch` was requested when the link was created,         or because of scheduled or on-demand updates.         <p>MoneyKit checks for updated account data, including transactions, periodically throughout the day, but the         update frequency can vary, depending on the downstream data provider, the institution, and whether one or both         provide webhook-based updates.         **To force a check for updated transactions, you can use the <a href=#operation/refresh_products>/products</a> endpoint.**         <p>Note also that the `transactions.updates_available` webhook will alert you when new data is available.
     # @param id [String] The unique ID for this link.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :cursor A cursor value representing the last update requested. If included, the response will only return         changes after this update. If omitted, a complete history of updates will be returned. This value must be stored         by the client as we do not keep track of app cursors.
@@ -122,7 +122,7 @@ module MoneyKit
     end
 
     # /links/{id}/transactions/sync
-    # Provides a paginated feed of transactions, grouped into &#x60;created&#x60;, &#x60;updated&#x60;, and &#x60;removed&#x60; lists.         &lt;p&gt;Each call will also return a &#x60;cursor.next&#x60; value.  In subsequent calls, include that value to receive         only changes that have occurred since the previous call.         &lt;p&gt;**Pending** transactions will only be reported as &#x60;created&#x60;.  Pending transactions are completely         removed and replaced with each transaction refresh or update; no attempt is made to track their removal or         modification.         &lt;p&gt;Large numbers of transactions will be paginated, and the &#x60;has_more&#x60; field will be true.  You should         continue calling this endpoint with each new &#x60;cursor.next&#x60; value until &#x60;has_more&#x60; is false.         &lt;p&gt;**Note** that this endpoint does **not** trigger a fetch of transactions from the institution; it merely returns         transactions that have already been fetched, either because &#x60;prefetch&#x60; was requested when the link was created,         or because of scheduled or on-demand updates.         &lt;p&gt;MoneyKit checks for updated account data, including transactions, periodically throughout the day, but the         update frequency can vary, depending on the downstream data provider, the institution, and whether one or both         provide webhook-based updates.         **To force a check for updated transactions, you can use the &lt;a href&#x3D;#operation/refresh_products&gt;/products&lt;/a&gt; endpoint.**         &lt;p&gt;Note also that the &#x60;transactions.updates_available&#x60; webhook will alert you when new data is available.
+    # Provides a paginated feed of transactions, grouped into &#x60;created&#x60;, &#x60;updated&#x60;, and &#x60;removed&#x60; lists.         &lt;p&gt;Each call will also return a &#x60;cursor.next&#x60; value.  In subsequent calls, include that value to receive         only changes that have occurred since the previous call.  **Note** that these lists are **unordered**,         so it is possible to get transactions with dates that precede those you&#39;ve fetched in previous calls to this         endpoint.  Older transactions can be added, for example, when historical data becomes accessible later.         &lt;p&gt;**Pending** transactions will only be reported as &#x60;created&#x60;.  Pending transactions are completely         removed and replaced with each transaction refresh or update; no attempt is made to track their removal or         modification.  Pending transactions will **not** be reported in the &#x60;removed&#x60; list.  If you store         pending transactions, you should remove and replace them entirely each time you fetch new transactions.         &lt;p&gt;Large numbers of transactions will be paginated, and the &#x60;has_more&#x60; field will be true.  You should         continue calling this endpoint with each new &#x60;cursor.next&#x60; value until &#x60;has_more&#x60; is false.         &lt;p&gt;**Note** that this endpoint does **not** trigger a fetch of transactions from the institution; it merely returns         transactions that have already been fetched, either because &#x60;prefetch&#x60; was requested when the link was created,         or because of scheduled or on-demand updates.         &lt;p&gt;MoneyKit checks for updated account data, including transactions, periodically throughout the day, but the         update frequency can vary, depending on the downstream data provider, the institution, and whether one or both         provide webhook-based updates.         **To force a check for updated transactions, you can use the &lt;a href&#x3D;#operation/refresh_products&gt;/products&lt;/a&gt; endpoint.**         &lt;p&gt;Note also that the &#x60;transactions.updates_available&#x60; webhook will alert you when new data is available.
     # @param id [String] The unique ID for this link.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :cursor A cursor value representing the last update requested. If included, the response will only return         changes after this update. If omitted, a complete history of updates will be returned. This value must be stored         by the client as we do not keep track of app cursors.
@@ -188,7 +188,7 @@ module MoneyKit
 
     # /users/{id}/transactions
     # Fetches transactions for a <a href=#operation/get_user_accounts>user</a>.     <p>This endpoint fetches all transactions for a user across all of their links.  You can use it to retrieve     transactions from any or all accounts at once, regardless of which institution they belong to.
-    # @param id [String] The unique ID for this user.  This is the same ID provided         in the call to &lt;a href&#x3D;#operation/create_link_session&gt;/link-session&lt;/a&gt; to create any link for this user.
+    # @param id [String] The unique ID for this user.  This is the same ID provided         in the call to &lt;a href&#x3D;/api/operation/create_link_session#customer_user-id&gt;link-session&lt;/a&gt; to create any link for this user.
     # @param [Hash] opts the optional parameters
     # @option opts [Array<TransactionTypeFilter>] :transaction_type 
     # @option opts [Array<String>] :category 
@@ -196,8 +196,8 @@ module MoneyKit
     # @option opts [Array<String>] :institution_id If present, filters results to transactions at institutions matching the given IDs.
     # @option opts [Integer] :page The page number to return. (default to 1)
     # @option opts [Integer] :size The number of items to return per page. (default to 50)
-    # @option opts [Date] :start_date The earliest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to 90 days before the &#x60;end_date&#x60;.             &lt;p&gt;If you want to retrieve **all** transactions, use &#x60;1900-01-01&#x60;.
-    # @option opts [Date] :end_date The latest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to today.
+    # @option opts [Date] :start_date The earliest date for which data should be returned, formatted as YYYY-MM-DD.
+    # @option opts [Date] :end_date The latest date for which data should be returned, formatted as YYYY-MM-DD.
     # @return [GetUserTransactionsResponse]
     def get_user_transactions(id, opts = {})
       data, _status_code, _headers = get_user_transactions_with_http_info(id, opts)
@@ -206,7 +206,7 @@ module MoneyKit
 
     # /users/{id}/transactions
     # Fetches transactions for a &lt;a href&#x3D;#operation/get_user_accounts&gt;user&lt;/a&gt;.     &lt;p&gt;This endpoint fetches all transactions for a user across all of their links.  You can use it to retrieve     transactions from any or all accounts at once, regardless of which institution they belong to.
-    # @param id [String] The unique ID for this user.  This is the same ID provided         in the call to &lt;a href&#x3D;#operation/create_link_session&gt;/link-session&lt;/a&gt; to create any link for this user.
+    # @param id [String] The unique ID for this user.  This is the same ID provided         in the call to &lt;a href&#x3D;/api/operation/create_link_session#customer_user-id&gt;link-session&lt;/a&gt; to create any link for this user.
     # @param [Hash] opts the optional parameters
     # @option opts [Array<TransactionTypeFilter>] :transaction_type 
     # @option opts [Array<String>] :category 
@@ -214,8 +214,8 @@ module MoneyKit
     # @option opts [Array<String>] :institution_id If present, filters results to transactions at institutions matching the given IDs.
     # @option opts [Integer] :page The page number to return. (default to 1)
     # @option opts [Integer] :size The number of items to return per page. (default to 50)
-    # @option opts [Date] :start_date The earliest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to 90 days before the &#x60;end_date&#x60;.             &lt;p&gt;If you want to retrieve **all** transactions, use &#x60;1900-01-01&#x60;.
-    # @option opts [Date] :end_date The latest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to today.
+    # @option opts [Date] :start_date The earliest date for which data should be returned, formatted as YYYY-MM-DD.
+    # @option opts [Date] :end_date The latest date for which data should be returned, formatted as YYYY-MM-DD.
     # @return [Array<(GetUserTransactionsResponse, Integer, Hash)>] GetUserTransactionsResponse data, response status code and response headers
     def get_user_transactions_with_http_info(id, opts = {})
       if @api_client.config.debugging

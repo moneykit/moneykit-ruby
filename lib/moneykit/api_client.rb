@@ -302,7 +302,7 @@ module MoneyKit
         Time.parse data
       when 'Date'
         # parse date time (expecting ISO 8601 format)
-        ::Date.parse data
+        Date.parse data
       when 'Object'
         # generic object (usually a Hash), return directly
         data

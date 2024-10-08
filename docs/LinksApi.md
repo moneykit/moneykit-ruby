@@ -82,7 +82,7 @@ nil (empty response body)
 
 ## get_link
 
-> <LinkResponse> get_link(id)
+> <LinkCommon> get_link(id)
 
 /links/{id}
 
@@ -115,7 +115,7 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<LinkResponse>, Integer, Hash)> get_link_with_http_info(id)
+> <Array(<LinkCommon>, Integer, Hash)> get_link_with_http_info(id)
 
 ```ruby
 begin
@@ -123,7 +123,7 @@ begin
   data, status_code, headers = api_instance.get_link_with_http_info(id)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => <LinkResponse>
+  p data # => <LinkCommon>
 rescue MoneyKit::ApiError => e
   puts "Error when calling LinksApi->get_link_with_http_info: #{e}"
 end
@@ -137,7 +137,7 @@ end
 
 ### Return type
 
-[**LinkResponse**](LinkResponse.md)
+[**LinkCommon**](LinkCommon.md)
 
 ### Authorization
 
@@ -169,7 +169,7 @@ MoneyKit.configure do |config|
 end
 
 api_instance = MoneyKit::LinksApi.new
-id = 'id_example' # String | The unique ID for this user.  This is the same ID provided         in the call to <a href=#operation/create_link_session>/link-session</a> to create any link for this user.
+id = 'id_example' # String | The unique ID for this user.  This is the same ID provided         in the call to <a href=/api/operation/create_link_session#customer_user-id>link-session</a> to create any link for this user.
 
 begin
   # /users/{id}/links
@@ -202,7 +202,7 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **id** | **String** | The unique ID for this user.  This is the same ID provided         in the call to &lt;a href&#x3D;#operation/create_link_session&gt;/link-session&lt;/a&gt; to create any link for this user. |  |
+| **id** | **String** | The unique ID for this user.  This is the same ID provided         in the call to &lt;a href&#x3D;/api/operation/create_link_session#customer_user-id&gt;link-session&lt;/a&gt; to create any link for this user. |  |
 
 ### Return type
 
@@ -220,11 +220,11 @@ end
 
 ## import_link
 
-> <LinkResponse> import_link(import_link_request)
+> <LinkCommon> import_link(import_link_request)
 
 /links/import
 
-Creates a new link with pre-populated accounts and transactions.  The new link will be created     in an initially `disconnected` state, with an error code of `auth_expired`, but all data will be available.     As with any disconnected link, the imported link can then be reconnected at any time by starting a new     <a href=#operation/create_link_session>/link-session</a> with `existing_link_id` set to the link's `link_id`.  Note that the link can be     reconnected using any suitable provider.
+Creates a new link with pre-populated accounts and transactions.  The new link will be created     in an initially `disconnected` state, with an error code of `auth_expired`, but all data will be available.     As with any disconnected link, the imported link can then be reconnected at any time by starting a new     <a href=#operation/create_link_session>/link-session</a> with `existing_link_id` set to the link's `link_id`.  Note that the link can be     reconnected using any suitable provider.     <p>     The imported data has a maximum size limit of 1MB, which corresponds very roughly to about 4000 transactions.     The data is processed synchronously, so you can expect a delay of up to 10 seconds before the response is     transmitted.  You should set generous HTTP read timeouts to avoid disconnecting before the import is complete.
 
 ### Examples
 
@@ -238,7 +238,7 @@ MoneyKit.configure do |config|
 end
 
 api_instance = MoneyKit::LinksApi.new
-import_link_request = MoneyKit::ImportLinkRequest.new({customer_user: MoneyKit::CustomerUser.new({id: 'id_example'}), institution_id: 'chase', accounts: [MoneyKit::AccountImportData.new({account_id: '74583934', name: 'Premier Checking', type: 'depository.checking', balances: MoneyKit::AccountBalances.new})], transactions: [MoneyKit::TransactionImportData.new({account_id: '74583934', amount: '384.05', date: 3.56})]}) # ImportLinkRequest | 
+import_link_request = MoneyKit::ImportLinkRequest.new({customer_user: MoneyKit::CustomerUser.new({id: 'id_example'}), institution_id: 'institution_id_example', accounts: [MoneyKit::AccountImportData.new({account_id: '74583934', name: 'Premier Checking', type: 'depository.checking', balances: MoneyKit::AccountBalances.new})], transactions: [MoneyKit::TransactionImportData.new({account_id: '74583934', amount: '384.05', date: 3.56})]}) # ImportLinkRequest | 
 
 begin
   # /links/import
@@ -253,7 +253,7 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<LinkResponse>, Integer, Hash)> import_link_with_http_info(import_link_request)
+> <Array(<LinkCommon>, Integer, Hash)> import_link_with_http_info(import_link_request)
 
 ```ruby
 begin
@@ -261,7 +261,7 @@ begin
   data, status_code, headers = api_instance.import_link_with_http_info(import_link_request)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => <LinkResponse>
+  p data # => <LinkCommon>
 rescue MoneyKit::ApiError => e
   puts "Error when calling LinksApi->import_link_with_http_info: #{e}"
 end
@@ -275,7 +275,7 @@ end
 
 ### Return type
 
-[**LinkResponse**](LinkResponse.md)
+[**LinkCommon**](LinkCommon.md)
 
 ### Authorization
 
@@ -289,7 +289,7 @@ end
 
 ## reset_login
 
-> <LinkResponse> reset_login(id)
+> <LinkCommon> reset_login(id)
 
 Force a \"relink required\" state on a link (Test only).
 
@@ -320,7 +320,7 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<LinkResponse>, Integer, Hash)> reset_login_with_http_info(id)
+> <Array(<LinkCommon>, Integer, Hash)> reset_login_with_http_info(id)
 
 ```ruby
 begin
@@ -328,7 +328,7 @@ begin
   data, status_code, headers = api_instance.reset_login_with_http_info(id)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => <LinkResponse>
+  p data # => <LinkCommon>
 rescue MoneyKit::ApiError => e
   puts "Error when calling LinksApi->reset_login_with_http_info: #{e}"
 end
@@ -342,7 +342,7 @@ end
 
 ### Return type
 
-[**LinkResponse**](LinkResponse.md)
+[**LinkCommon**](LinkCommon.md)
 
 ### Authorization
 
@@ -356,7 +356,7 @@ end
 
 ## update_link
 
-> <LinkResponse> update_link(id, update_link_request)
+> <LinkCommon> update_link(id, update_link_request)
 
 /links/{id}
 
@@ -390,7 +390,7 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<LinkResponse>, Integer, Hash)> update_link_with_http_info(id, update_link_request)
+> <Array(<LinkCommon>, Integer, Hash)> update_link_with_http_info(id, update_link_request)
 
 ```ruby
 begin
@@ -398,7 +398,7 @@ begin
   data, status_code, headers = api_instance.update_link_with_http_info(id, update_link_request)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => <LinkResponse>
+  p data # => <LinkCommon>
 rescue MoneyKit::ApiError => e
   puts "Error when calling LinksApi->update_link_with_http_info: #{e}"
 end
@@ -413,7 +413,7 @@ end
 
 ### Return type
 
-[**LinkResponse**](LinkResponse.md)
+[**LinkCommon**](LinkCommon.md)
 
 ### Authorization
 

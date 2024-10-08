@@ -99,23 +99,25 @@ module MoneyKit
     end
 
     # JSON Web Key Set
-    # The JSON Web Key Set (JWKS) is a set of keys containing the public keys used to verify webhook JSON Web Tokens (JWT) issued by MoneyKit webhooks.
+    # The JSON Web Key Set (JWKS) is a set of keys containing the public keys used to verify     JWTs in webhooks sent by MoneyKit.      The JWKS should be cached, but MoneyKit rotates its webhook keys periodically, so if an     incoming webhook's JWT has a key ID (`kid`) not contained in the cached JWKS, you should fetch     and cache the updated JWKS using this endpoint.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :x_client_id Your client ID.
+    # @option opts [String] :authorization (Deprecated) An access token obtained from &lt;a href&#x3D;#operation/create_access_token&gt;/auth/token&lt;/a&gt;.  This method works         but is deprecated in favor of using &#x60;X-Client-Id&#x60;.
     # @return [JWKSet]
-    def get_app_jwks(opts = {})
-      data, _status_code, _headers = get_app_jwks_with_http_info(opts)
+    def get_well_known_jwks(opts = {})
+      data, _status_code, _headers = get_well_known_jwks_with_http_info(opts)
       data
     end
 
     # JSON Web Key Set
-    # The JSON Web Key Set (JWKS) is a set of keys containing the public keys used to verify webhook JSON Web Tokens (JWT) issued by MoneyKit webhooks.
+    # The JSON Web Key Set (JWKS) is a set of keys containing the public keys used to verify     JWTs in webhooks sent by MoneyKit.      The JWKS should be cached, but MoneyKit rotates its webhook keys periodically, so if an     incoming webhook&#39;s JWT has a key ID (&#x60;kid&#x60;) not contained in the cached JWKS, you should fetch     and cache the updated JWKS using this endpoint.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :x_client_id Your client ID.
+    # @option opts [String] :authorization (Deprecated) An access token obtained from &lt;a href&#x3D;#operation/create_access_token&gt;/auth/token&lt;/a&gt;.  This method works         but is deprecated in favor of using &#x60;X-Client-Id&#x60;.
     # @return [Array<(JWKSet, Integer, Hash)>] JWKSet data, response status code and response headers
-    def get_app_jwks_with_http_info(opts = {})
+    def get_well_known_jwks_with_http_info(opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: AccessTokenApi.get_app_jwks ...'
+        @api_client.config.logger.debug 'Calling API: AccessTokenApi.get_well_known_jwks ...'
       end
       # resource path
       local_var_path = '/.well-known/jwks.json'
@@ -128,6 +130,7 @@ module MoneyKit
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
       header_params[:'X-Client-Id'] = opts[:'x_client_id'] if !opts[:'x_client_id'].nil?
+      header_params[:'Authorization'] = opts[:'authorization'] if !opts[:'authorization'].nil?
 
       # form parameters
       form_params = opts[:form_params] || {}
@@ -139,10 +142,10 @@ module MoneyKit
       return_type = opts[:debug_return_type] || 'JWKSet'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['OAuth2ClientCredentials']
+      auth_names = opts[:debug_auth_names] || []
 
       new_options = opts.merge(
-        :operation => :"AccessTokenApi.get_app_jwks",
+        :operation => :"AccessTokenApi.get_well_known_jwks",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -153,7 +156,7 @@ module MoneyKit
 
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: AccessTokenApi#get_app_jwks\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: AccessTokenApi#get_well_known_jwks\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

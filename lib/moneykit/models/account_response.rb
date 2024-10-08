@@ -29,8 +29,14 @@ module MoneyKit
 
     attr_accessor :balances
 
+    # Raw account data from the provider.
+    attr_accessor :raw_provider_data
+
     # The original ID of this account, if supplied (by you) during an import.
     attr_accessor :original_id
+
+    # True if this account is closed.
+    attr_accessor :closed
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -40,7 +46,9 @@ module MoneyKit
         :'name' => :'name',
         :'account_mask' => :'account_mask',
         :'balances' => :'balances',
-        :'original_id' => :'original_id'
+        :'raw_provider_data' => :'raw_provider_data',
+        :'original_id' => :'original_id',
+        :'closed' => :'closed'
       }
     end
 
@@ -57,7 +65,9 @@ module MoneyKit
         :'name' => :'String',
         :'account_mask' => :'String',
         :'balances' => :'AccountBalances',
-        :'original_id' => :'String'
+        :'raw_provider_data' => :'Object',
+        :'original_id' => :'String',
+        :'closed' => :'Boolean'
       }
     end
 
@@ -110,8 +120,16 @@ module MoneyKit
         self.balances = nil
       end
 
+      if attributes.key?(:'raw_provider_data')
+        self.raw_provider_data = attributes[:'raw_provider_data']
+      end
+
       if attributes.key?(:'original_id')
         self.original_id = attributes[:'original_id']
+      end
+
+      if attributes.key?(:'closed')
+        self.closed = attributes[:'closed']
       end
     end
 
@@ -160,7 +178,9 @@ module MoneyKit
           name == o.name &&
           account_mask == o.account_mask &&
           balances == o.balances &&
-          original_id == o.original_id
+          raw_provider_data == o.raw_provider_data &&
+          original_id == o.original_id &&
+          closed == o.closed
     end
 
     # @see the `==` method
@@ -172,7 +192,7 @@ module MoneyKit
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [account_id, account_type, name, account_mask, balances, original_id].hash
+      [account_id, account_type, name, account_mask, balances, raw_provider_data, original_id, closed].hash
     end
 
     # Builds the object from hash
@@ -207,7 +227,7 @@ module MoneyKit
       when :Time
         Time.parse(value)
       when :Date
-        ::Date.parse(value)
+        Date.parse(value)
       when :String
         value.to_s
       when :Integer

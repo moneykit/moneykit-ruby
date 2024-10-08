@@ -15,10 +15,10 @@ require 'time'
 
 module MoneyKit
   class PhoneNumber
-    # A phone number for the account owner.
+    # A phone number for the account owner.  Phone numbers may have a variety of formats; they may or         may not have country-code prefixes; and they may contain extensions.
     attr_accessor :number
 
-    # Indicates if this is the primary phone number for the account owner.
+    # Indicates if this is the primary phone number for the account owner, as reported by the institution.
     attr_accessor :primary
 
     attr_accessor :type
@@ -185,7 +185,7 @@ module MoneyKit
       when :Time
         Time.parse(value)
       when :Date
-        ::Date.parse(value)
+        Date.parse(value)
       when :String
         value.to_s
       when :Integer

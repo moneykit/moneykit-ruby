@@ -21,7 +21,7 @@ module MoneyKit
     end
     # /users/{id}/accounts
     # Fetches all accounts belonging to a <a href=#operation/get_user_accounts>user</a>.
-    # @param id [String] The unique ID for this user.  This is the same ID provided         in the call to &lt;a href&#x3D;#operation/create_link_session&gt;/link-session&lt;/a&gt; to create any link for this user.
+    # @param id [String] The unique ID for this user.  This is the same ID provided         in the call to &lt;a href&#x3D;/api/operation/create_link_session#customer_user-id&gt;link-session&lt;/a&gt; to create any link for this user.
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :account_ids If present, filters results to accounts matching the given IDs.
     # @option opts [Array<String>] :institution_ids If present, filters results to accounts at institutions matching the given IDs.
@@ -33,7 +33,7 @@ module MoneyKit
 
     # /users/{id}/accounts
     # Fetches all accounts belonging to a &lt;a href&#x3D;#operation/get_user_accounts&gt;user&lt;/a&gt;.
-    # @param id [String] The unique ID for this user.  This is the same ID provided         in the call to &lt;a href&#x3D;#operation/create_link_session&gt;/link-session&lt;/a&gt; to create any link for this user.
+    # @param id [String] The unique ID for this user.  This is the same ID provided         in the call to &lt;a href&#x3D;/api/operation/create_link_session#customer_user-id&gt;link-session&lt;/a&gt; to create any link for this user.
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :account_ids If present, filters results to accounts matching the given IDs.
     # @option opts [Array<String>] :institution_ids If present, filters results to accounts at institutions matching the given IDs.
@@ -90,7 +90,7 @@ module MoneyKit
 
     # /users/{id}/links
     # Fetches all links belonging to a <a href=#operation/get_user_accounts>user</a>.
-    # @param id [String] The unique ID for this user.  This is the same ID provided         in the call to &lt;a href&#x3D;#operation/create_link_session&gt;/link-session&lt;/a&gt; to create any link for this user.
+    # @param id [String] The unique ID for this user.  This is the same ID provided         in the call to &lt;a href&#x3D;/api/operation/create_link_session#customer_user-id&gt;link-session&lt;/a&gt; to create any link for this user.
     # @param [Hash] opts the optional parameters
     # @return [GetUserLinksResponse]
     def get_user_links(id, opts = {})
@@ -100,7 +100,7 @@ module MoneyKit
 
     # /users/{id}/links
     # Fetches all links belonging to a &lt;a href&#x3D;#operation/get_user_accounts&gt;user&lt;/a&gt;.
-    # @param id [String] The unique ID for this user.  This is the same ID provided         in the call to &lt;a href&#x3D;#operation/create_link_session&gt;/link-session&lt;/a&gt; to create any link for this user.
+    # @param id [String] The unique ID for this user.  This is the same ID provided         in the call to &lt;a href&#x3D;/api/operation/create_link_session#customer_user-id&gt;link-session&lt;/a&gt; to create any link for this user.
     # @param [Hash] opts the optional parameters
     # @return [Array<(GetUserLinksResponse, Integer, Hash)>] GetUserLinksResponse data, response status code and response headers
     def get_user_links_with_http_info(id, opts = {})
@@ -153,7 +153,7 @@ module MoneyKit
 
     # /users/{id}/transactions
     # Fetches transactions for a <a href=#operation/get_user_accounts>user</a>.     <p>This endpoint fetches all transactions for a user across all of their links.  You can use it to retrieve     transactions from any or all accounts at once, regardless of which institution they belong to.
-    # @param id [String] The unique ID for this user.  This is the same ID provided         in the call to &lt;a href&#x3D;#operation/create_link_session&gt;/link-session&lt;/a&gt; to create any link for this user.
+    # @param id [String] The unique ID for this user.  This is the same ID provided         in the call to &lt;a href&#x3D;/api/operation/create_link_session#customer_user-id&gt;link-session&lt;/a&gt; to create any link for this user.
     # @param [Hash] opts the optional parameters
     # @option opts [Array<TransactionTypeFilter>] :transaction_type 
     # @option opts [Array<String>] :category 
@@ -161,8 +161,8 @@ module MoneyKit
     # @option opts [Array<String>] :institution_id If present, filters results to transactions at institutions matching the given IDs.
     # @option opts [Integer] :page The page number to return. (default to 1)
     # @option opts [Integer] :size The number of items to return per page. (default to 50)
-    # @option opts [Date] :start_date The earliest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to 90 days before the &#x60;end_date&#x60;.             &lt;p&gt;If you want to retrieve **all** transactions, use &#x60;1900-01-01&#x60;.
-    # @option opts [Date] :end_date The latest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to today.
+    # @option opts [Date] :start_date The earliest date for which data should be returned, formatted as YYYY-MM-DD.
+    # @option opts [Date] :end_date The latest date for which data should be returned, formatted as YYYY-MM-DD.
     # @return [GetUserTransactionsResponse]
     def get_user_transactions(id, opts = {})
       data, _status_code, _headers = get_user_transactions_with_http_info(id, opts)
@@ -171,7 +171,7 @@ module MoneyKit
 
     # /users/{id}/transactions
     # Fetches transactions for a &lt;a href&#x3D;#operation/get_user_accounts&gt;user&lt;/a&gt;.     &lt;p&gt;This endpoint fetches all transactions for a user across all of their links.  You can use it to retrieve     transactions from any or all accounts at once, regardless of which institution they belong to.
-    # @param id [String] The unique ID for this user.  This is the same ID provided         in the call to &lt;a href&#x3D;#operation/create_link_session&gt;/link-session&lt;/a&gt; to create any link for this user.
+    # @param id [String] The unique ID for this user.  This is the same ID provided         in the call to &lt;a href&#x3D;/api/operation/create_link_session#customer_user-id&gt;link-session&lt;/a&gt; to create any link for this user.
     # @param [Hash] opts the optional parameters
     # @option opts [Array<TransactionTypeFilter>] :transaction_type 
     # @option opts [Array<String>] :category 
@@ -179,8 +179,8 @@ module MoneyKit
     # @option opts [Array<String>] :institution_id If present, filters results to transactions at institutions matching the given IDs.
     # @option opts [Integer] :page The page number to return. (default to 1)
     # @option opts [Integer] :size The number of items to return per page. (default to 50)
-    # @option opts [Date] :start_date The earliest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to 90 days before the &#x60;end_date&#x60;.             &lt;p&gt;If you want to retrieve **all** transactions, use &#x60;1900-01-01&#x60;.
-    # @option opts [Date] :end_date The latest date for which data should be returned, formatted as YYYY-MM-DD.             Defaults to today.
+    # @option opts [Date] :start_date The earliest date for which data should be returned, formatted as YYYY-MM-DD.
+    # @option opts [Date] :end_date The latest date for which data should be returned, formatted as YYYY-MM-DD.
     # @return [Array<(GetUserTransactionsResponse, Integer, Hash)>] GetUserTransactionsResponse data, response status code and response headers
     def get_user_transactions_with_http_info(id, opts = {})
       if @api_client.config.debugging

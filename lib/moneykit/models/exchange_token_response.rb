@@ -15,7 +15,7 @@ require 'time'
 
 module MoneyKit
   class ExchangeTokenResponse
-    # The unique ID associated with this link.
+    # DEPRECATED: Please use `link.link_id` for this value
     attr_accessor :link_id
 
     attr_accessor :link
@@ -153,7 +153,7 @@ module MoneyKit
       when :Time
         Time.parse(value)
       when :Date
-        ::Date.parse(value)
+        Date.parse(value)
       when :String
         value.to_s
       when :Integer

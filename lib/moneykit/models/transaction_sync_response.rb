@@ -17,6 +17,8 @@ module MoneyKit
   class TransactionSyncResponse
     attr_accessor :transactions
 
+    attr_accessor :accounts
+
     attr_accessor :cursor
 
     # This condition indicates the presence of transaction updates exceeding the requested count.         If true, additional updates MUST be retrieved by making an additional request with cursor set to `cursor.next`.         
@@ -28,6 +30,7 @@ module MoneyKit
     def self.attribute_map
       {
         :'transactions' => :'transactions',
+        :'accounts' => :'accounts',
         :'cursor' => :'cursor',
         :'has_more' => :'has_more',
         :'link' => :'link'
@@ -43,6 +46,7 @@ module MoneyKit
     def self.openapi_types
       {
         :'transactions' => :'TransactionSync',
+        :'accounts' => :'Array<AccountResponse>',
         :'cursor' => :'CursorPagination',
         :'has_more' => :'Boolean',
         :'link' => :'LinkCommon'
@@ -76,6 +80,14 @@ module MoneyKit
         self.transactions = nil
       end
 
+      if attributes.key?(:'accounts')
+        if (value = attributes[:'accounts']).is_a?(Array)
+          self.accounts = value
+        end
+      else
+        self.accounts = nil
+      end
+
       if attributes.key?(:'cursor')
         self.cursor = attributes[:'cursor']
       else
@@ -104,6 +116,10 @@ module MoneyKit
         invalid_properties.push('invalid value for "transactions", transactions cannot be nil.')
       end
 
+      if @accounts.nil?
+        invalid_properties.push('invalid value for "accounts", accounts cannot be nil.')
+      end
+
       if @cursor.nil?
         invalid_properties.push('invalid value for "cursor", cursor cannot be nil.')
       end
@@ -124,6 +140,7 @@ module MoneyKit
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @transactions.nil?
+      return false if @accounts.nil?
       return false if @cursor.nil?
       return false if @has_more.nil?
       return false if @link.nil?
@@ -136,6 +153,7 @@ module MoneyKit
       return true if self.equal?(o)
       self.class == o.class &&
           transactions == o.transactions &&
+          accounts == o.accounts &&
           cursor == o.cursor &&
           has_more == o.has_more &&
           link == o.link
@@ -150,7 +168,7 @@ module MoneyKit
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [transactions, cursor, has_more, link].hash
+      [transactions, accounts, cursor, has_more, link].hash
     end
 
     # Builds the object from hash
@@ -185,7 +203,7 @@ module MoneyKit
       when :Time
         Time.parse(value)
       when :Date
-        ::Date.parse(value)
+        Date.parse(value)
       when :String
         value.to_s
       when :Integer

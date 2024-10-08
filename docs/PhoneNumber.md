@@ -4,8 +4,8 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **number** | **String** | A phone number for the account owner. |  |
-| **primary** | **Boolean** | Indicates if this is the primary phone number for the account owner. | [optional] |
+| **number** | **String** | A phone number for the account owner.  Phone numbers may have a variety of formats; they may or         may not have country-code prefixes; and they may contain extensions. |  |
+| **primary** | **Boolean** | Indicates if this is the primary phone number for the account owner, as reported by the institution. | [optional] |
 | **type** | [**PhoneNumberType**](PhoneNumberType.md) |  |  |
 
 ## Example
@@ -14,7 +14,7 @@
 require 'moneykit'
 
 instance = MoneyKit::PhoneNumber.new(
-  number: +16175551212,
+  number: 6175551212,
   primary: null,
   type: null
 )

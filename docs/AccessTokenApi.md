@@ -5,7 +5,7 @@ All URIs are relative to *https://api.moneykit.com*
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
 | [**create_access_token**](AccessTokenApi.md#create_access_token) | **POST** /auth/token | /auth/token |
-| [**get_app_jwks**](AccessTokenApi.md#get_app_jwks) | **GET** /.well-known/jwks.json | JSON Web Key Set |
+| [**get_well_known_jwks**](AccessTokenApi.md#get_well_known_jwks) | **GET** /.well-known/jwks.json | JSON Web Key Set |
 | [**instrospect_client**](AccessTokenApi.md#instrospect_client) | **GET** /auth/introspect | /auth/introspect |
 
 
@@ -87,54 +87,50 @@ end
 - **Accept**: application/json
 
 
-## get_app_jwks
+## get_well_known_jwks
 
-> <JWKSet> get_app_jwks(opts)
+> <JWKSet> get_well_known_jwks(opts)
 
 JSON Web Key Set
 
-The JSON Web Key Set (JWKS) is a set of keys containing the public keys used to verify webhook JSON Web Tokens (JWT) issued by MoneyKit webhooks.
+The JSON Web Key Set (JWKS) is a set of keys containing the public keys used to verify     JWTs in webhooks sent by MoneyKit.      The JWKS should be cached, but MoneyKit rotates its webhook keys periodically, so if an     incoming webhook's JWT has a key ID (`kid`) not contained in the cached JWKS, you should fetch     and cache the updated JWKS using this endpoint.
 
 ### Examples
 
 ```ruby
 require 'time'
 require 'moneykit'
-# setup authorization
-MoneyKit.configure do |config|
-  # Configure OAuth2 access token for authorization: OAuth2ClientCredentials
-  config.access_token = 'YOUR ACCESS TOKEN'
-end
 
 api_instance = MoneyKit::AccessTokenApi.new
 opts = {
-  x_client_id: 'x_client_id_example' # String | Your client ID.
+  x_client_id: 'x_client_id_example', # String | Your client ID.
+  authorization: 'authorization_example' # String | (Deprecated) An access token obtained from <a href=#operation/create_access_token>/auth/token</a>.  This method works         but is deprecated in favor of using `X-Client-Id`.
 }
 
 begin
   # JSON Web Key Set
-  result = api_instance.get_app_jwks(opts)
+  result = api_instance.get_well_known_jwks(opts)
   p result
 rescue MoneyKit::ApiError => e
-  puts "Error when calling AccessTokenApi->get_app_jwks: #{e}"
+  puts "Error when calling AccessTokenApi->get_well_known_jwks: #{e}"
 end
 ```
 
-#### Using the get_app_jwks_with_http_info variant
+#### Using the get_well_known_jwks_with_http_info variant
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<JWKSet>, Integer, Hash)> get_app_jwks_with_http_info(opts)
+> <Array(<JWKSet>, Integer, Hash)> get_well_known_jwks_with_http_info(opts)
 
 ```ruby
 begin
   # JSON Web Key Set
-  data, status_code, headers = api_instance.get_app_jwks_with_http_info(opts)
+  data, status_code, headers = api_instance.get_well_known_jwks_with_http_info(opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <JWKSet>
 rescue MoneyKit::ApiError => e
-  puts "Error when calling AccessTokenApi->get_app_jwks_with_http_info: #{e}"
+  puts "Error when calling AccessTokenApi->get_well_known_jwks_with_http_info: #{e}"
 end
 ```
 
@@ -143,6 +139,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **x_client_id** | **String** | Your client ID. | [optional] |
+| **authorization** | **String** | (Deprecated) An access token obtained from &lt;a href&#x3D;#operation/create_access_token&gt;/auth/token&lt;/a&gt;.  This method works         but is deprecated in favor of using &#x60;X-Client-Id&#x60;. | [optional] |
 
 ### Return type
 
@@ -150,7 +147,7 @@ end
 
 ### Authorization
 
-[OAuth2ClientCredentials](../README.md#OAuth2ClientCredentials)
+No authorization required
 
 ### HTTP request headers
 

@@ -73,7 +73,6 @@ docs/LinkProductRefreshWebhook.md
 docs/LinkProductResponse.md
 docs/LinkProductState.md
 docs/LinkProducts.md
-docs/LinkResponse.md
 docs/LinkSessionApi.md
 docs/LinkSessionErrorForbiddenConfigResponse.md
 docs/LinkSessionErrorInvalidTokenExchange.md
@@ -219,7 +218,6 @@ lib/moneykit/models/link_product_refresh_webhook.rb
 lib/moneykit/models/link_product_response.rb
 lib/moneykit/models/link_product_state.rb
 lib/moneykit/models/link_products.rb
-lib/moneykit/models/link_response.rb
 lib/moneykit/models/link_session_error_forbidden_config_response.rb
 lib/moneykit/models/link_session_error_invalid_token_exchange.rb
 lib/moneykit/models/link_session_setting_overrides.rb

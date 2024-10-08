@@ -219,7 +219,7 @@ module MoneyKit
 
     # /users/{id}/accounts
     # Fetches all accounts belonging to a <a href=#operation/get_user_accounts>user</a>.
-    # @param id [String] The unique ID for this user.  This is the same ID provided         in the call to &lt;a href&#x3D;#operation/create_link_session&gt;/link-session&lt;/a&gt; to create any link for this user.
+    # @param id [String] The unique ID for this user.  This is the same ID provided         in the call to &lt;a href&#x3D;/api/operation/create_link_session#customer_user-id&gt;link-session&lt;/a&gt; to create any link for this user.
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :account_ids If present, filters results to accounts matching the given IDs.
     # @option opts [Array<String>] :institution_ids If present, filters results to accounts at institutions matching the given IDs.
@@ -231,7 +231,7 @@ module MoneyKit
 
     # /users/{id}/accounts
     # Fetches all accounts belonging to a &lt;a href&#x3D;#operation/get_user_accounts&gt;user&lt;/a&gt;.
-    # @param id [String] The unique ID for this user.  This is the same ID provided         in the call to &lt;a href&#x3D;#operation/create_link_session&gt;/link-session&lt;/a&gt; to create any link for this user.
+    # @param id [String] The unique ID for this user.  This is the same ID provided         in the call to &lt;a href&#x3D;/api/operation/create_link_session#customer_user-id&gt;link-session&lt;/a&gt; to create any link for this user.
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :account_ids If present, filters results to accounts matching the given IDs.
     # @option opts [Array<String>] :institution_ids If present, filters results to accounts at institutions matching the given IDs.

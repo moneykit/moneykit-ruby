@@ -14,7 +14,7 @@
 require 'moneykit'
 
 instance = MoneyKit::CustomerUserPhone.new(
-  number: +16175551212,
+  number: 6175551212,
   country: null,
   customer_verified_at: 2023-02-16T00:00:00
 )

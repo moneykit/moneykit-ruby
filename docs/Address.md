@@ -9,7 +9,7 @@
 | **postal_code** | **String** | The postal or zip code of the address. | [optional] |
 | **region** | **String** | The region or state of the address. | [optional] |
 | **street** | **String** | The street of the address. | [optional] |
-| **primary** | **Boolean** | Indicates if this is the primary address for the account owner. | [optional] |
+| **primary** | **Boolean** | Indicates if this is the primary address for the account owner, as reported by the institution. | [optional] |
 
 ## Example
 
