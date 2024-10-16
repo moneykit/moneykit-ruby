@@ -238,7 +238,7 @@ module MoneyKit
       when :Time
         Time.parse(value)
       when :Date
-        ::Date.parse(value)
+        Date.parse(value)
       when :String
         value.to_s
       when :Integer
