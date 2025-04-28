@@ -24,12 +24,6 @@ jobs:
           ruby-version: "3.2.2"
           bundler-cache: true
 
-      # - name: Check GITHUB_REF matches package version
-      #   id: check-tag
-      #   uses: samuelcolvin/check-python-version@v3.1
-      #   with:
-      #     version_file_path: python/moneykit-sdk/moneykit/__init__.py
-
       # - name: Run tests
       #   run: bundle exec rspec
 
