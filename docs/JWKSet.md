@@ -4,7 +4,7 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **keys** | **Array&lt;Object&gt;** |  |  |
+| **keys** | **Array&lt;Object&gt;** | JWKs used for validating MoneyKit-issued tokens. |  |
 
 ## Example
 

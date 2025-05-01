@@ -17,12 +17,12 @@
 require 'moneykit'
 
 instance = MoneyKit::TransactionImportData.new(
-  account_id: 74583934,
+  account_id: null,
   transaction_id: null,
-  amount: 384.05,
+  amount: null,
   date: null,
-  description: Regina&#39;s Mulberry,
-  type: food_and_drinks.restaurants
+  description: null,
+  type: null
 )
 ```
 

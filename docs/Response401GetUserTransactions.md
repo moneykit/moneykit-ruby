@@ -4,9 +4,9 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **error_code** | **Object** |  | [optional] |
-| **error_message** | **Object** | Error message |  |
-| **documentation_url** | **Object** |  | [optional] |
+| **error_code** | **String** |  | [optional][default to &#39;api_error.auth.unauthorized&#39;] |
+| **error_message** | **String** | Error message |  |
+| **documentation_url** | **String** |  | [optional] |
 
 ## Example
 
@@ -15,7 +15,7 @@ require 'moneykit'
 
 instance = MoneyKit::Response401GetUserTransactions.new(
   error_code: null,
-  error_message: Accounts access not permitted,
+  error_message: null,
   documentation_url: null
 )
 ```

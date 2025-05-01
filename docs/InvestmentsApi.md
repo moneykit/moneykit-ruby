@@ -103,9 +103,9 @@ end
 api_instance = MoneyKit::InvestmentsApi.new
 id = 'id_example' # String | The unique ID for this link.
 opts = {
-  account_ids: ['inner_example'], # Array<String> | An optional list of account IDs to filter the results.
   page: 56, # Integer | The page number to return.
   size: 56, # Integer | The number of items to return per page.
+  account_ids: ['inner_example'], # Array<String> | An optional list of account IDs to filter the results.
   start_date: Date.parse('2013-10-20'), # Date | The earliest date for which data should be returned, formatted as YYYY-MM-DD.
   end_date: Date.parse('2013-10-20') # Date | The latest date for which data should be returned, formatted as YYYY-MM-DD.
 }
@@ -142,9 +142,9 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | The unique ID for this link. |  |
-| **account_ids** | [**Array&lt;String&gt;**](String.md) | An optional list of account IDs to filter the results. | [optional] |
 | **page** | **Integer** | The page number to return. | [optional][default to 1] |
 | **size** | **Integer** | The number of items to return per page. | [optional][default to 50] |
+| **account_ids** | [**Array&lt;String&gt;**](String.md) | An optional list of account IDs to filter the results. | [optional] |
 | **start_date** | **Date** | The earliest date for which data should be returned, formatted as YYYY-MM-DD. | [optional] |
 | **end_date** | **Date** | The latest date for which data should be returned, formatted as YYYY-MM-DD. | [optional] |
 

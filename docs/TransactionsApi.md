@@ -4,14 +4,88 @@ All URIs are relative to *https://api.moneykit.com*
 
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
+| [**correct_enrichment**](TransactionsApi.md#correct_enrichment) | **POST** /links/{id}/transactions/{txn_id}/enrichment | /links/{id}/transactions/{txn_id}/enrichment |
 | [**get_transactions**](TransactionsApi.md#get_transactions) | **GET** /links/{id}/transactions | /links/{id}/transactions |
 | [**get_transactions_sync**](TransactionsApi.md#get_transactions_sync) | **GET** /links/{id}/transactions/sync | /links/{id}/transactions/sync |
 | [**get_user_transactions**](TransactionsApi.md#get_user_transactions) | **GET** /users/{id}/transactions | /users/{id}/transactions |
 
 
+## correct_enrichment
+
+> <ApiPublicTransactionsGetTransactionsResponse> correct_enrichment(id, txn_id, bud_category)
+
+/links/{id}/transactions/{txn_id}/enrichment
+
+Manually update the enrichment categories for a specific transaction.     The transaction will be updated with your corrections, which are then used to refine future categorizations.     This endpoint returns the updated transaction, along with similar past transactions, using the same format as when retrieving transactions for a link.
+
+### Examples
+
+```ruby
+require 'time'
+require 'moneykit'
+# setup authorization
+MoneyKit.configure do |config|
+  # Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+  config.access_token = 'YOUR ACCESS TOKEN'
+end
+
+api_instance = MoneyKit::TransactionsApi.new
+id = 'id_example' # String | The unique ID for this link.
+txn_id = 'txn_id_example' # String | 
+bud_category = MoneyKit::BudCategory.new({category: MoneyKit::BudPrimaryCategory::BANKING}) # BudCategory | 
+
+begin
+  # /links/{id}/transactions/{txn_id}/enrichment
+  result = api_instance.correct_enrichment(id, txn_id, bud_category)
+  p result
+rescue MoneyKit::ApiError => e
+  puts "Error when calling TransactionsApi->correct_enrichment: #{e}"
+end
+```
+
+#### Using the correct_enrichment_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<ApiPublicTransactionsGetTransactionsResponse>, Integer, Hash)> correct_enrichment_with_http_info(id, txn_id, bud_category)
+
+```ruby
+begin
+  # /links/{id}/transactions/{txn_id}/enrichment
+  data, status_code, headers = api_instance.correct_enrichment_with_http_info(id, txn_id, bud_category)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <ApiPublicTransactionsGetTransactionsResponse>
+rescue MoneyKit::ApiError => e
+  puts "Error when calling TransactionsApi->correct_enrichment_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **id** | **String** | The unique ID for this link. |  |
+| **txn_id** | **String** |  |  |
+| **bud_category** | [**BudCategory**](BudCategory.md) |  |  |
+
+### Return type
+
+[**ApiPublicTransactionsGetTransactionsResponse**](ApiPublicTransactionsGetTransactionsResponse.md)
+
+### Authorization
+
+[OAuth2ClientCredentials](../README.md#OAuth2ClientCredentials)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+
 ## get_transactions
 
-> <GetTransactionsResponse> get_transactions(id, opts)
+> <ApiPublicTransactionsLegacyGetTransactionsResponse> get_transactions(id, opts)
 
 /links/{id}/transactions
 
@@ -32,10 +106,10 @@ api_instance = MoneyKit::TransactionsApi.new
 id = 'id_example' # String | The unique ID for this link.
 opts = {
   account_ids: ['inner_example'], # Array<String> | An optional list of account IDs to filter the results.
-  start_date: Date.parse('2013-10-20'), # Date | The earliest date for which data should be returned, formatted as YYYY-MM-DD.
-  end_date: Date.parse('2013-10-20'), # Date | The latest date for which data should be returned, formatted as YYYY-MM-DD.
   page: 56, # Integer | The page number to return.
-  size: 56 # Integer | The number of items to return per page.
+  size: 56, # Integer | The number of items to return per page.
+  start_date: Date.parse('2013-10-20'), # Date | The earliest date for which data should be returned, formatted as YYYY-MM-DD.
+  end_date: Date.parse('2013-10-20') # Date | The latest date for which data should be returned, formatted as YYYY-MM-DD.
 }
 
 begin
@@ -51,7 +125,7 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<GetTransactionsResponse>, Integer, Hash)> get_transactions_with_http_info(id, opts)
+> <Array(<ApiPublicTransactionsLegacyGetTransactionsResponse>, Integer, Hash)> get_transactions_with_http_info(id, opts)
 
 ```ruby
 begin
@@ -59,7 +133,7 @@ begin
   data, status_code, headers = api_instance.get_transactions_with_http_info(id, opts)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => <GetTransactionsResponse>
+  p data # => <ApiPublicTransactionsLegacyGetTransactionsResponse>
 rescue MoneyKit::ApiError => e
   puts "Error when calling TransactionsApi->get_transactions_with_http_info: #{e}"
 end
@@ -71,14 +145,14 @@ end
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | The unique ID for this link. |  |
 | **account_ids** | [**Array&lt;String&gt;**](String.md) | An optional list of account IDs to filter the results. | [optional] |
-| **start_date** | **Date** | The earliest date for which data should be returned, formatted as YYYY-MM-DD. | [optional] |
-| **end_date** | **Date** | The latest date for which data should be returned, formatted as YYYY-MM-DD. | [optional] |
 | **page** | **Integer** | The page number to return. | [optional][default to 1] |
 | **size** | **Integer** | The number of items to return per page. | [optional][default to 50] |
+| **start_date** | **Date** | The earliest date for which data should be returned, formatted as YYYY-MM-DD. | [optional] |
+| **end_date** | **Date** | The latest date for which data should be returned, formatted as YYYY-MM-DD. | [optional] |
 
 ### Return type
 
-[**GetTransactionsResponse**](GetTransactionsResponse.md)
+[**ApiPublicTransactionsLegacyGetTransactionsResponse**](ApiPublicTransactionsLegacyGetTransactionsResponse.md)
 
 ### Authorization
 
@@ -185,12 +259,12 @@ MoneyKit.configure do |config|
 end
 
 api_instance = MoneyKit::TransactionsApi.new
-id = 'id_example' # String | The unique ID for this user.  This is the same ID provided         in the call to <a href=/api/operation/create_link_session#customer_user-id>link-session</a> to create any link for this user.
+id = 'id_example' # String | The unique ID for this user.  This is the same ID provided         in the call to <a href=/api/operation/create_link_session#customer_user-id>link-session</a> to create a link for this user.
 opts = {
-  transaction_type: [MoneyKit::TransactionTypeFilter::CREDIT], # Array<TransactionTypeFilter> | 
-  category: ['inner_example'], # Array<String> | 
+  transaction_type: [MoneyKit::TransactionTypeFilter::CREDIT], # Array<TransactionTypeFilter> | DEPRECATED; ignored
+  category: ['inner_example'], # Array<String> | DEPRECATED; ignored
   account_id: ['inner_example'], # Array<String> | If present, filters results to transactions in accounts matching the given IDs.
-  institution_id: ['inner_example'], # Array<String> | If present, filters results to transactions at institutions matching the given IDs.
+  institution_id: ['inner_example'], # Array<String> | DEPRECATED; ignored
   page: 56, # Integer | The page number to return.
   size: 56, # Integer | The number of items to return per page.
   start_date: Date.parse('2013-10-20'), # Date | The earliest date for which data should be returned, formatted as YYYY-MM-DD.
@@ -228,11 +302,11 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **id** | **String** | The unique ID for this user.  This is the same ID provided         in the call to &lt;a href&#x3D;/api/operation/create_link_session#customer_user-id&gt;link-session&lt;/a&gt; to create any link for this user. |  |
-| **transaction_type** | [**Array&lt;TransactionTypeFilter&gt;**](TransactionTypeFilter.md) |  | [optional] |
-| **category** | [**Array&lt;String&gt;**](String.md) |  | [optional] |
+| **id** | **String** | The unique ID for this user.  This is the same ID provided         in the call to &lt;a href&#x3D;/api/operation/create_link_session#customer_user-id&gt;link-session&lt;/a&gt; to create a link for this user. |  |
+| **transaction_type** | [**Array&lt;TransactionTypeFilter&gt;**](TransactionTypeFilter.md) | DEPRECATED; ignored | [optional] |
+| **category** | [**Array&lt;String&gt;**](String.md) | DEPRECATED; ignored | [optional] |
 | **account_id** | [**Array&lt;String&gt;**](String.md) | If present, filters results to transactions in accounts matching the given IDs. | [optional] |
-| **institution_id** | [**Array&lt;String&gt;**](String.md) | If present, filters results to transactions at institutions matching the given IDs. | [optional] |
+| **institution_id** | [**Array&lt;String&gt;**](String.md) | DEPRECATED; ignored | [optional] |
 | **page** | **Integer** | The page number to return. | [optional][default to 1] |
 | **size** | **Integer** | The number of items to return per page. | [optional][default to 50] |
 | **start_date** | **Date** | The earliest date for which data should be returned, formatted as YYYY-MM-DD. | [optional] |

@@ -14,7 +14,7 @@ require 'moneykit'
 
 instance = MoneyKit::AccountGroup.new(
   accounts: null,
-  last_synced_at: 2023-02-16T09:14:11
+  last_synced_at: null
 )
 ```
 

@@ -4,8 +4,8 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **institutions** | [**Array&lt;Institution&gt;**](Institution.md) |  |  |
-| **cursors** | [**CursorPagination**](CursorPagination.md) |  |  |
+| **institutions** | [**Array&lt;Institution&gt;**](Institution.md) | The list of institutions for this page. |  |
+| **cursors** | [**CursorPagination**](CursorPagination.md) | Pagination information. |  |
 
 ## Example
 

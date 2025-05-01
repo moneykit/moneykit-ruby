@@ -4,10 +4,10 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **holdings** | [**Array&lt;HoldingResponse&gt;**](HoldingResponse.md) |  |  |
-| **securities** | [**Array&lt;SecurityResponse&gt;**](SecurityResponse.md) |  |  |
-| **accounts** | [**Array&lt;AccountResponse&gt;**](AccountResponse.md) |  |  |
-| **link** | [**LinkCommon**](LinkCommon.md) |  |  |
+| **holdings** | [**Array&lt;HoldingResponse&gt;**](HoldingResponse.md) | The holdings belonging to investment accounts for this link. |  |
+| **securities** | [**Array&lt;SecurityResponse&gt;**](SecurityResponse.md) | The set of securities for these holdings. |  |
+| **accounts** | [**Array&lt;AccountResponse&gt;**](AccountResponse.md) | The set of accounts for which holdings are returned. |  |
+| **link** | [**LinkCommon**](LinkCommon.md) | The link that these accounts belong to. |  |
 
 ## Example
 

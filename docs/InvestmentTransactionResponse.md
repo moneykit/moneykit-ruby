@@ -23,18 +23,18 @@
 require 'moneykit'
 
 instance = MoneyKit::InvestmentTransactionResponse.new(
-  investment_transaction_id: it_R73abx78zoa2NxyAlki90g,
-  account_id: acc_6Tef269B6ZArSVpYrxtjBV,
-  amount: 987.15,
-  date: 2023-02-16T00:00:00,
-  datetime: 2023-02-16T09:14:11,
-  description: Bought MSFT,
-  type: buy,
-  fees: 5.95,
+  investment_transaction_id: null,
+  account_id: null,
+  amount: null,
+  date: null,
+  datetime: null,
+  description: null,
+  type: null,
+  fees: null,
   forex_rate: null,
-  price: 98.12,
-  quantity: 10,
-  security_id: sec_bb6fi893jxdfNxyAjnb784
+  price: null,
+  quantity: null,
+  security_id: null
 )
 ```
 

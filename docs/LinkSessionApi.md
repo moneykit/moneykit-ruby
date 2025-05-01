@@ -28,7 +28,7 @@ MoneyKit.configure do |config|
 end
 
 api_instance = MoneyKit::LinkSessionApi.new
-create_link_session_request = MoneyKit::CreateLinkSessionRequest.new({customer_user: MoneyKit::CustomerUser.new({id: 'id_example'}), redirect_uri: 'https://yourdomain.com/oauth.html'}) # CreateLinkSessionRequest | 
+create_link_session_request = MoneyKit::CreateLinkSessionRequest.new({customer_user: MoneyKit::CustomerUser.new({id: 'id_example'}), redirect_uri: 'redirect_uri_example'}) # CreateLinkSessionRequest | 
 
 begin
   # /link-session
@@ -83,7 +83,7 @@ end
 
 /link-session/exchange-token
 
-After the end user has successfully completed the linking process, your back end     calls this endpoint to exchange the token received by your front end for a`link_id` that can be used to access     the link's data.
+After the end user has successfully completed the linking process, your back end     calls this endpoint to exchange the token received by your front end for a `link_id` that can be used to access     the link's data.
 
 ### Examples
 
@@ -97,7 +97,7 @@ MoneyKit.configure do |config|
 end
 
 api_instance = MoneyKit::LinkSessionApi.new
-exchange_token_request = MoneyKit::ExchangeTokenRequest.new({exchangeable_token: 'c7318ff7-257c-490e-8242-03a815b223b7'}) # ExchangeTokenRequest | 
+exchange_token_request = MoneyKit::ExchangeTokenRequest.new({exchangeable_token: 'exchangeable_token_example'}) # ExchangeTokenRequest | 
 
 begin
   # /link-session/exchange-token

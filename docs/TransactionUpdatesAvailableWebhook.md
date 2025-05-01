@@ -11,7 +11,7 @@
 | **link_id** | **String** |  |  |
 | **link_tags** | **Array&lt;String&gt;** |  |  |
 | **webhook_event** | **String** |  | [optional][default to &#39;transactions.updates_available&#39;] |
-| **has_history** | **Boolean** |  |  |
+| **has_history** | **Boolean** |  | [optional] |
 
 ## Example
 

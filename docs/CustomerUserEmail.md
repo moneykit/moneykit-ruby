@@ -14,7 +14,7 @@ require 'moneykit'
 
 instance = MoneyKit::CustomerUserEmail.new(
   address: null,
-  customer_verified_at: 2023-02-16T00:00:00
+  customer_verified_at: null
 )
 ```
 

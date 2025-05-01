@@ -5,7 +5,7 @@
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **link_id** | **String** | DEPRECATED: Please use &#x60;link.link_id&#x60; for this value |  |
-| **link** | [**LinkCommon**](LinkCommon.md) |  |  |
+| **link** | [**LinkCommon**](LinkCommon.md) | Details of the new link. |  |
 
 ## Example
 
@@ -13,7 +13,7 @@
 require 'moneykit'
 
 instance = MoneyKit::ExchangeTokenResponse.new(
-  link_id: mk_eqkWN34UEoa2NxyALG8pcV,
+  link_id: null,
   link: null
 )
 ```

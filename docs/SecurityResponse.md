@@ -20,15 +20,15 @@
 require 'moneykit'
 
 instance = MoneyKit::SecurityResponse.new(
-  security_id: sec_bb6fi893jxdfNxyAjnb784,
-  name: Microsoft,
-  type: equity,
-  currency: USD,
-  ticker: MSFT,
-  isin: US5949181045,
+  security_id: null,
+  name: null,
+  type: null,
+  currency: null,
+  ticker: null,
+  isin: null,
   sedol: null,
-  close_price: 98.12,
-  close_date: 2022-02-08
+  close_price: null,
+  close_date: null
 )
 ```
 

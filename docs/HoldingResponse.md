@@ -18,13 +18,13 @@
 require 'moneykit'
 
 instance = MoneyKit::HoldingResponse.new(
-  account_id: acc_6Tef269B6ZArSVpYrxtjBV,
-  security_id: sec_bb6fi893jxdfNxyAjnb784,
-  quantity: 10,
-  price: 98.12,
-  price_datetime: 2023-02-16T09:14:11,
-  value: 987.15,
-  cost_basis: 781.38
+  account_id: null,
+  security_id: null,
+  quantity: null,
+  price: null,
+  price_datetime: null,
+  value: null,
+  cost_basis: null
 )
 ```
 

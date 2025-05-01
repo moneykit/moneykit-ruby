@@ -7,8 +7,8 @@
 | **client_id** | **String** | The client&#39;s client ID. |  |
 | **client_name** | **String** | (deprecated) Friendly client name for identification. |  |
 | **scope** | **String** | Actions allowed by this client. |  |
-| **app** | [**AppResponse**](AppResponse.md) |  |  |
-| **disabled_at** | **Time** | Set to timestamp if the client has been disabled. | [optional] |
+| **app** | [**AppResponse**](AppResponse.md) | The app to which the this client belongs. |  |
+| **disabled_at** | **Time** | When the client was (or will be) disabled. | [optional] |
 
 ## Example
 
@@ -16,8 +16,8 @@
 require 'moneykit'
 
 instance = MoneyKit::AppClientResponse.new(
-  client_id: live_5c739a369515e10fc9e0,
-  client_name: unused,
+  client_id: null,
+  client_name: null,
   scope: null,
   app: null,
   disabled_at: null

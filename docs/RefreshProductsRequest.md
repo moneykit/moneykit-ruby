@@ -4,7 +4,7 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **products** | [**Array&lt;Product&gt;**](Product.md) |  |  |
+| **products** | [**Array&lt;Product&gt;**](Product.md) | A list of at least one product to refresh. |  |
 
 ## Example
 

@@ -18,7 +18,7 @@ instance = MoneyKit::TransactionsProductSettings.new(
   required: null,
   require_permission: null,
   prefetch: null,
-  reason: display your account balances
+  reason: null
 )
 ```
 

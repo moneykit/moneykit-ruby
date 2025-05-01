@@ -14,9 +14,9 @@
 require 'moneykit'
 
 instance = MoneyKit::CreateAccessTokenResponse.new(
-  access_token: 52ea3d1b...4f9a53fffb67,
-  token_type: bearer,
-  expires_in: 3600
+  access_token: null,
+  token_type: null,
+  expires_in: null
 )
 ```
 
