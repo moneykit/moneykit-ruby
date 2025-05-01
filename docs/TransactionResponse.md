@@ -6,8 +6,8 @@
 | ---- | ---- | ----------- | ----- |
 | **transaction_id** | **String** | The unique ID for this transaction. |  |
 | **account_id** | **String** | The ID of the account in which this transaction occurred. |  |
-| **amount** | **String** | The amount of this transaction, denominated in account currency.  This amount is always         non-negative.  The &#x60;type&#x60; field indicates whether it is entering or leaving the account. |  |
-| **type** | [**TransactionType**](TransactionType.md) |  |  |
+| **amount** | **String** | The amount of this transaction, denominated in account currency.  This amount is always         non-negative.  The &#x60;type&#x60; field indicates whether it is entering (type&#x3D;&#x60;credit&#x60;) or leaving (type&#x3D;&#x60;debit&#x60;)         the account. |  |
+| **type** | [**TransactionType**](TransactionType.md) | A &#x60;debit&#x60; indicates money leaving the account (*e.g.*, a payment); a &#x60;credit&#x60; indicates             money entering the account (*e.g.*, a deposit).  The account type does not affect transaction type;             transaction types indicate the same direction for all account types.  (The account type does, however,             change the way balances are reported; see             &lt;a href&#x3D;\&quot;/api/operation/get_account#account-account_type\&quot;&gt;account response&lt;/a&gt; for details.) |  |
 | **currency** | **String** | The ISO-4217 currency code of the transaction. |  |
 | **date** | **Date** | The effective (posted) date of the transaction, in ISO-8601 format.  For pending transactions,             this date is when the transaction was initiated. |  |
 | **datetime** | **Time** | If the institution has provided the actual time of the transaction, this field             contains the full date and time of the transaction, in ISO-8601 format.  If the time is             not available, this field will be null.             &lt;p&gt;Note that the time is generally reported in the timezone of the institution or the account holder. | [optional] |
@@ -24,15 +24,15 @@
 require 'moneykit'
 
 instance = MoneyKit::TransactionResponse.new(
-  transaction_id: c7318ff7-257c-490e-8242-03a815b223b7,
-  account_id: acc_6Tef269B6ZArSVpYrxtjBV,
-  amount: 384.05,
+  transaction_id: null,
+  account_id: null,
+  amount: null,
   type: null,
-  currency: USD,
-  date: 2023-02-16T00:00:00,
-  datetime: 2023-02-16T09:14:11,
-  description: Regina&#39;s Mulberry,
-  raw_description: Regina&#39;s Mulberry #1402 T48999-84,
+  currency: null,
+  date: null,
+  datetime: null,
+  description: null,
+  raw_description: null,
   pending: null,
   category: null,
   enrichment: null,

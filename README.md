@@ -16,7 +16,7 @@ bundle add moneykit.gemspec
 or add the following to your `Gemfile`
 
 ```
-gem 'moneykit', '~> 0.1.15'
+gem 'moneykit', '~> 0.2.1'
 ```
 
 ## Getting Started
@@ -37,7 +37,7 @@ end
 begin
   #/auth/token
   access_token_api = MoneyKit::AccessTokenApi.new
-  response = access_token_api.generate_access_token(
+  response = access_token_api.create_access_token(
       {
         grant_type: 'client_credentials',
         client_id: ENV['MONEYKIT_CLIENT_ID'],
@@ -49,7 +49,7 @@ begin
     config.access_token = response.access_token
   end
 rescue MoneyKit::ApiError => e
-  puts "Exception when calling AccessTokenApi->generate_access_token: #{e}"
+  puts "Exception when calling AccessTokenApi->create_access_token: #{e}"
 end
 ```
 
@@ -91,7 +91,7 @@ link_id = response.link_id
 institution_id = response.link.institution_id
 ```
 
-### Disconnect link
+### Delete link
 
 ```ruby
 require 'moneykit'
@@ -99,7 +99,7 @@ require 'moneykit'
 link_id = 'LINK_ID'
 
 links_api = MoneyKit::LinksApi.new
-links_api.disconnect(link_id)
+links_api.delete_link(link_id)
 ```
 
 ### Fetch accounts

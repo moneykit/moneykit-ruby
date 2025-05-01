@@ -4,7 +4,7 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **accounts** | [**Array&lt;AccountIdentity&gt;**](AccountIdentity.md) |  |  |
+| **accounts** | [**Array&lt;AccountIdentity&gt;**](AccountIdentity.md) | A list of accounts associated with the link. |  |
 | **link** | [**LinkCommon**](LinkCommon.md) |  |  |
 
 ## Example

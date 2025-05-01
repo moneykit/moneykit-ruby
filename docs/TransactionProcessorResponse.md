@@ -15,10 +15,10 @@
 require 'moneykit'
 
 instance = MoneyKit::TransactionProcessorResponse.new(
-  id: a0822a4f-a59b-4fc9-a768-d880da5bd090,
-  name: Square,
-  logo: https://example.com/square.png,
-  confidence: 99
+  id: null,
+  name: null,
+  logo: null,
+  confidence: null
 )
 ```
 

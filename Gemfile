@@ -5,5 +5,10 @@ gemspec
 group :development, :test do
   gem 'rake', '~> 13.0.1'
   gem 'pry-byebug'
-  gem 'rubocop', '~> 0.66.0'
+  # MONEYKIT CUSTOM using latest rubocop
+  gem 'rubocop', '~> 1.50.2'
+  gem 'base64'
+  gem 'benchmark'
+  gem 'ostruct'
+  # MONEYKIT CUSTOM END
 end

@@ -12,7 +12,7 @@
 require 'moneykit'
 
 instance = MoneyKit::CreateLinkSessionResponse.new(
-  link_session_token: c7318ff7-257c-490e-8242-03a815b223b7
+  link_session_token: null
 )
 ```
 

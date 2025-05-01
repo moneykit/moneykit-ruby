@@ -16,9 +16,9 @@ require 'moneykit'
 
 instance = MoneyKit::AppResponse.new(
   app_id: null,
-  name: My App,
+  name: null,
   id: null,
-  app_name: My App
+  app_name: null
 )
 ```
 

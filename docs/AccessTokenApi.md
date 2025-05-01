@@ -5,7 +5,7 @@ All URIs are relative to *https://api.moneykit.com*
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
 | [**create_access_token**](AccessTokenApi.md#create_access_token) | **POST** /auth/token | /auth/token |
-| [**get_well_known_jwks**](AccessTokenApi.md#get_well_known_jwks) | **GET** /.well-known/jwks.json | JSON Web Key Set |
+| [**get_well_known_jwks**](AccessTokenApi.md#get_well_known_jwks) | **GET** /.well-known/jwks.json | /.well-known/jwks.json |
 | [**instrospect_client**](AccessTokenApi.md#instrospect_client) | **GET** /auth/introspect | /auth/introspect |
 
 
@@ -91,7 +91,7 @@ end
 
 > <JWKSet> get_well_known_jwks(opts)
 
-JSON Web Key Set
+/.well-known/jwks.json
 
 The JSON Web Key Set (JWKS) is a set of keys containing the public keys used to verify     JWTs in webhooks sent by MoneyKit.      The JWKS should be cached, but MoneyKit rotates its webhook keys periodically, so if an     incoming webhook's JWT has a key ID (`kid`) not contained in the cached JWKS, you should fetch     and cache the updated JWKS using this endpoint.
 
@@ -108,7 +108,7 @@ opts = {
 }
 
 begin
-  # JSON Web Key Set
+  # /.well-known/jwks.json
   result = api_instance.get_well_known_jwks(opts)
   p result
 rescue MoneyKit::ApiError => e
@@ -124,7 +124,7 @@ This returns an Array which contains the response data, status code and headers.
 
 ```ruby
 begin
-  # JSON Web Key Set
+  # /.well-known/jwks.json
   data, status_code, headers = api_instance.get_well_known_jwks_with_http_info(opts)
   p status_code # => 2xx
   p headers # => { ... }

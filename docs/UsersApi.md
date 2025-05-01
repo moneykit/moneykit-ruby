@@ -32,7 +32,7 @@ api_instance = MoneyKit::UsersApi.new
 id = 'id_example' # String | The unique ID for this user.  This is the same ID provided         in the call to <a href=/api/operation/create_link_session#customer_user-id>link-session</a> to create any link for this user.
 opts = {
   account_ids: ['inner_example'], # Array<String> | If present, filters results to accounts matching the given IDs.
-  institution_ids: ['inner_example'] # Array<String> | If present, filters results to accounts at institutions matching the given IDs.
+  institution_ids: ['inner_example'] # Array<String> | DEPRECATED; ignored
 }
 
 begin
@@ -68,7 +68,7 @@ end
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** | The unique ID for this user.  This is the same ID provided         in the call to &lt;a href&#x3D;/api/operation/create_link_session#customer_user-id&gt;link-session&lt;/a&gt; to create any link for this user. |  |
 | **account_ids** | [**Array&lt;String&gt;**](String.md) | If present, filters results to accounts matching the given IDs. | [optional] |
-| **institution_ids** | [**Array&lt;String&gt;**](String.md) | If present, filters results to accounts at institutions matching the given IDs. | [optional] |
+| **institution_ids** | [**Array&lt;String&gt;**](String.md) | DEPRECATED; ignored | [optional] |
 
 ### Return type
 
@@ -173,12 +173,12 @@ MoneyKit.configure do |config|
 end
 
 api_instance = MoneyKit::UsersApi.new
-id = 'id_example' # String | The unique ID for this user.  This is the same ID provided         in the call to <a href=/api/operation/create_link_session#customer_user-id>link-session</a> to create any link for this user.
+id = 'id_example' # String | The unique ID for this user.  This is the same ID provided         in the call to <a href=/api/operation/create_link_session#customer_user-id>link-session</a> to create a link for this user.
 opts = {
-  transaction_type: [MoneyKit::TransactionTypeFilter::CREDIT], # Array<TransactionTypeFilter> | 
-  category: ['inner_example'], # Array<String> | 
+  transaction_type: [MoneyKit::TransactionTypeFilter::CREDIT], # Array<TransactionTypeFilter> | DEPRECATED; ignored
+  category: ['inner_example'], # Array<String> | DEPRECATED; ignored
   account_id: ['inner_example'], # Array<String> | If present, filters results to transactions in accounts matching the given IDs.
-  institution_id: ['inner_example'], # Array<String> | If present, filters results to transactions at institutions matching the given IDs.
+  institution_id: ['inner_example'], # Array<String> | DEPRECATED; ignored
   page: 56, # Integer | The page number to return.
   size: 56, # Integer | The number of items to return per page.
   start_date: Date.parse('2013-10-20'), # Date | The earliest date for which data should be returned, formatted as YYYY-MM-DD.
@@ -216,11 +216,11 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **id** | **String** | The unique ID for this user.  This is the same ID provided         in the call to &lt;a href&#x3D;/api/operation/create_link_session#customer_user-id&gt;link-session&lt;/a&gt; to create any link for this user. |  |
-| **transaction_type** | [**Array&lt;TransactionTypeFilter&gt;**](TransactionTypeFilter.md) |  | [optional] |
-| **category** | [**Array&lt;String&gt;**](String.md) |  | [optional] |
+| **id** | **String** | The unique ID for this user.  This is the same ID provided         in the call to &lt;a href&#x3D;/api/operation/create_link_session#customer_user-id&gt;link-session&lt;/a&gt; to create a link for this user. |  |
+| **transaction_type** | [**Array&lt;TransactionTypeFilter&gt;**](TransactionTypeFilter.md) | DEPRECATED; ignored | [optional] |
+| **category** | [**Array&lt;String&gt;**](String.md) | DEPRECATED; ignored | [optional] |
 | **account_id** | [**Array&lt;String&gt;**](String.md) | If present, filters results to transactions in accounts matching the given IDs. | [optional] |
-| **institution_id** | [**Array&lt;String&gt;**](String.md) | If present, filters results to transactions at institutions matching the given IDs. | [optional] |
+| **institution_id** | [**Array&lt;String&gt;**](String.md) | DEPRECATED; ignored | [optional] |
 | **page** | **Integer** | The page number to return. | [optional][default to 1] |
 | **size** | **Integer** | The number of items to return per page. | [optional][default to 50] |
 | **start_date** | **Date** | The earliest date for which data should be returned, formatted as YYYY-MM-DD. | [optional] |

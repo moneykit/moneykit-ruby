@@ -16,11 +16,11 @@
 require 'moneykit'
 
 instance = MoneyKit::AccountBalances.new(
-  currency: USD,
-  available: 340.12,
-  current: 445.89,
-  limit: 500,
-  balance_date: 2021-08-12T15:23:00Z
+  currency: null,
+  available: null,
+  current: null,
+  limit: null,
+  balance_date: null
 )
 ```
 

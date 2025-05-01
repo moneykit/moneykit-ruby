@@ -4,19 +4,19 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **webhook_major_version** | **Object** |  | [optional] |
-| **webhook_minor_version** | **Object** |  | [optional] |
-| **webhook_idempotency_key** | **Object** |  |  |
-| **webhook_timestamp** | **Object** |  |  |
-| **link_id** | **Object** |  |  |
-| **link_tags** | **Object** |  |  |
-| **webhook_event** | **Object** |  | [optional] |
+| **webhook_major_version** | **Integer** |  | [optional][default to WEBHOOK_MAJOR_VERSION::N1] |
+| **webhook_minor_version** | **Integer** |  | [optional][default to WEBHOOK_MINOR_VERSION::N0] |
+| **webhook_idempotency_key** | **String** |  |  |
+| **webhook_timestamp** | **Time** |  |  |
+| **link_id** | **String** |  |  |
+| **link_tags** | **Array&lt;String&gt;** |  |  |
+| **webhook_event** | **String** |  | [optional][default to &#39;transactions.updates_available&#39;] |
 | **state** | [**LinkProductState**](LinkProductState.md) |  |  |
 | **error** | [**PublicLinkError**](PublicLinkError.md) |  | [optional] |
-| **error_message** | **Object** |  | [optional] |
+| **error_message** | **String** |  | [optional] |
 | **product** | [**Product**](Product.md) |  |  |
-| **state_changed_at** | **Object** |  |  |
-| **has_history** | **Object** |  |  |
+| **state_changed_at** | **Time** |  |  |
+| **has_history** | **Boolean** |  | [optional] |
 
 ## Example
 

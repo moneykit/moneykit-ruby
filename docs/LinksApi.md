@@ -6,9 +6,11 @@ All URIs are relative to *https://api.moneykit.com*
 | ------ | ------------ | ----------- |
 | [**delete_link**](LinksApi.md#delete_link) | **DELETE** /links/{id} | /links/{id} |
 | [**get_link**](LinksApi.md#get_link) | **GET** /links/{id} | /links/{id} |
+| [**get_links**](LinksApi.md#get_links) | **GET** /links | /links |
 | [**get_user_links**](LinksApi.md#get_user_links) | **GET** /users/{id}/links | /users/{id}/links |
 | [**import_link**](LinksApi.md#import_link) | **POST** /links/import | /links/import |
-| [**reset_login**](LinksApi.md#reset_login) | **POST** /links/{id}/reset | Force a \&quot;relink required\&quot; state on a link (Test only). |
+| [**import_transactions**](LinksApi.md#import_transactions) | **POST** /links/{id}/import/transactions | /links/{id}/import/transactions |
+| [**reset_link**](LinksApi.md#reset_link) | **POST** /links/{id}/reset | /links/{id}/reset |
 | [**update_link**](LinksApi.md#update_link) | **PATCH** /links/{id} | /links/{id} |
 
 
@@ -18,7 +20,7 @@ All URIs are relative to *https://api.moneykit.com*
 
 /links/{id}
 
-Deletes this link and disables its access token.         <p>After deletion, the link id and access token are no longer valid and cannot be used to access any data         that was associated with it.
+Deletes this link and disables its access token.         <p>After deletion, the link id and access token are no longer valid and cannot be used to access any data         that was associated with it.  MoneyKit retains a bare-minimum record of the deleted link for a period         (90 days) after deletion, so that your app can fetch the link by its ID and see that it is deleted;         but after 90 days, the link will be hard-deleted and is no longer accessible in any way.
 
 ### Examples
 
@@ -149,6 +151,79 @@ end
 - **Accept**: application/json
 
 
+## get_links
+
+> <GetLinksResponse> get_links(opts)
+
+/links
+
+Gets the list of all active links.  Active links are those that have been connected and     for which data has been fetched, and which have not been deleted.  The list is cursor-paged; submit the     `next_cursor` value to get the next page of links.
+
+### Examples
+
+```ruby
+require 'time'
+require 'moneykit'
+# setup authorization
+MoneyKit.configure do |config|
+  # Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+  config.access_token = 'YOUR ACCESS TOKEN'
+end
+
+api_instance = MoneyKit::LinksApi.new
+opts = {
+  cursor: 'cursor_example', # String | The next_cursor value from the previous batch
+  limit: 56 # Integer | The number of links per page.
+}
+
+begin
+  # /links
+  result = api_instance.get_links(opts)
+  p result
+rescue MoneyKit::ApiError => e
+  puts "Error when calling LinksApi->get_links: #{e}"
+end
+```
+
+#### Using the get_links_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<GetLinksResponse>, Integer, Hash)> get_links_with_http_info(opts)
+
+```ruby
+begin
+  # /links
+  data, status_code, headers = api_instance.get_links_with_http_info(opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <GetLinksResponse>
+rescue MoneyKit::ApiError => e
+  puts "Error when calling LinksApi->get_links_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **cursor** | **String** | The next_cursor value from the previous batch | [optional] |
+| **limit** | **Integer** | The number of links per page. | [optional][default to 1000] |
+
+### Return type
+
+[**GetLinksResponse**](GetLinksResponse.md)
+
+### Authorization
+
+[OAuth2ClientCredentials](../README.md#OAuth2ClientCredentials)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
 ## get_user_links
 
 > <GetUserLinksResponse> get_user_links(id)
@@ -224,7 +299,7 @@ end
 
 /links/import
 
-Creates a new link with pre-populated accounts and transactions.  The new link will be created     in an initially `disconnected` state, with an error code of `auth_expired`, but all data will be available.     As with any disconnected link, the imported link can then be reconnected at any time by starting a new     <a href=#operation/create_link_session>/link-session</a> with `existing_link_id` set to the link's `link_id`.  Note that the link can be     reconnected using any suitable provider.     <p>     The imported data has a maximum size limit of 1MB, which corresponds very roughly to about 4000 transactions.     The data is processed synchronously, so you can expect a delay of up to 10 seconds before the response is     transmitted.  You should set generous HTTP read timeouts to avoid disconnecting before the import is complete.
+Creates a new link with pre-populated accounts and (optionally) transactions.  The new link will     be created in an initially `disconnected` state, with an error code of `auth_expired`, but all data will be available.     As with any disconnected link, the imported link can then be reconnected at any time by starting a new     <a href=#operation/create_link_session>link-session</a> with `existing_link_id` set to the link's `link_id`.  Note that the link can be     reconnected using any suitable provider.     <p>     The imported data has a maximum size limit of 1MB, which corresponds very roughly to about 4000 transactions.     The data is processed synchronously, so you can expect a delay of up to 10 seconds before the response is     transmitted.  For large imports, you should set generous HTTP read timeouts to avoid disconnecting before the     import is complete.  Alternatively, you can import only accounts, and then use the <a href=/api/operation/import_transactions>import-transactions</a>     endpoint to add transactions in batches.
 
 ### Examples
 
@@ -238,7 +313,7 @@ MoneyKit.configure do |config|
 end
 
 api_instance = MoneyKit::LinksApi.new
-import_link_request = MoneyKit::ImportLinkRequest.new({customer_user: MoneyKit::CustomerUser.new({id: 'id_example'}), institution_id: 'institution_id_example', accounts: [MoneyKit::AccountImportData.new({account_id: '74583934', name: 'Premier Checking', type: 'depository.checking', balances: MoneyKit::AccountBalances.new})], transactions: [MoneyKit::TransactionImportData.new({account_id: '74583934', amount: '384.05', date: 3.56})]}) # ImportLinkRequest | 
+import_link_request = MoneyKit::ImportLinkRequest.new({customer_user: MoneyKit::CustomerUser.new({id: 'id_example'}), institution_id: 'institution_id_example', accounts: [MoneyKit::AccountImportData.new({account_id: 'account_id_example', name: 'name_example', type: 'type_example', balances: MoneyKit::AccountBalances.new})], transactions: [MoneyKit::TransactionImportData.new({account_id: 'account_id_example', amount: 'amount_example', date: 3.56})]}) # ImportLinkRequest | 
 
 begin
   # /links/import
@@ -287,11 +362,84 @@ end
 - **Accept**: application/json
 
 
-## reset_login
+## import_transactions
 
-> <LinkCommon> reset_login(id)
+> <LinkCommon> import_transactions(id, import_transactions_request)
 
-Force a \"relink required\" state on a link (Test only).
+/links/{id}/import/transactions
+
+Adds transactions to a link imported with the <a href=/api/operation/import_link>import</a> endpoint.  The imported data has a     maximum size limit of 1MB, which corresponds very roughly to about 4000 transactions.  The data is processed     synchronously, so you can expect a delay of up to 10 seconds before the response is transmitted.
+
+### Examples
+
+```ruby
+require 'time'
+require 'moneykit'
+# setup authorization
+MoneyKit.configure do |config|
+  # Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+  config.access_token = 'YOUR ACCESS TOKEN'
+end
+
+api_instance = MoneyKit::LinksApi.new
+id = 'id_example' # String | The unique ID for this link.
+import_transactions_request = MoneyKit::ImportTransactionsRequest.new({transactions: [MoneyKit::TransactionImportData.new({account_id: 'account_id_example', amount: 'amount_example', date: 3.56})]}) # ImportTransactionsRequest | 
+
+begin
+  # /links/{id}/import/transactions
+  result = api_instance.import_transactions(id, import_transactions_request)
+  p result
+rescue MoneyKit::ApiError => e
+  puts "Error when calling LinksApi->import_transactions: #{e}"
+end
+```
+
+#### Using the import_transactions_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<LinkCommon>, Integer, Hash)> import_transactions_with_http_info(id, import_transactions_request)
+
+```ruby
+begin
+  # /links/{id}/import/transactions
+  data, status_code, headers = api_instance.import_transactions_with_http_info(id, import_transactions_request)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <LinkCommon>
+rescue MoneyKit::ApiError => e
+  puts "Error when calling LinksApi->import_transactions_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **id** | **String** | The unique ID for this link. |  |
+| **import_transactions_request** | [**ImportTransactionsRequest**](ImportTransactionsRequest.md) |  |  |
+
+### Return type
+
+[**LinkCommon**](LinkCommon.md)
+
+### Authorization
+
+[OAuth2ClientCredentials](../README.md#OAuth2ClientCredentials)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+
+## reset_link
+
+> <LinkCommon> reset_link(id)
+
+/links/{id}/reset
+
+Forcibly disconnects a link, for testing purposes.
 
 ### Examples
 
@@ -308,29 +456,29 @@ api_instance = MoneyKit::LinksApi.new
 id = 'id_example' # String | The unique ID for this link.
 
 begin
-  # Force a \"relink required\" state on a link (Test only).
-  result = api_instance.reset_login(id)
+  # /links/{id}/reset
+  result = api_instance.reset_link(id)
   p result
 rescue MoneyKit::ApiError => e
-  puts "Error when calling LinksApi->reset_login: #{e}"
+  puts "Error when calling LinksApi->reset_link: #{e}"
 end
 ```
 
-#### Using the reset_login_with_http_info variant
+#### Using the reset_link_with_http_info variant
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<LinkCommon>, Integer, Hash)> reset_login_with_http_info(id)
+> <Array(<LinkCommon>, Integer, Hash)> reset_link_with_http_info(id)
 
 ```ruby
 begin
-  # Force a \"relink required\" state on a link (Test only).
-  data, status_code, headers = api_instance.reset_login_with_http_info(id)
+  # /links/{id}/reset
+  data, status_code, headers = api_instance.reset_link_with_http_info(id)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <LinkCommon>
 rescue MoneyKit::ApiError => e
-  puts "Error when calling LinksApi->reset_login_with_http_info: #{e}"
+  puts "Error when calling LinksApi->reset_link_with_http_info: #{e}"
 end
 ```
 

@@ -16,9 +16,9 @@
 require 'moneykit'
 
 instance = MoneyKit::GetUserTransactionsResponse.new(
-  total: 82,
-  page: 1,
-  size: 50,
+  total: null,
+  page: null,
+  size: null,
   transactions: null,
   accounts: null
 )

@@ -15,8 +15,8 @@
 require 'moneykit'
 
 instance = MoneyKit::BasicAccountDetails.new(
-  name: Premier Checking,
-  last_synced_at: 2023-02-16T09:14:11,
+  name: null,
+  last_synced_at: null,
   institution_id: null,
   link_id: null
 )

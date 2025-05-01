@@ -4,14 +4,16 @@ All URIs are relative to *https://api.moneykit.com*
 
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
-| [**trigger_test_link_webhook_event**](WebhooksApi.md#trigger_test_link_webhook_event) | **POST** /webhooks/test/link/{id} | Trigger a test webhook event for a link (Sandbox only). |
+| [**trigger_test_link_webhook_event**](WebhooksApi.md#trigger_test_link_webhook_event) | **POST** /webhooks/test/link/{id} | /webhooks/test/link/{id} |
 
 
 ## trigger_test_link_webhook_event
 
 > <WebhookTestLinkResponse> trigger_test_link_webhook_event(id, webhook_test_link_request)
 
-Trigger a test webhook event for a link (Sandbox only).
+/webhooks/test/link/{id}
+
+Triggers a webhook event for a link, for testing purposes; works only for sandbox links.
 
 ### Examples
 
@@ -29,7 +31,7 @@ id = 'id_example' # String | The unique ID for this link.
 webhook_test_link_request = MoneyKit::WebhookTestLinkRequest.new({webhook_event: MoneyKit::WebhookLinkTestEvent::LINK_STATE_CHANGED, webhook_idempotency_key: 'webhook_idempotency_key_example'}) # WebhookTestLinkRequest | 
 
 begin
-  # Trigger a test webhook event for a link (Sandbox only).
+  # /webhooks/test/link/{id}
   result = api_instance.trigger_test_link_webhook_event(id, webhook_test_link_request)
   p result
 rescue MoneyKit::ApiError => e
@@ -45,7 +47,7 @@ This returns an Array which contains the response data, status code and headers.
 
 ```ruby
 begin
-  # Trigger a test webhook event for a link (Sandbox only).
+  # /webhooks/test/link/{id}
   data, status_code, headers = api_instance.trigger_test_link_webhook_event_with_http_info(id, webhook_test_link_request)
   p status_code # => 2xx
   p headers # => { ... }

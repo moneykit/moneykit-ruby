@@ -15,7 +15,7 @@ require 'moneykit'
 
 instance = MoneyKit::LinkSessionErrorInvalidTokenExchange.new(
   error_code: null,
-  error_message: Invalid token for link,
+  error_message: null,
   documentation_url: null
 )
 ```

@@ -13,8 +13,8 @@
 require 'moneykit'
 
 instance = MoneyKit::TransactionRecurrenceResponse.new(
-  frequency: monthly,
-  next_predicted_date: 2024-08-03
+  frequency: null,
+  next_predicted_date: null
 )
 ```
 

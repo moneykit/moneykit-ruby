@@ -15,7 +15,7 @@ require 'moneykit'
 
 instance = MoneyKit::LinkSessionErrorForbiddenConfigResponse.new(
   error_code: null,
-  error_message: Forbidden use of a Connect feature,
+  error_message: null,
   documentation_url: null
 )
 ```

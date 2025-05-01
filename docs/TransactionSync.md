@@ -4,9 +4,9 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **created** | [**Array&lt;TransactionResponse&gt;**](TransactionResponse.md) |  |  |
-| **updated** | [**Array&lt;TransactionResponse&gt;**](TransactionResponse.md) |  |  |
-| **removed** | **Array&lt;String&gt;** |  |  |
+| **created** | [**Array&lt;TransactionResponse&gt;**](TransactionResponse.md) | A list of transactions that have been added to the link. |  |
+| **updated** | [**Array&lt;TransactionResponse&gt;**](TransactionResponse.md) | A list of transactions that have been updated on the link. |  |
+| **removed** | **Array&lt;String&gt;** | A list of transaction ids that have been removed from the link. |  |
 
 ## Example
 

@@ -13,7 +13,7 @@
 require 'moneykit'
 
 instance = MoneyKit::Email.new(
-  address: example@example.com,
+  address: null,
   primary: null
 )
 ```

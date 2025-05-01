@@ -12,7 +12,7 @@
 require 'moneykit'
 
 instance = MoneyKit::CursorPagination.new(
-  _next: c2FtcGxlIGN1cnNvcg&#x3D;&#x3D;
+  _next: null
 )
 ```
 

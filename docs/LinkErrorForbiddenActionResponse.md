@@ -15,7 +15,7 @@ require 'moneykit'
 
 instance = MoneyKit::LinkErrorForbiddenActionResponse.new(
   error_code: null,
-  error_message: Accounts access not permitted,
+  error_message: null,
   documentation_url: null
 )
 ```

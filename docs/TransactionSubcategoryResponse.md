@@ -13,8 +13,8 @@
 require 'moneykit'
 
 instance = MoneyKit::TransactionSubcategoryResponse.new(
-  value: coffee,
-  confidence: 99
+  value: null,
+  confidence: null
 )
 ```
 
