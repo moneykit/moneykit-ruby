@@ -11,5 +11,5 @@ Generator version: 7.12.0
 =end
 
 module MoneyKit
-  VERSION = '0.2.1'
+  VERSION = '0.2.2'
 end

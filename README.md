@@ -16,7 +16,7 @@ bundle add moneykit.gemspec
 or add the following to your `Gemfile`
 
 ```
-gem 'moneykit', '~> 0.2.1'
+gem 'moneykit', '~> 0.2.2'
 ```
 
 ## Getting Started
